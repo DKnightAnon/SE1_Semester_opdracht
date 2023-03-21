@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.se_opdracht.StartMenuController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.StartMenuController">
+   <children>
+      <Button fx:id="TransactionsButton" layoutX="168.0" layoutY="234.0" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="100.0" text="Transactions" />
+      <Button fx:id="GraphsButton" layoutX="360.0" layoutY="234.0" mnemonicParsing="false" onAction="#onGraphsButtonClick" prefHeight="25.0" prefWidth="100.0" text="Graphs" />
+      <Button fx:id="ProductsButton" layoutX="360.0" layoutY="175.0" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="100.0" text="Products" />
+      <TextField fx:id="WelcomeMessage" alignment="CENTER" layoutX="226.0" layoutY="54.0" text="Welcome" />
+      <TextField fx:id="WelcomeGuideMessage" alignment="CENTER" layoutX="226.0" layoutY="88.0" text="Make a selection below" />
+   </children>
 </AnchorPane>
