@@ -1,4 +1,4 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.Controllers;
 
 public class TransactionScreenController {
 }
