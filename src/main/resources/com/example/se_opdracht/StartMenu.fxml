@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.StartMenuController">
+<AnchorPane fx:id="StartMenu" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.StartMenuController">
    <children>
       <Button fx:id="TransactionsButton" layoutX="168.0" layoutY="234.0" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="100.0" text="Transactions" />
       <Button fx:id="GraphsButton" layoutX="360.0" layoutY="234.0" mnemonicParsing="false" onAction="#onGraphsButtonClick" prefHeight="25.0" prefWidth="100.0" text="Graphs" />

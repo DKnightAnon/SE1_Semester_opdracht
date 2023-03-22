@@ -10,12 +10,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
 public class TransactionScreenController {
+
+    @FXML
+            private AnchorPane TransactionScreen;
+
+    ErrorWarnings error = new ErrorWarnings();
 
     private Parent root;
     private Stage stage;
@@ -25,14 +31,17 @@ public class TransactionScreenController {
 
     public void onReturnButtonClicked(ActionEvent actionEvent) throws IOException {
         //Switch scene to Main
-        URL fxmlLocation = getClass().getResource("StartMenu.fxml");
-
-        FXMLLoader loader = new FXMLLoader(fxmlLocation);
-        root = loader.load();
-        stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        try {
+            URL fxmlLocation = getClass().getResource("StartMenu.fxml");
+            FXMLLoader loader = new FXMLLoader(fxmlLocation);
+            root = loader.load();
+            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            error.unableToSwitchScene();
+        }
 
     }
 }

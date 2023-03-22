@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class StartMenuController {
@@ -27,6 +28,8 @@ public class StartMenuController {
     private Button GraphsButton;
     @FXML
     private Button TransactionsButton;
+    @FXML
+    private AnchorPane StartMenu;
 
     private Stage stage;
     private Scene scene;
