@@ -10,6 +10,10 @@ public class DBhandler {
 
     static Connection connection;
 
+    public static void addProduct() throws  SQLException {
+
+    }
+
     public static ObservableList<Linegraph> getDataContact() throws SQLException {
         return null;
     }
