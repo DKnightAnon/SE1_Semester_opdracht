@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class StartMenuController {
+    ErrorWarnings error = new ErrorWarnings();
     @FXML
     private Label welcomeText;
     @FXML
@@ -29,11 +30,14 @@ public class StartMenuController {
     @FXML
     private Button TransactionsButton;
     @FXML
+    private Button close;
+    @FXML
     private AnchorPane StartMenu;
 
     private Stage stage;
     private Scene scene;
     private Parent root;
+
 
 
 
@@ -59,5 +63,13 @@ public class StartMenuController {
     }
 
     public void onProductsButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+    try {
+        error.logoutConfirm(StartMenu);
+    } catch (Exception e) {
+        error.unableToCloseApplication();
+    }
     }
 }

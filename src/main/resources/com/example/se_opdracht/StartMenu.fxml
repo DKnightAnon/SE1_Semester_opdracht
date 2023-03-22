@@ -11,5 +11,6 @@
       <Button fx:id="ProductsButton" layoutX="360.0" layoutY="175.0" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="100.0" text="Products" />
       <Label fx:id="WelcomeMessage" layoutX="275.0" layoutY="69.0" text="Welcome" />
       <Label fx:id="WelcomeGuideMessage" layoutX="238.0" layoutY="92.0" text="Make a selection below" />
+      <Button fx:id="Close" layoutX="246.0" layoutY="346.0" mnemonicParsing="false" onAction="#onCloseButtonClick" text="Close Application" />
    </children>
 </AnchorPane>
