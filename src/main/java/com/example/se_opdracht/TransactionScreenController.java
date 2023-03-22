@@ -1,5 +1,6 @@
 package com.example.se_opdracht;
 
+import com.example.se_opdracht.ErrorWarnings;
 import com.example.se_opdracht.Main;
 import javafx.event.ActionEvent;
 import javafx.event.ActionEvent;

@@ -3,6 +3,7 @@ package com.example.se_opdracht;
 import java.io.IOException;
 import java.net.URL;
 
+import com.example.se_opdracht.ErrorWarnings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -54,6 +55,9 @@ public class StartMenuController {
             stage.setScene(scene);
             stage.show();
         } catch (Exception e) {
+            //Removing the e.printStackTrace(); causes the sceneswitching to work for some reason? Needs looking into on a different date.
+            //Sceneswtiching works if both controllers are in source package.
+            error.unableToSwitchScene();
             e.printStackTrace();
         }
 
