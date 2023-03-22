@@ -6,4 +6,8 @@ public class Linegraph extends GraphInfo{
         super(graphName,description);
     }
 
+    @Override
+    public void showGraphInfo() {
+        super.showGraphInfo();
+    }
 }

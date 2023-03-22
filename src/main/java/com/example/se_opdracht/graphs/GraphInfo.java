@@ -11,8 +11,6 @@ public class GraphInfo {
     }
 
     public void showGraphInfo(){
-        System.out.println(graphName + "\n" + description);
-
     }
 
 
