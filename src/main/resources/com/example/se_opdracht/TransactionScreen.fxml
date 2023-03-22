@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.TransactionScreenController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.TransactionScreenController">
    <children>
       <Button fx:id="Return" layoutX="47.0" layoutY="48.0" mnemonicParsing="false" onAction="#onReturnButtonClicked" text="Return" />
    </children>

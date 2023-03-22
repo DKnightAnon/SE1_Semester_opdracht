@@ -8,6 +8,4 @@ module com.example.se_opdracht {
     exports com.example.se_opdracht;
     exports com.example.se_opdracht.graphs;
     opens com.example.se_opdracht.graphs to javafx.fxml;
-    exports com.example.se_opdracht.Controllers;
-    opens com.example.se_opdracht.Controllers to javafx.fxml;
 }
