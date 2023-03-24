@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 
 public class Main extends Application {
     @Override
@@ -22,7 +25,14 @@ public class Main extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
+        try {
+            Class.forName("org.h2.Driver");
+            /*Connection conn = DriverManager.getConnection("jdbc:h2:~bptDB","test","test");
+            Statement st = conn.createStatement();*/
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         launch();
     }
 }

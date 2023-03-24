@@ -1,0 +1,37 @@
+[Creating the tables] (date is in yyyy-mm-dd format)
+    DROP TABLE IF EXISTS Vendor;
+    CREATE TABLE Vendor(
+    Vendor_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255) NOT NULL,
+    Description varchar (255),
+    PRIMARY KEY(Vendor_ID)
+    );
+
+    DROP TABLE IF EXISTS Expense_Category;
+    CREATE TABLE Expense_Category(
+    Category_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255),
+    PRIMARY KEY(Category_ID)
+    );
+
+    DROP TABLE IF EXISTS Income;
+    CREATE TABLE Income(
+    Income_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255),
+    Description varchar(600),
+    Date DATE NOT NULL,
+    PRIMARY KEY(Income_ID)
+    );
+
+    DROP TABLE IF EXISTS Purchase;
+    CREATE TABLE Purchase(
+    Purchase_ID int not null auto_increment,
+     Date DATE NOT NULL,
+    Item varchar(600),
+    Vendor int NOT NULL,
+    Description varchar(255),
+    Category integer NOT NULL,
+    PRIMARY KEY (Purchase_ID),
+    FOREIGN KEY (Vendor) REFERENCES Vendor(Vendor_ID),
+    FOREIGN KEY (Category) REFERENCES Expense_Category(Category_ID)
+    );

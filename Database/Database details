@@ -1,0 +1,6 @@
+username : admin
+password : admin
+
+The following video was used in the creation of the database : Java Connect to H2 Database Examples - https://www.youtube.com/watch?v=HsxUlODSvfM
+Navigate to the folder that contains h2-2.1.214.jar in the command terminal
+Use the command  [java -jar h2-2.1.214.jar]
