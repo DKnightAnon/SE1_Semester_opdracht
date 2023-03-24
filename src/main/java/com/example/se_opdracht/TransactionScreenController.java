@@ -45,4 +45,7 @@ public class TransactionScreenController {
         }
 
     }
+
+    public void AddNewPurchase(ActionEvent actionEvent) {
+    }
 }

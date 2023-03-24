@@ -12,6 +12,8 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 
 public class Main extends Application {
+
+
     @Override
     public void start(Stage stage) throws IOException {
         try {
@@ -20,19 +22,26 @@ public class Main extends Application {
             stage.setTitle("Homepage");
             stage.setScene(scene);
             stage.show();
+            try {
+                //Class.forName("org.h2.Driver");
+            /*Connection conn = DriverManager.getConnection("jdbc:h2:~bptDB","test","test");
+            Statement st = conn.createStatement();*/
+
+                DBhandler database = new DBhandler();
+                database.connection();
+
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     public static void main(String[] args) throws ClassNotFoundException {
-        try {
-            Class.forName("org.h2.Driver");
-            /*Connection conn = DriverManager.getConnection("jdbc:h2:~bptDB","test","test");
-            Statement st = conn.createStatement();*/
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
+
         launch();
+
     }
 }

@@ -35,3 +35,6 @@
     FOREIGN KEY (Vendor) REFERENCES Vendor(Vendor_ID),
     FOREIGN KEY (Category) REFERENCES Expense_Category(Category_ID)
     );
+
+[Queries]
+    to be added

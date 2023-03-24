@@ -10,16 +10,22 @@ import java.sql.Statement;
 
 public class DBhandler {
 
+ private static String jdcbURL = "jdbc:h2:mem:bptDB";
+ private static String user = "admin";
+ private static String password = "admin";
+ public String connected = "Connected to database!";
+ public String disconnected = "Disconnected from database!";
+ public String connectionUnable = "Unable to connect to database...";
 
-
-    public static Connection connection() throws SQLException {
+    public  Connection connection() throws SQLException {
         Connection conn = null;
         try {
-             conn = DriverManager.getConnection("jdbc:h2:~bptDB", "test", "test");
-            //Statement st = conn.createStatement();
+             conn = DriverManager.getConnection(jdcbURL, user, password);
+             System.out.println(connected);
         }catch (Exception e) {
             e.printStackTrace();
         }
+
         return conn;
     };
 
