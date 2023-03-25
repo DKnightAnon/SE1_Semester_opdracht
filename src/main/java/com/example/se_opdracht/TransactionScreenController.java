@@ -34,19 +34,30 @@ public class TransactionScreenController extends GenericScreenController impleme
     private TableColumn<TransactionProduct, Integer> ID;
     private TableColumn<TransactionProduct, Date> Date;
     private TableColumn<TransactionProduct, String> Item;
+    @FXML
     private TableColumn<TransactionProduct, String> Vendor;
     private TableColumn<TransactionProduct, String> Description;
     private TableColumn<TransactionProduct, String> Category;
+//Table variables
 
-
+    //Purchase(Transaction) form variables
+    @FXML
+    private DatePicker expenseDate;
+    @FXML
+    private TextField VendorTextField;
+    @FXML
+    private TextArea purchaseDescription;
+    @FXML
+    private ComboBox selectCategory;
+    @FXML
+    private Button addPurchaseButton;
+    //Purchase(Transaction) form variables
 
     private Parent root;
     private Stage stage;
     private Scene scene;
     @FXML
     private Button Return;
-    @FXML
-    private DatePicker expenseDate;
 
     public void AddNewPurchase(ActionEvent actionEvent) {
         tdbh.addNewProduct();

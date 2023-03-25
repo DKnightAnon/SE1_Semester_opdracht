@@ -47,6 +47,7 @@ public class TransactionDBHandler extends DBhandler{
             psInsert.setString(3, vendor);
             psInsert.setString(4,description);
             psInsert.setString(5,category);
+            psInsert.executeUpdate();
 
         }catch (SQLException e){
 
