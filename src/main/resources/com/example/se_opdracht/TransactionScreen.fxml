@@ -31,9 +31,8 @@
                                  </effect>
                               </Rectangle>
                               <DatePicker fx:id="expenseDate" layoutX="20.0" layoutY="20.0" prefHeight="20.0" prefWidth="250.0" promptText="yyyy-mm-dd" />
-                              <TextField fx:id="expenseItem" layoutX="20.0" layoutY="60.0" prefHeight="20.0" prefWidth="250.0" />
-                              <TextField fx:id="newVendor" layoutX="20.0" layoutY="100.0" prefHeight="20.0" prefWidth="110.0" promptText="New vendor" />
-                              <ComboBox fx:id="existingVendor" layoutX="140.0" layoutY="100.0" prefHeight="20.0" prefWidth="130.0" promptText="Existing vendor" />
+                              <TextField fx:id="expenseItem" layoutX="20.0" layoutY="60.0" prefHeight="20.0" prefWidth="250.0" promptText="Item Name" />
+                              <TextField fx:id="newVendor" layoutX="20.0" layoutY="100.0" prefHeight="20.0" prefWidth="250.0" promptText="New vendor" />
                               <TextArea fx:id="purchaseDescription" layoutX="20.0" layoutY="140.0" prefHeight="50.0" prefWidth="250.0" promptText="Description of purchase" />
                               <ComboBox fx:id="selectCategory" layoutX="20.0" layoutY="210.0" prefHeight="20.0" prefWidth="250.0" />
                               <Button fx:id="addPurchaseButton" layoutX="70.0" layoutY="250.0" mnemonicParsing="false" onAction="#AddNewPurchase" prefHeight="20.0" prefWidth="150.0" text="Add new purchase" />
@@ -57,7 +56,6 @@
                   </AnchorPane>
                </content>
             </Tab>
-          <Tab text="Untitled Tab 2" />
         </tabs>
       </TabPane>
    </children>

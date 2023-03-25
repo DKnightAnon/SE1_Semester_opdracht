@@ -14,11 +14,11 @@ public class DBhandler {
  private static String jdcbURL = "jdbc:h2:mem:bptDB";
  private static String user = "admin";
  private static String password = "admin";
- public String connected = "Connected to database!";
- public String disconnected = "Disconnected from database!";
- public String connectionUnable = "Unable to connect to database...";
+ public static String connected = "Connected to database!";
+ public static String disconnected = "Disconnected from database!";
+ public static String connectionUnable = "Unable to connect to database...";
 
-    public  Connection connection() throws SQLException {
+    public static Connection connection() throws SQLException {
         Connection conn = null;
         try {
              conn = DriverManager.getConnection(jdcbURL, user, password);
