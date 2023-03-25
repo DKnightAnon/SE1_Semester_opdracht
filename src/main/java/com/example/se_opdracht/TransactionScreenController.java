@@ -29,7 +29,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 
 
-
+//Table variables
     private TableView<TransactionProduct> TransactionTable;
     private TableColumn<TransactionProduct, Integer> ID;
     private TableColumn<TransactionProduct, Date> Date;

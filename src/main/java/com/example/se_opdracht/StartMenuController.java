@@ -53,7 +53,6 @@ public class StartMenuController {
             scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            Transaction.tdbh.fillTable();
         } catch (Exception e) {
             //Removing the e.printStackTrace(); causes the sceneswitching to work for some reason? Needs looking into on a different date.
             //Sceneswtiching works if both controllers are in source package.

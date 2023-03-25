@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class TransactionDBHandler extends DBhandler{
 
@@ -37,12 +38,31 @@ public class TransactionDBHandler extends DBhandler{
 
         return list;
     }
+
     @Override
-    public void fillTable(){
+    public void addNewProduct() {
+        PreparedStatement psInsert = null;
+        int ID;
+        Date date;
+        String item;
+        String vendor;
+        String description;
+        String category;
+        ResultSet resultSet = null;
+
+        try{
+           Connection con = connection();
+            psInsert = con.prepareStatement("INSERT INTO Purchase(ID,");
+            psInsert.setInt(1, ID);
+            psInsert.setDate(2, date);
+
+        }catch (SQLException e){
+
+        }
 
     }
 
-    public void addNewTransaction(){
 
-    }
+
+
 }

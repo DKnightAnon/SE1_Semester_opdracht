@@ -1,6 +1,8 @@
 package com.example.se_opdracht.DBHandlers;
 
 
+import com.example.se_opdracht.Products.Product;
+import com.example.se_opdracht.Products.TransactionProduct;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -30,7 +32,9 @@ public class DBhandler {
         return conn;
     };
 
-  public void fillTable(){
 
-  }
+    public void addNewProduct(){
+
+    }
+
 }
