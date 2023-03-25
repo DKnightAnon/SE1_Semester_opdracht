@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class TransactionScreenController extends ScreenController{
+public class TransactionScreenController extends GenericScreenController{
 
     @FXML
             private AnchorPane TransactionScreen;

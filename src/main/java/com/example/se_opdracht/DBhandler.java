@@ -2,6 +2,7 @@ package com.example.se_opdracht;
 
 import com.example.se_opdracht.graphs.Linegraph;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,11 +30,7 @@ public class DBhandler {
         return conn;
     };
 
-    public static void addProduct() throws  SQLException {
+  public void fillTable(ActionEvent event){
 
-    }
-
-    public static ObservableList<Linegraph> getDataContact() throws SQLException {
-        return null;
-    }
+  }
 }

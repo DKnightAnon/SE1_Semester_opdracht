@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public abstract class ScreenController {
+public abstract class GenericScreenController {
     private Parent root;
     private Stage stage;
     private Scene scene;

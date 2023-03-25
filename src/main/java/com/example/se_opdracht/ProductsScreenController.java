@@ -11,6 +11,6 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 
-public class ProductsScreenController extends ScreenController {
+public class ProductsScreenController extends GenericScreenController {
 
 }
