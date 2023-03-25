@@ -1,10 +1,6 @@
 package com.example.se_opdracht;
 
-import com.example.se_opdracht.ErrorWarnings;
-import com.example.se_opdracht.Main;
 import javafx.event.ActionEvent;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,12 +13,13 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 
-public class TransactionScreenController {
+public class TransactionScreenController extends ScreenController{
 
     @FXML
             private AnchorPane TransactionScreen;
 
     ErrorWarnings error = new ErrorWarnings();
+
 
     private Parent root;
     private Stage stage;
@@ -30,7 +27,7 @@ public class TransactionScreenController {
     @FXML
     private Button Return;
 
-    public void onReturnButtonClicked(ActionEvent actionEvent) throws IOException {
+/*    public void onReturnButtonClicked(ActionEvent actionEvent) throws IOException {
         //Switch scene to Main
         try {
             URL fxmlLocation = getClass().getResource("StartMenu.fxml");
@@ -44,7 +41,7 @@ public class TransactionScreenController {
             error.unableToSwitchScene();
         }
 
-    }
+    }*/
 
     public void AddNewPurchase(ActionEvent actionEvent) {
     }
