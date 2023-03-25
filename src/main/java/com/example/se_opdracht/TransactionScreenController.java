@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -28,8 +29,9 @@ public class TransactionScreenController extends GenericScreenController{
 
 
     private TableView<TransactionProduct> TransactionTable;
-    private TableColumn<TransactionProduct, Integer> TransactionID;
-    private TableColumn<TransactionProduct, String> ProductNaam;
+    private TableColumn<TransactionProduct, Integer> ID;
+    private TableColumn<TransactionProduct, String> Date;
+    private TableColumn<TransactionProduct, String> Item;
     private TableColumn<TransactionProduct, String> Vendor;
     private TableColumn<TransactionProduct, String> Description;
     private TableColumn<TransactionProduct, String> Category;
@@ -41,22 +43,8 @@ public class TransactionScreenController extends GenericScreenController{
     private Scene scene;
     @FXML
     private Button Return;
-
-/*    public void onReturnButtonClicked(ActionEvent actionEvent) throws IOException {
-        //Switch scene to Main
-        try {
-            URL fxmlLocation = getClass().getResource("StartMenu.fxml");
-            FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            error.unableToSwitchScene();
-        }
-
-    }*/
+    @FXML
+    private DatePicker expenseDate;
 
     public void AddNewPurchase(ActionEvent actionEvent) {
     }
