@@ -2,6 +2,7 @@ package com.example.se_opdracht;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.Products.TransactionProduct;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -58,6 +59,8 @@ public class TransactionScreenController extends GenericScreenController impleme
     private Scene scene;
     @FXML
     private Button Return;
+    ObservableList<String> categoryList;
+    ObservableList<TransactionProduct> transactions;
 
     public void AddNewPurchase(ActionEvent actionEvent) {
         tdbh.addNewProduct();
@@ -71,6 +74,11 @@ public class TransactionScreenController extends GenericScreenController impleme
         Vendor.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Vendor"));
         Description.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description"));
         Category.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));
+        transactions = TransactionDBHandler.getTransactions();
+        TransactionTable.setItems(transactions);
+        categoryList = TransactionDBHandler.getCategories();
+        selectCategory.setItems(categoryList);
+
 
 
     }

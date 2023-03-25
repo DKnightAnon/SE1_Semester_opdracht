@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class TransactionDBHandler extends DBhandler{
 
-    public static ObservableList<TransactionProduct> Transactions() throws SQLException {
+    public static ObservableList<TransactionProduct> getTransactions() {
 
         ObservableList<TransactionProduct> list;
         try {
@@ -34,17 +34,17 @@ public class TransactionDBHandler extends DBhandler{
         return list;
     }
 
-    public static ObservableList<String> Categories() throws SQLException {
-        ObservableList<String> list = null;
+    public static ObservableList<String> getCategories() {
+        ObservableList<String>   list = FXCollections.observableArrayList();
         try {
             Connection connection = connection();
-            list = FXCollections.observableArrayList();
+
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
-                list.add(new String(rs.getString("Name")));
+                list.add(rs.getString("Name"));
             }
         }catch (SQLException e) {
 
