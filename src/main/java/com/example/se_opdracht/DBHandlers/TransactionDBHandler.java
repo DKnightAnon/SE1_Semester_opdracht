@@ -14,7 +14,7 @@ public class TransactionDBHandler extends DBhandler{
         try {
             Connection connection = connection();
             list = FXCollections.observableArrayList();
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Date, Item, Vendor, Description, Category FROM gebruiker");
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Date, Item, Vendor, Description, Category FROM purchase");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -31,6 +31,24 @@ public class TransactionDBHandler extends DBhandler{
             throw new RuntimeException(e);
         }
 
+        return list;
+    }
+
+    public static ObservableList<String> Categories() throws SQLException {
+        ObservableList<String> list = null;
+        try {
+            Connection connection = connection();
+            list = FXCollections.observableArrayList();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                list.add(new String(rs.getString("Name")));
+            }
+        }catch (SQLException e) {
+
+        }
         return list;
     }
 
