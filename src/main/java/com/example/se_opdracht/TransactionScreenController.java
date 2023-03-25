@@ -45,6 +45,8 @@ public class TransactionScreenController extends GenericScreenController impleme
     @FXML
     private DatePicker expenseDate;
     @FXML
+    private TextField expenseItem;
+    @FXML
     private TextField VendorTextField;
     @FXML
     private TextArea purchaseDescription;
@@ -63,7 +65,12 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProduct> transactions;
 
     public void AddNewPurchase(ActionEvent actionEvent) {
-        tdbh.addNewProduct();
+        tdbh.addNewProduct(
+                expenseDate.getEditor(),
+                expenseItem.getText(),
+                VendorTextField.getText(),
+                purchaseDescription.getText(),
+                selectCategory.getSelectionModel().getSelectedItem().toString());
     }
 
     @Override
