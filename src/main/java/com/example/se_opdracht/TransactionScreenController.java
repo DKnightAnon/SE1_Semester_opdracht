@@ -49,6 +49,7 @@ public class TransactionScreenController extends GenericScreenController impleme
     private DatePicker expenseDate;
 
     public void AddNewPurchase(ActionEvent actionEvent) {
+        tdbh.addNewProduct();
     }
 
     @Override

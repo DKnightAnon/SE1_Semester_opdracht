@@ -6,12 +6,9 @@ import com.example.se_opdracht.Products.TransactionProduct;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
-public class DBhandler {
+public abstract class DBhandler {
 
  private static String jdcbURL = "jdbc:h2:mem:bptDB";
  private static String user = "admin";
@@ -36,5 +33,5 @@ public class DBhandler {
     public void addNewProduct(){
 
     }
-
+    public abstract void addNewProduct(Date date, String item, String vendor, String description, String category);
 }

@@ -3,13 +3,8 @@ package com.example.se_opdracht.DBHandlers;
 import com.example.se_opdracht.Products.TransactionProduct;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
+import java.sql.*;
 
 public class TransactionDBHandler extends DBhandler{
 
@@ -40,21 +35,18 @@ public class TransactionDBHandler extends DBhandler{
     }
 
     @Override
-    public void addNewProduct() {
+    public void addNewProduct(Date date, String item, String vendor, String description, String category) {
         PreparedStatement psInsert = null;
-        int ID;
-        Date date;
-        String item;
-        String vendor;
-        String description;
-        String category;
         ResultSet resultSet = null;
 
         try{
            Connection con = connection();
-            psInsert = con.prepareStatement("INSERT INTO Purchase(ID,");
-            psInsert.setInt(1, ID);
-            psInsert.setDate(2, date);
+            psInsert = con.prepareStatement("INSERT INTO Purchase(Date, Item, Vendor, Description, Category) VALUES (?,?,?,?,?)");
+            psInsert.setDate(1, date);
+            psInsert.setString(2,item);
+            psInsert.setString(3, vendor);
+            psInsert.setString(4,description);
+            psInsert.setString(5,category);
 
         }catch (SQLException e){
 
