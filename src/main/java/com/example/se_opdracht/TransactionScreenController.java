@@ -1,5 +1,6 @@
 package com.example.se_opdracht;
 
+import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ public class TransactionScreenController extends GenericScreenController{
             private AnchorPane TransactionScreen;
 
     ErrorWarnings error = new ErrorWarnings();
+    TransactionDBHandler tdbh = new TransactionDBHandler();
 
 
     private Parent root;

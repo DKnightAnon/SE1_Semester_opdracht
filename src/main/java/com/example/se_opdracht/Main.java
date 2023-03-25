@@ -1,5 +1,6 @@
 package com.example.se_opdracht;
 
+import com.example.se_opdracht.DBHandlers.DBhandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,9 +8,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.Statement;
 
 public class Main extends Application {
 

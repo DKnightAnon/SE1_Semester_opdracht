@@ -43,12 +43,12 @@
                            <children>
                               <TableView layoutX="7.0" layoutY="11.0" prefHeight="269.0" prefWidth="651.0">
                                 <columns>
-                                  <TableColumn prefWidth="57.0" text="ID" />
-                                  <TableColumn prefWidth="71.0" text="Date" />
-                                    <TableColumn prefWidth="97.0" text="Item" />
-                                    <TableColumn prefWidth="75.0" text="Vendor" />
-                                    <TableColumn prefWidth="257.0" text="Description" />
-                                    <TableColumn prefWidth="93.0" text="Category" />
+                                  <TableColumn fx:id="IDColumn" prefWidth="57.0" text="ID" />
+                                  <TableColumn fx:id="DateColumn" prefWidth="71.0" text="Date" />
+                                    <TableColumn fx:id="ItemColumn" prefWidth="97.0" text="Item" />
+                                    <TableColumn fx:id="VendorColumn" prefWidth="75.0" text="Vendor" />
+                                    <TableColumn fx:id="DescriptionColumn" prefWidth="257.0" text="Description" />
+                                    <TableColumn fx:id="CategoryColumn" prefWidth="93.0" text="Category" />
                                 </columns>
                               </TableView>
                            </children>

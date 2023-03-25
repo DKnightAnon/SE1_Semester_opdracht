@@ -1,6 +1,6 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.DBHandlers;
 
-import com.example.se_opdracht.graphs.Linegraph;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
@@ -30,7 +30,7 @@ public class DBhandler {
         return conn;
     };
 
-  public void fillTable(ActionEvent event){
+  public void fillTable(){
 
   }
 }
