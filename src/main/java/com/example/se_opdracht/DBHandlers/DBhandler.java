@@ -7,8 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.sql.*;
+import java.time.LocalDate;
 
-public abstract class DBhandler {
+public  class DBhandler {
 
  private static String jdcbURL = "jdbc:h2:mem:bptDB";
  private static String user = "admin";
@@ -33,5 +34,7 @@ public abstract class DBhandler {
     public void addNewProduct(){
 
     }
-    public abstract void addNewProduct(Date date, String item, String vendor, String description, String category);
+    public  void addNewProduct(String date, String item, String vendor, String description, String category){
+
+    }
 }

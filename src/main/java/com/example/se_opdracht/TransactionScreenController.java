@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
 
@@ -33,7 +34,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 //Table variables
     private TableView<TransactionProduct> TransactionTable;
     private TableColumn<TransactionProduct, Integer> ID;
-    private TableColumn<TransactionProduct, Date> Date;
+    private TableColumn<TransactionProduct, String> Date;
     private TableColumn<TransactionProduct, String> Item;
     @FXML
     private TableColumn<TransactionProduct, String> Vendor;
@@ -65,8 +66,10 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProduct> transactions;
 
     public void AddNewPurchase(ActionEvent actionEvent) {
+        LocalDate productdate = expenseDate.getValue();
+        String date = productdate.toString();
         tdbh.addNewProduct(
-                expenseDate.getEditor(),
+                date,
                 expenseItem.getText(),
                 VendorTextField.getText(),
                 purchaseDescription.getText(),
@@ -75,17 +78,21 @@ public class TransactionScreenController extends GenericScreenController impleme
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        while (true) {
-            ID.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("ID"));
-            Date.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Date>("Date"));
-            Item.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Item"));
-            Vendor.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Vendor"));
-            Description.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description"));
-            Category.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));
-            transactions = TransactionDBHandler.getTransactions();
-            TransactionTable.setItems(transactions);
-            categoryList = TransactionDBHandler.getCategories();
-            selectCategory.setItems(categoryList);
+      //  while (true) {
+
         }
+
+    public void onTableLoadClick(ActionEvent event) {
+        ID.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("ID"));
+        Date.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));
+        Item.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Item"));
+        Vendor.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Vendor"));
+        Description.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description"));
+        Category.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));
+        transactions = TransactionDBHandler.getTransactions();
+        TransactionTable.setItems(transactions);
+        categoryList = TransactionDBHandler.getCategories();
+        selectCategory.setItems(categoryList);
     }
+    //   }
 }

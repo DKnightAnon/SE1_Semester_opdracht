@@ -52,6 +52,7 @@
                               </TableView>
                            </children>
                         </Pane>
+                        <Button fx:id="loadTable" layoutX="14.0" layoutY="57.0" mnemonicParsing="false" onAction="#onTableLoadClick" text="Load Table Contents" />
                      </children>
                   </AnchorPane>
                </content>

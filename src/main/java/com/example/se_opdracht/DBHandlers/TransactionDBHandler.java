@@ -5,6 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class TransactionDBHandler extends DBhandler{
 
@@ -14,14 +15,17 @@ public class TransactionDBHandler extends DBhandler{
         try {
             Connection connection = connection();
             list = FXCollections.observableArrayList();
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Date, Item, Vendor, Description, Category FROM purchase");
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT ID, Date, Item, Vendor, Description, Category " +
+                            "FROM purchase JOIN expense_category" +
+                            "ON purchase.Category = expense_category,Name");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 list.add(new TransactionProduct(
                         rs.getInt("ID"),
-                        rs.getDate("Date"),
+                        rs.getString("Date"),
                         rs.getString("Item"),
                         rs.getString("Vendor"),
                         rs.getString("Description"),
@@ -53,14 +57,14 @@ public class TransactionDBHandler extends DBhandler{
     }
 
     @Override
-    public void addNewProduct(Date date, String item, String vendor, String description, String category) {
+    public void addNewProduct(String date, String item, String vendor, String description, String category) {
         PreparedStatement psInsert = null;
         ResultSet resultSet = null;
 
         try{
            Connection con = connection();
             psInsert = con.prepareStatement("INSERT INTO Purchase(Date, Item, Vendor, Description, Category) VALUES (?,?,?,?,?)");
-            psInsert.setDate(1, date);
+            psInsert.setString(1, date);
             psInsert.setString(2,item);
             psInsert.setString(3, vendor);
             psInsert.setString(4,description);
