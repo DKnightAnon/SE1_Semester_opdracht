@@ -26,15 +26,26 @@
     DROP TABLE IF EXISTS Purchase;
     CREATE TABLE Purchase(
     Purchase_ID int not null auto_increment,
-     Date DATE NOT NULL,
+    Date varchar(20) NOT NULL,
     Item varchar(600),
-    Vendor int NOT NULL,
     Description varchar(255),
     Category integer NOT NULL,
     PRIMARY KEY (Purchase_ID),
-    FOREIGN KEY (Vendor) REFERENCES Vendor(Vendor_ID),
     FOREIGN KEY (Category) REFERENCES Expense_Category(Category_ID)
     );
 
 [Queries]
-    to be added
+
+  [Insert new entry into purchases table]
+   INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); //Adding testentry. 1 is the id of 'testcategory'
+   INSERT INTO 'Purchase'('Date', 'Item', 'Description', 'Category') VALUES (?,?,?,?);
+
+  [Get entries from the purchases table]
+   SELECT Purchase_ID, Date, Item, Vendor, Description, Name
+   FROM purchase JOIN expense_category
+   ON purchase.Category = expense_category.Category_ID;
+
+  [Insert new entry into expense_category table]
+  INSERT INTO 'expense_category'('name') VALUES (?);
+
+  [Get entries from expense_category table]

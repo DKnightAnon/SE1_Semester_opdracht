@@ -33,7 +33,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 //Table variables
     private TableView<TransactionProduct> TransactionTable;
-    private TableColumn<TransactionProduct, Integer> ID;
+    private TableColumn<TransactionProduct, Integer> IDColumn;
     private TableColumn<TransactionProduct, String> Date;
     private TableColumn<TransactionProduct, String> Item;
     @FXML
@@ -71,7 +71,6 @@ public class TransactionScreenController extends GenericScreenController impleme
         tdbh.addNewProduct(
                 date,
                 expenseItem.getText(),
-                VendorTextField.getText(),
                 purchaseDescription.getText(),
                 selectCategory.getSelectionModel().getSelectedItem().toString());
     }
@@ -83,7 +82,7 @@ public class TransactionScreenController extends GenericScreenController impleme
         }
 
     public void onTableLoadClick(ActionEvent event) {
-        ID.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("ID"));
+        IDColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("IDColumn"));
         Date.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));
         Item.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Item"));
         Vendor.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Vendor"));

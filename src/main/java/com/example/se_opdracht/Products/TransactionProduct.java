@@ -5,7 +5,6 @@ public class TransactionProduct extends Product{
 
     private String Category;
     private String date;
-    private String Vendor;
     private int ID;
     //Need to find a way to add dates. Initial research shows Date is a class in Java.
 
@@ -14,7 +13,6 @@ public class TransactionProduct extends Product{
         this.date = date;
         this.Category = Category;
         this.ID = ID;
-        this.Vendor = Vendor;
     }
 
     public String getCategory() {
@@ -23,14 +21,6 @@ public class TransactionProduct extends Product{
 
     public void setCategory(String category) {
         Category = category;
-    }
-
-    public String getVendor() {
-        return Vendor;
-    }
-
-    public void setVendor(String vendor) {
-        Vendor = vendor;
     }
 
     public int getID() {

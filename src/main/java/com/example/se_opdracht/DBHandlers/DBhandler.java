@@ -34,7 +34,7 @@ public  class DBhandler {
     public void addNewProduct(){
 
     }
-    public  void addNewProduct(String date, String item, String vendor, String description, String category){
+    public  void addNewProduct(String date, String item, String description, String category){
 
     }
 }

@@ -10,15 +10,20 @@ import java.time.LocalDate;
 public class TransactionDBHandler extends DBhandler{
 
     public static ObservableList<TransactionProduct> getTransactions() {
+        String databasequery1 =
+                "SELECT 'ID', 'Date', 'Item', 'Vendor', 'Description', 'Name' " +
+                        "FROM 'purchase' JOIN 'expense_category'" +
+                        "ON purchase.Category = expense_category.Category_ID";
+        String databasequery2 =
+                "SELECT Purchase_ID, Date, Item, Description, Name " +
+                        "FROM purchase JOIN expense_category " +
+                        "ON purchase.Category = expense_category.Category_ID;";
 
         ObservableList<TransactionProduct> list;
         try {
             Connection connection = connection();
             list = FXCollections.observableArrayList();
-            PreparedStatement ps = connection.prepareStatement(
-                    "SELECT ID, Date, Item, Vendor, Description, Category " +
-                            "FROM purchase JOIN expense_category" +
-                            "ON purchase.Category = expense_category,Name");
+            PreparedStatement ps = connection.prepareStatement(databasequery2);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -57,18 +62,17 @@ public class TransactionDBHandler extends DBhandler{
     }
 
     @Override
-    public void addNewProduct(String date, String item, String vendor, String description, String category) {
+    public void addNewProduct(String date, String item, String description, String category) {
         PreparedStatement psInsert = null;
         ResultSet resultSet = null;
 
         try{
            Connection con = connection();
-            psInsert = con.prepareStatement("INSERT INTO Purchase(Date, Item, Vendor, Description, Category) VALUES (?,?,?,?,?)");
+            psInsert = con.prepareStatement("INSERT INTO 'Purchase'('Date', 'Item','Description', 'Category') VALUES (?,?,?,?)");
             psInsert.setString(1, date);
             psInsert.setString(2,item);
-            psInsert.setString(3, vendor);
-            psInsert.setString(4,description);
-            psInsert.setString(5,category);
+            psInsert.setString(3,description);
+            psInsert.setString(4,category);
             psInsert.executeUpdate();
 
         }catch (SQLException e){
