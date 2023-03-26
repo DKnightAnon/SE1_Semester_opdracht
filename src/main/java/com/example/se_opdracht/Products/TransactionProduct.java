@@ -8,7 +8,7 @@ public class TransactionProduct extends Product{
     private int ID;
     //Need to find a way to add dates. Initial research shows Date is a class in Java.
 
-    public TransactionProduct(int ID, String date,String Vendor, String name, String Description, String Category) {
+    public TransactionProduct(int ID, String date , String name, String Description, String Category) {
         super(name, Description);
         this.date = date;
         this.Category = Category;

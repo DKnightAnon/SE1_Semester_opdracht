@@ -41,11 +41,12 @@
    INSERT INTO 'Purchase'('Date', 'Item', 'Description', 'Category') VALUES (?,?,?,?);
 
   [Get entries from the purchases table]
-   SELECT Purchase_ID, Date, Item, Vendor, Description, Name
+   SELECT Purchase_ID, Date, Item, Description, Name
    FROM purchase JOIN expense_category
    ON purchase.Category = expense_category.Category_ID;
 
   [Insert new entry into expense_category table]
-  INSERT INTO 'expense_category'('name') VALUES (?);
+    INSERT INTO EXPENSE_CATEGORY (Name) VALUES ('testcategory1' ); //H2 specific statement
+  INSERT INTO 'expense_category'('Name') VALUES (?);
 
   [Get entries from expense_category table]

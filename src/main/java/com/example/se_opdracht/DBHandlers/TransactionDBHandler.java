@@ -18,23 +18,26 @@ public class TransactionDBHandler extends DBhandler{
                 "SELECT Purchase_ID, Date, Item, Description, Name " +
                         "FROM purchase JOIN expense_category " +
                         "ON purchase.Category = expense_category.Category_ID;";
+        String databasequery3 =
+                "SELECT Purchase_ID, Date, Item, Description, Name " +
+                "FROM PURCHASE JOIN expense_category " +
+                "ON purchase.Category = expense_category.Category_ID;";
 
         ObservableList<TransactionProduct> list;
         try {
             Connection connection = connection();
             list = FXCollections.observableArrayList();
-            PreparedStatement ps = connection.prepareStatement(databasequery2);
+            PreparedStatement ps = connection.prepareStatement(databasequery3);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
                 list.add(new TransactionProduct(
-                        rs.getInt("ID"),
+                        rs.getInt("Purchase_ID"),
                         rs.getString("Date"),
                         rs.getString("Item"),
-                        rs.getString("Vendor"),
                         rs.getString("Description"),
-                        rs.getString("Category")));
+                        rs.getString("Name")));//category
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

@@ -38,7 +38,7 @@ public class Main extends Application {
         try {
             PreparedStatement psInsert = null;
             ResultSet resultSet = null;
-            Connection con = connection();
+            Connection con =  DriverManager.getConnection(jdcbURL, user, password);
             psInsert = con.prepareStatement("INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1);");
             psInsert.executeUpdate();
             con.close();
@@ -48,19 +48,19 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
         try {
-            Connection connection = connection();
+            Connection connection = DriverManager.getConnection(jdcbURL, user, password);
             PreparedStatement ps = connection.prepareStatement(
                     "SELECT Purchase_ID, Date, Item, Description, Name FROM PURCHASE JOIN expense_category ON purchase.Category = expense_category.Category_ID;");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
 
-               int id =         rs.getInt("ID");
+               int id =         rs.getInt("Purchase_ID");
                String date =         rs.getString("Date");
                String item =         rs.getString("Item");
                String description =         rs.getString("Description");
-               String category =         rs.getString("Category");
-               System.out.printf("%d, %s, %s, %s, %s\n", date, item, description, category);
+               String category =         rs.getString("Name");//category
+               System.out.printf("%d, %s, %s, %s, %s\n", id, date, item, description, category);
             }
             if (rs.next() == false) {
                 System.out.println("No results");
