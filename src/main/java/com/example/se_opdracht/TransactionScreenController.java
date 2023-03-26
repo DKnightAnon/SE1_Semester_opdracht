@@ -72,11 +72,12 @@ public class TransactionScreenController extends GenericScreenController impleme
     public void AddNewPurchase(ActionEvent actionEvent) {
         LocalDate productdate = expenseDate.getValue();
         String date = productdate.toString();
-        tdbh.addNewProduct(
+        tdbh.addNewTransactionProduct(
                 date,
                 expenseItem.getText(),
                 purchaseDescription.getText(),
                 selectCategory.getSelectionModel().getSelectedItem().toString());
+
     }
 
     @Override

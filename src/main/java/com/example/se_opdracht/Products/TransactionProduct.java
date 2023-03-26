@@ -31,5 +31,11 @@ public class TransactionProduct extends Product{
         this.ID = ID;
     }
 
+    public String getDate() {
+        return Date;
+    }
 
+    public void setDate(String date) {
+        Date = date;
+    }
 }

@@ -18,24 +18,28 @@ public  class DBhandler {
  public static String disconnected = "Disconnected from database!";
  public static String connectionUnable = "Unable to connect to database...";
 
-    public static Connection connection() throws SQLException {
-        Connection conn = null;
-        try {
-             conn = DriverManager.getConnection(jdcbURL, user, password);
-             conn.close();
-             System.out.println(connected);
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
+  /*  public static Connection connection() throws SQLException {
+        Connection conn = DriverManager.getConnection(jdcbURL, user, password);
         return conn;
-    };
+    };*/
 
 
     public void addNewProduct(){
 
     }
-    public  void addNewProduct(String date, String item, String description, String category){
+    public  void addNewTransactionProduct(String date, String item, String description, String category){
 
+    }
+
+    public static String getJdcbURL() {
+        return jdcbURL;
+    }
+
+    public static String getUser() {
+        return user;
+    }
+
+    public static String getPassword() {
+        return password;
     }
 }

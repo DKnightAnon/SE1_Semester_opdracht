@@ -25,7 +25,7 @@ public class TransactionDBHandler extends DBhandler{
 
         ObservableList<TransactionProduct> list;
         try {
-            Connection connection = connection();
+            Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
             list = FXCollections.observableArrayList();
             PreparedStatement ps = connection.prepareStatement(databasequery3);
             ResultSet rs = ps.executeQuery();
@@ -50,7 +50,7 @@ public class TransactionDBHandler extends DBhandler{
     public static ObservableList<String> getCategories() {
         ObservableList<String>   list = FXCollections.observableArrayList();
         try {
-            Connection connection = connection();
+            Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
 
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
             ResultSet rs = ps.executeQuery();
@@ -67,12 +67,12 @@ public class TransactionDBHandler extends DBhandler{
     }
 
     @Override
-    public void addNewProduct(String date, String item, String description, String category) {
+    public void addNewTransactionProduct(String date, String item, String description, String category) {
         PreparedStatement psInsert = null;
         ResultSet resultSet = null;
 
         try{
-           Connection con = connection();
+           Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
             psInsert = con.prepareStatement("INSERT INTO 'Purchase'('Date', 'Item','Description', 'Category') VALUES (?,?,?,?)");
             psInsert.setString(1, date);
             psInsert.setString(2,item);
