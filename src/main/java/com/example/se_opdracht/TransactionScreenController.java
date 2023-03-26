@@ -33,6 +33,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 //Table variables
     private TableView<TransactionProduct> TransactionTable;
+    @FXML
     private TableColumn<TransactionProduct, Integer> IDColumn;
     private TableColumn<TransactionProduct, String> Date;
     private TableColumn<TransactionProduct, String> Item;

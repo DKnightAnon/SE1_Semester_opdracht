@@ -22,7 +22,7 @@ public class Main extends Application {
     public static String disconnected = "Disconnected from database!";
     public static String connectionUnable = "Unable to connect to database...";
 
-    public static Connection connection() throws SQLException {
+   /* public static Connection connection() throws SQLException {
         Connection conn;
         try {
             conn = DriverManager.getConnection(jdcbURL, user, password);
@@ -32,7 +32,7 @@ public class Main extends Application {
         }
 
         return null;
-    };
+    };*/
 
     public static void printdatabase() {
         try {
@@ -85,8 +85,7 @@ public class Main extends Application {
             /*Connection conn = DriverManager.getConnection("jdbc:h2:~bptDB","test","test");
             Statement st = conn.createStatement();*/
 
-                DBhandler database = new DBhandler();
-                database.connection();
+
 
             }catch (Exception e) {
                 e.printStackTrace();
@@ -99,9 +98,9 @@ public class Main extends Application {
 
     public static void main(String[] args) throws ClassNotFoundException {
 
-        //launch();
+        launch();
 
-        printdatabase();
+        //printdatabase();
 
     }
 }

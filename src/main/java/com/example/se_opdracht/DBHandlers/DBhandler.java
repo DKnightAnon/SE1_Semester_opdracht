@@ -22,6 +22,7 @@ public  class DBhandler {
         Connection conn = null;
         try {
              conn = DriverManager.getConnection(jdcbURL, user, password);
+             conn.close();
              System.out.println(connected);
         }catch (Exception e) {
             e.printStackTrace();

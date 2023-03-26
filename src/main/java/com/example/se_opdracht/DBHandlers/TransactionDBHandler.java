@@ -39,6 +39,7 @@ public class TransactionDBHandler extends DBhandler{
                         rs.getString("Description"),
                         rs.getString("Name")));//category
             }
+            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -58,6 +59,7 @@ public class TransactionDBHandler extends DBhandler{
 
                 list.add(rs.getString("Name"));
             }
+            connection.close();
         }catch (SQLException e) {
 
         }
@@ -77,6 +79,7 @@ public class TransactionDBHandler extends DBhandler{
             psInsert.setString(3,description);
             psInsert.setString(4,category);
             psInsert.executeUpdate();
+            con.close();
 
         }catch (SQLException e){
 
