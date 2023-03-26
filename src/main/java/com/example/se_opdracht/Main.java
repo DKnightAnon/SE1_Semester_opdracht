@@ -15,7 +15,7 @@ import java.sql.*;
 public class Main extends Application {
 
 
-    private static String jdcbURL = "jdbc:h2:mem:bptDB";
+    private static String jdcbURL = "jdbc:h2:~/bptDB";
     private static String user = "admin";
     private static String password = "admin";
     public static String connected = "Connected to database!";
@@ -23,7 +23,7 @@ public class Main extends Application {
     public static String connectionUnable = "Unable to connect to database...";
 
     public static Connection connection() throws SQLException {
-        Connection conn = null;
+        Connection conn;
         try {
             conn = DriverManager.getConnection(jdcbURL, user, password);
             System.out.println(connected);
@@ -31,14 +31,26 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
-        return conn;
+        return null;
     };
 
     public static void printdatabase() {
         try {
+            PreparedStatement psInsert = null;
+            ResultSet resultSet = null;
+            Connection con = connection();
+            psInsert = con.prepareStatement("INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1);");
+            psInsert.executeUpdate();
+            con.close();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        try {
             Connection connection = connection();
             PreparedStatement ps = connection.prepareStatement(
-                    "SELECT Purchase_ID, Date, Item, Vendor, Description, Name FROM purchase JOIN expense_category ON purchase.Category = expense_category.Category_ID;");
+                    "SELECT Purchase_ID, Date, Item, Description, Name FROM PURCHASE JOIN expense_category ON purchase.Category = expense_category.Category_ID;");
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -46,14 +58,14 @@ public class Main extends Application {
                int id =         rs.getInt("ID");
                String date =         rs.getString("Date");
                String item =         rs.getString("Item");
-               String vendor =         rs.getString("Vendor");
                String description =         rs.getString("Description");
                String category =         rs.getString("Category");
-               System.out.printf("%d, %s, %s, %s, %s, %s\n");
+               System.out.printf("%d, %s, %s, %s, %s\n", date, item, description, category);
             }
             if (rs.next() == false) {
                 System.out.println("No results");
             }
+            connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

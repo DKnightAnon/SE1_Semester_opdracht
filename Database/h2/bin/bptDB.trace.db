@@ -120,3 +120,48 @@ INSERT INTO 'Purchase'('Date', 'Item', 'Vendor', 'Description', 'Category') VALU
 2023-03-26 10:19:04 jdbc[4]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSERT INTO `purchase`([*]'purchase_ID',`Date`, `Item`, `Description`, `Category`) VALUES ('test','test','test', 1)"; expected "identifier"; SQL statement:
 INSERT INTO `purchase`('purchase_ID',`Date`, `Item`, `Description`, `Category`) VALUES ('test','test','test', 1) [42001-214]
+2023-03-26 12:34:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Schema "MASTER" not found; SQL statement:
+USE master [90079-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:632)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.engine.Database.getSchema(Database.java:1546)
+	at org.h2.command.dml.Set.update(Set.java:397)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:169)
+	at org.h2.command.Command.executeUpdate(Command.java:252)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:252)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1103)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1090)
+	at org.h2.server.web.WebThread.process(WebThread.java:188)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-03-26 12:34:59 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT name [*]'Logical Name', physical_name 'File Location' FROM sys. master_files"; SQL statement:
+SELECT name 'Logical Name', physical_name 'File Location' FROM sys. master_files [42000-214]
+2023-03-26 13:02:05 database: wrong user or password; user: "ADMIN"
+org.h2.message.DbException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.message.DbException.get(DbException.java:188)
+	at org.h2.engine.Engine.openSession(Engine.java:154)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.util.JdbcUtils.getConnection(JdbcUtils.java:288)
+	at org.h2.server.web.WebServer.getConnection(WebServer.java:808)
+	at org.h2.server.web.WebApp.test(WebApp.java:972)
+	at org.h2.server.web.WebApp.process(WebApp.java:241)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.WebThread.process(WebThread.java:152)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name or password [28000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 16 more
