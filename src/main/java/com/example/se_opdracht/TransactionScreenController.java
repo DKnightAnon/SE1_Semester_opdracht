@@ -32,15 +32,18 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 
 //Table variables
+    @FXML
     private TableView<TransactionProduct> TransactionTable;
     @FXML
     private TableColumn<TransactionProduct, Integer> IDColumn;
-    private TableColumn<TransactionProduct, String> Date;
-    private TableColumn<TransactionProduct, String> Item;
     @FXML
-    private TableColumn<TransactionProduct, String> Vendor;
-    private TableColumn<TransactionProduct, String> Description;
-    private TableColumn<TransactionProduct, String> Category;
+    private TableColumn<TransactionProduct, String> DateColumn;
+    @FXML
+    private TableColumn<TransactionProduct, String> ItemColumn;
+    @FXML
+    private TableColumn<TransactionProduct, String> DescriptionColumn;
+    @FXML
+    private TableColumn<TransactionProduct, String> CategoryColumn;
 //Table variables
 
     //Purchase(Transaction) form variables
@@ -84,11 +87,10 @@ public class TransactionScreenController extends GenericScreenController impleme
 
     public void onTableLoadClick(ActionEvent event) {
         IDColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("IDColumn"));
-        Date.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));
-        Item.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Item"));
-        Vendor.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Vendor"));
-        Description.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description"));
-        Category.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));
+        DateColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));
+        ItemColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Item"));
+        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description"));
+        CategoryColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));
         transactions = TransactionDBHandler.getTransactions();
         TransactionTable.setItems(transactions);
         categoryList = TransactionDBHandler.getCategories();
