@@ -9,12 +9,12 @@ import javafx.event.ActionEvent;
 import java.sql.*;
 import java.time.LocalDate;
 
-public  class DBhandler {
+public  interface DBhandler {
 
- private static String jdcbURL = "jdbc:h2:~/bptDB;";
- private static String user = "Admin";
- private static String password = "admin";
- public static String connected = "Connected to database!";
+ static String jdcbURL = "jdbc:h2:~/bptDB;";
+ static String user = "Admin";
+ static String password = "admin";
+ static String connected = "Connected to database!";
  public static String disconnected = "Disconnected from database!";
  public static String connectionUnable = "Unable to connect to database...";
 
@@ -24,12 +24,10 @@ public  class DBhandler {
     };*/
 
 
-    public void addNewProduct(){
+    public default void addNewProduct(){
 
     }
-    public  void addNewTransactionProduct(String date, String item, String description, String category){
 
-    }
 
     public static String getJdcbURL() {
         return jdcbURL;

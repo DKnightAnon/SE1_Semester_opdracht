@@ -72,11 +72,12 @@ public class TransactionScreenController extends GenericScreenController impleme
     public void AddNewPurchase(ActionEvent actionEvent) {
         LocalDate productdate = expenseDate.getValue();
         String date = productdate.toString();
-        tdbh.addNewTransactionProduct(
+        tdbh.addNewProduct(
                 date,
                 expenseItem.getText(),
                 purchaseDescription.getText(),
                 selectCategory.getSelectionModel().getSelectedItem().toString());
+        TableLoad();
 
     }
 
@@ -90,7 +91,7 @@ public class TransactionScreenController extends GenericScreenController impleme
     public void onTableLoadClick(ActionEvent event) {
         TableLoad();
     }
-    //   }
+
 
     public void TableLoad() {
         IDColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("ID"));//Purchase_ID in database
@@ -102,5 +103,10 @@ public class TransactionScreenController extends GenericScreenController impleme
         TransactionTable.setItems(transactions);
         categoryList = TransactionDBHandler.getCategories();
         selectCategory.setItems(categoryList);
+    }
+
+
+    public void OnAddNewCategoryClick(ActionEvent event) {
+        //AddNewPurchase();
     }
 }

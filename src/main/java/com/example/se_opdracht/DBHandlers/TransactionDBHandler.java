@@ -7,7 +7,7 @@ import javafx.collections.ObservableList;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class TransactionDBHandler extends DBhandler{
+public class TransactionDBHandler implements DBhandler{
 
     public static ObservableList<TransactionProduct> getTransactions() {
         String databasequery1 =
@@ -66,19 +66,19 @@ public class TransactionDBHandler extends DBhandler{
         return list;
     }
 
-    @Override
-    public void addNewTransactionProduct(String date, String item, String description, String category) {
+    public void addNewProduct(String date, String item, String description, String category) {
         PreparedStatement psInsert = null;
         ResultSet resultSet = null;
 
         try{
            Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
             psInsert = con.prepareStatement("INSERT INTO 'Purchase'('Date', 'Item','Description', 'Category') VALUES (?,?,?,?)");
-            psInsert.setString(1, date);
+            psInsert.setString(1,date);
             psInsert.setString(2,item);
             psInsert.setString(3,description);
             psInsert.setString(4,category);
             psInsert.executeUpdate();
+            System.out.printf("%s, %s, %s, %s");
             con.close();
 
         }catch (SQLException e){
