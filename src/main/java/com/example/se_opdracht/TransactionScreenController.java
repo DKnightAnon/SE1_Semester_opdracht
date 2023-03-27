@@ -110,6 +110,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
     public void OnAddNewCategoryClick(ActionEvent event) {
         TransactionDBHandler.addCategory(NewCategoryTextField.getText());
+        NewCategoryTextField.clear();
         TableLoad();
     }
 }

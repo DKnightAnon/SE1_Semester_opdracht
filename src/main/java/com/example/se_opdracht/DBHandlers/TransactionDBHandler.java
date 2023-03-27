@@ -73,6 +73,8 @@ public class TransactionDBHandler implements DBhandler{
             Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
             PreparedStatement ps = connection.prepareStatement("INSERT INTO EXPENSE_CATEGORY (Name) VALUES (?);"); //H2 specific statement
             ps.setString(1,categoryName);
+            ps.executeUpdate();
+            connection.close();
 
 
         }catch (SQLException e){
@@ -88,7 +90,7 @@ public class TransactionDBHandler implements DBhandler{
 
         try{
            Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
-           psInsert = con.prepareStatement("Select")
+           psInsert = con.prepareStatement("Select");
             psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category) VALUES (?,?,?,?)");
             psInsert.setString(1,date);
             psInsert.setString(2,item);
