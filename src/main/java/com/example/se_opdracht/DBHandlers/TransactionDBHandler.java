@@ -67,6 +67,14 @@ public class TransactionDBHandler implements DBhandler{
         return list;
     }
 
+    public static int getCategoryID(String category) throws SQLException {
+        Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+        PreparedStatement category_id_retrieve = con.prepareStatement("Select Category_ID from Expense_Category where NAME  like '" + category + "'");
+        ResultSet resultSet = category_id_retrieve.executeQuery();
+        int id = resultSet.getInt("CATEGORY_ID");
+        con.close();
+        return id;
+    }
     public static void addCategory(String categoryName) {
         try{
             Class.forName("org.h2.Driver");
@@ -84,20 +92,21 @@ public class TransactionDBHandler implements DBhandler{
         }
 
     }
-    public void addNewProduct(String date, String item, String description, String category) {
+    public void addNewProduct(String date, String item, String description, String category, int id) {
         PreparedStatement psInsert = null;
+        PreparedStatement category_id_retrieve;
         ResultSet resultSet = null;
 
         try{
            Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
-           psInsert = con.prepareStatement("Select");
-            psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category) VALUES (?,?,?,?)");
+
+            psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category) VALUES (?,?,?," + id + ")");
             psInsert.setString(1,date);
             psInsert.setString(2,item);
             psInsert.setString(3,description);
-            psInsert.setString(4,category);
+            //psInsert.setString(4,category);
             psInsert.execute();
-            System.out.printf("%s, %s, %s, %s",date,item,description,category);
+            System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
             con.close();
 
         }catch (SQLException e){

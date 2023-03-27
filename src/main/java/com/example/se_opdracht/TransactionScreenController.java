@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -71,14 +72,16 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<String> categoryList;
     ObservableList<TransactionProduct> transactions;
 
-    public void AddNewPurchase(ActionEvent actionEvent) {
+    public void AddNewPurchase(ActionEvent actionEvent) throws SQLException {
+        int id = TransactionDBHandler.getCategoryID(NewCategoryTextField.getText());
         LocalDate productdate = expenseDate.getValue();
         String date = productdate.toString();
         tdbh.addNewProduct(
                 date,
                 expenseItem.getText(),
                 purchaseDescription.getText(),
-                selectCategory.getSelectionModel().getSelectedItem().toString());
+                selectCategory.getSelectionModel().getSelectedItem().toString(),
+                id);
         TableLoad();
 
     }

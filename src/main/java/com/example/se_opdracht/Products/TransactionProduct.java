@@ -7,6 +7,7 @@ public class TransactionProduct extends Product{
     private String Date;
     private int ID;
     //Need to find a way to add dates. Initial research shows Date is a class in Java.
+    //Decided to save dates as strings in database for less hassle.
 
     public TransactionProduct(int ID, String date , String name, String Description, String Category) {
         super(name, Description);
