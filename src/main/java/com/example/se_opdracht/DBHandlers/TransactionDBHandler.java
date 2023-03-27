@@ -3,6 +3,7 @@ package com.example.se_opdracht.DBHandlers;
 import com.example.se_opdracht.Products.TransactionProduct;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import org.h2.*;
 
 import java.sql.*;
 
@@ -68,12 +69,15 @@ public class TransactionDBHandler implements DBhandler{
 
     public static void addCategory(String categoryName) {
         try{
+            Class.forName("org.h2.Driver");
             Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
             PreparedStatement ps = connection.prepareStatement("INSERT INTO EXPENSE_CATEGORY (Name) VALUES (?);"); //H2 specific statement
             ps.setString(1,categoryName);
 
 
         }catch (SQLException e){
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -84,7 +88,8 @@ public class TransactionDBHandler implements DBhandler{
 
         try{
            Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
-            psInsert = con.prepareStatement("INSERT INTO 'Purchase'('Date', 'Item','Description', 'Category') VALUES (?,?,?,?)");
+           psInsert = con.prepareStatement("Select")
+            psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category) VALUES (?,?,?,?)");
             psInsert.setString(1,date);
             psInsert.setString(2,item);
             psInsert.setString(3,description);

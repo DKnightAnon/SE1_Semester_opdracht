@@ -60,6 +60,8 @@ public class TransactionScreenController extends GenericScreenController impleme
     @FXML
     private Button addPurchaseButton;
     //Purchase(Transaction) form variables
+    @FXML
+    private TextField NewCategoryTextField;
 
     private Parent root;
     private Stage stage;
@@ -107,6 +109,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 
     public void OnAddNewCategoryClick(ActionEvent event) {
-        //AddNewPurchase();
+        TransactionDBHandler.addCategory(NewCategoryTextField.getText());
+        TableLoad();
     }
 }

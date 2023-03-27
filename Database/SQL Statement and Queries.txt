@@ -37,7 +37,8 @@
 [Queries]
 
   [Insert new entry into purchases table]
-   INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); //Adding testentry. 1 is the id of 'testcategory'
+   INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem', 'testdescription' ,1); //Adding testentry. 1 is the id of 'testcategory'
+   INSERT INTO purchase (Date, Item , Description , Category) VALUES ( 'today' , 'test18:29' , 'testing insertion' ,2)//test entry for javafx, does not work currently.//This does work now. The error was because there are quotation marks around the table names. only put qoutations around string values that are inserted.
    INSERT INTO 'Purchase'('Date', 'Item', 'Description', 'Category') VALUES (?,?,?,?);
 
   [Get entries from the purchases table]

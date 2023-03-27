@@ -2,6 +2,7 @@ module com.example.se_opdracht {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires com.h2database;
 
 
     opens com.example.se_opdracht to javafx.fxml;

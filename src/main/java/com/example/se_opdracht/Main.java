@@ -63,7 +63,15 @@ public class Main extends Application {
                System.out.printf("%d, %s, %s, %s, %s\n", id, date, item, description, category);
             }
             if (rs.next() == false) {
-                System.out.println("No results");
+                System.out.println("No further results");
+            }
+            ps = connection.prepareStatement("SELECT * FROM EXPENSE_CATEGORY ");
+            ResultSet rs2 = ps.executeQuery();
+            while (rs2.next()) {
+                int id = rs2.getInt("Category_ID");
+                String name = rs2.getString("NAME");
+                System.out.printf("%d, %s\n", id, name);
+
             }
             connection.close();
         } catch (SQLException e) {
