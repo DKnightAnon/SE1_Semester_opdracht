@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class TransactionDBHandler implements DBhandler{
 
@@ -61,11 +60,24 @@ public class TransactionDBHandler implements DBhandler{
             }
             connection.close();
         }catch (SQLException e) {
+            throw new RuntimeException(e);
 
         }
         return list;
     }
 
+    public static void addCategory(String categoryName) {
+        try{
+            Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO EXPENSE_CATEGORY (Name) VALUES (?);"); //H2 specific statement
+            ps.setString(1,categoryName);
+
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+
+    }
     public void addNewProduct(String date, String item, String description, String category) {
         PreparedStatement psInsert = null;
         ResultSet resultSet = null;
@@ -77,11 +89,12 @@ public class TransactionDBHandler implements DBhandler{
             psInsert.setString(2,item);
             psInsert.setString(3,description);
             psInsert.setString(4,category);
-            psInsert.executeUpdate();
-            System.out.printf("%s, %s, %s, %s");
+            psInsert.execute();
+            System.out.printf("%s, %s, %s, %s",date,item,description,category);
             con.close();
 
         }catch (SQLException e){
+            throw new RuntimeException(e);
 
         }
 
