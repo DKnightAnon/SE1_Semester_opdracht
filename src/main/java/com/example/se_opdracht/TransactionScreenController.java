@@ -2,6 +2,7 @@ package com.example.se_opdracht;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.Products.TransactionProduct;
+import com.example.se_opdracht.Products.TransactionProductCategory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -69,7 +70,9 @@ public class TransactionScreenController extends GenericScreenController impleme
     private Scene scene;
     @FXML
     private Button Return;
-    ObservableList<String> categoryList;
+    ObservableList<TransactionProductCategory> categoryList;
+    ObservableList<String> categoryListName;
+    ObservableList<Integer> categoryListID;
     ObservableList<TransactionProduct> transactions;
 
     public void AddNewPurchase(ActionEvent actionEvent) throws SQLException {
@@ -107,7 +110,12 @@ public class TransactionScreenController extends GenericScreenController impleme
         transactions = TransactionDBHandler.getTransactions();
         TransactionTable.setItems(transactions);
         categoryList = TransactionDBHandler.getCategories();
-        selectCategory.setItems(categoryList);
+        /*for (int i = 0; i < categoryList.size(); i++){
+            categoryListName.add(categoryList.get(i).getCategoryName());
+            categoryListID.add(categoryList.get(i).getCategoryID());
+        }
+        categoryListID = TransactionDBHandler.getCategoryID();*/
+        selectCategory.setItems(categoryList.);
     }
 
 

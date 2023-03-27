@@ -1,6 +1,7 @@
 package com.example.se_opdracht.DBHandlers;
 
 import com.example.se_opdracht.Products.TransactionProduct;
+import com.example.se_opdracht.Products.TransactionProductCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import org.h2.*;
@@ -47,8 +48,8 @@ public class TransactionDBHandler implements DBhandler{
         return list;
     }
 
-    public static ObservableList<String> getCategories() {
-        ObservableList<String>   list = FXCollections.observableArrayList();
+    public static ObservableList<TransactionProductCategory> getCategories() {
+        ObservableList<TransactionProductCategory>   list = FXCollections.observableArrayList();
         try {
             Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
 
@@ -56,8 +57,9 @@ public class TransactionDBHandler implements DBhandler{
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
+                //list.add(rs.getString("Name"));
 
-                list.add(rs.getString("Name"));
+                list.add(new TransactionProductCategory(rs.getString("Name"), rs.getInt("Category_ID")));
             }
             connection.close();
         }catch (SQLException e) {
