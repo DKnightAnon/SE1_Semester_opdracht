@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 public  class DBhandler {
 
- private static String jdcbURL = "jdbc:h2:~/bptDB;DATABASE_TO_UPPER=false";
+ private static String jdcbURL = "jdbc:h2:~/bptDB;";
  private static String user = "Admin";
  private static String password = "admin";
  public static String connected = "Connected to database!";

@@ -20,8 +20,8 @@ public class TransactionDBHandler extends DBhandler{
                         "ON purchase.Category = expense_category.Category_ID;";
         String databasequery3 =
                 "SELECT Purchase_ID, Date, Item, Description, Name " +
-                "FROM PURCHASE JOIN expense_category " +
-                "ON purchase.Category = expense_category.Category_ID;";
+                "FROM PURCHASE JOIN EXPENSE_CATEGORY " +
+                "ON PURCHASE.Category = EXPENSE_CATEGORY.Category_ID;";
 
         ObservableList<TransactionProduct> list;
         try {

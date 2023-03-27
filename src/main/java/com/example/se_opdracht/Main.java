@@ -38,7 +38,7 @@ public class Main extends Application {
         try {
             PreparedStatement psInsert = null;
             ResultSet resultSet = null;
-            Connection con =  DriverManager.getConnection(jdcbURL, user, password);
+            Connection con =  DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(), DBhandler.getPassword());
             psInsert = con.prepareStatement("INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1);");
             psInsert.executeUpdate();
             con.close();
