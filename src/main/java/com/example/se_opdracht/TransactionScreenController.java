@@ -83,19 +83,24 @@ public class TransactionScreenController extends GenericScreenController impleme
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
       //  while (true) {
+        TableLoad();
 
         }
 
     public void onTableLoadClick(ActionEvent event) {
-        IDColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("IDColumn"));
-        DateColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));
-        ItemColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Item"));
-        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description"));
-        CategoryColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));
+        TableLoad();
+    }
+    //   }
+
+    public void TableLoad() {
+        IDColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("ID"));//Purchase_ID in database
+        DateColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));//Date in database
+        ItemColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Name"));//(product) name in database
+        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description")); //(product) description in database
+        CategoryColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));//(Expense_Category) name in database
         transactions = TransactionDBHandler.getTransactions();
         TransactionTable.setItems(transactions);
         categoryList = TransactionDBHandler.getCategories();
         selectCategory.setItems(categoryList);
     }
-    //   }
 }
