@@ -1,14 +1,13 @@
 package com.example.se_opdracht;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
+import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 import com.example.se_opdracht.Products.TransactionProduct;
 import com.example.se_opdracht.Products.TransactionProductCategory;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -16,11 +15,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class TransactionScreenController extends GenericScreenController implements Initializable {
@@ -81,6 +78,7 @@ public class TransactionScreenController extends GenericScreenController impleme
             emptyDate = true;
         }
         LocalDate productdate = expenseDate.getValue();
+        String dateFormat = productdate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));//use MM for months. mm is for minutes of hour
 
             if (
                       emptyDate
@@ -91,9 +89,10 @@ public class TransactionScreenController extends GenericScreenController impleme
                 error.noCompletePurchaseInfo();
             } else {
                 try {
-                    String date = productdate.toString();
+
+
                     tdbh.addNewProduct(
-                            date,
+                            dateFormat,
                             expenseItem.getText(),
                             purchaseDescription.getText(),
                             selectCategory.getSelectionModel().getSelectedItem().toString(),
@@ -104,6 +103,7 @@ public class TransactionScreenController extends GenericScreenController impleme
                     e.printStackTrace();
                 }
             }
+            selectCategory.setValue("Choose a category");
 
 
     }

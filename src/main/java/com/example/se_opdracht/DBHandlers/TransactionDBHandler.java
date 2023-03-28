@@ -115,7 +115,8 @@ public class TransactionDBHandler implements DBhandler{
             psInsert.setString(3,description);
             //psInsert.setString(4,category);
             psInsert.execute();
-            System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
+            //System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
+            //Testing done
             con.close();
 
         }catch (SQLException e){
