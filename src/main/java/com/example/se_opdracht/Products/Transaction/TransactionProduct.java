@@ -1,7 +1,9 @@
-package com.example.se_opdracht.Products;
+package com.example.se_opdracht.Products.Transaction;
+import com.example.se_opdracht.Products.Product;
+
 import java.sql.Date;
 
-public class TransactionProduct extends Product{
+public class TransactionProduct extends Product {
 
     private String Category;
     private String Date;

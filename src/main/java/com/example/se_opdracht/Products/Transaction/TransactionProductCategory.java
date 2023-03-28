@@ -1,4 +1,4 @@
-package com.example.se_opdracht.Products;
+package com.example.se_opdracht.Products.Transaction;
 
 public class TransactionProductCategory {
     private String categoryName;

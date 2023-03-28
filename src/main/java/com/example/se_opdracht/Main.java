@@ -1,9 +1,6 @@
 package com.example.se_opdracht;
 
-import com.example.se_opdracht.DBHandlers.DBhandler;
-import com.example.se_opdracht.Products.TransactionProduct;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
