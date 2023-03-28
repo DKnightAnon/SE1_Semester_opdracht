@@ -26,7 +26,9 @@ public class TransactionDBHandler implements DBhandler{
 
         ObservableList<TransactionProduct> list;
         try {
-            Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+            //Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+            //Above code made redundant. It can now be called with 'DBHandler.getConnection();'
+            Connection connection = DBhandler.getConnection();
             list = FXCollections.observableArrayList();
             PreparedStatement ps = connection.prepareStatement(databasequery3);
             ResultSet rs = ps.executeQuery();
@@ -43,6 +45,8 @@ public class TransactionDBHandler implements DBhandler{
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
         return list;
@@ -51,7 +55,7 @@ public class TransactionDBHandler implements DBhandler{
     public static ObservableList<TransactionProductCategory> getCategories() {
         ObservableList<TransactionProductCategory>   list = FXCollections.observableArrayList();
         try {
-            Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+            Connection connection = DBhandler.getConnection();
 
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
             ResultSet rs = ps.executeQuery();
@@ -66,12 +70,14 @@ public class TransactionDBHandler implements DBhandler{
         }catch (SQLException e) {
             throw new RuntimeException(e);
 
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
         return list;
     }
 
-    public static int getCategoryID(String category) throws SQLException {
-        Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+    public static int getCategoryID(String category) throws SQLException, ClassNotFoundException {
+        Connection con = DBhandler.getConnection();
         PreparedStatement category_id_retrieve = con.prepareStatement("Select Category_ID from Expense_Category where NAME  like '" + category + "'");
         ResultSet resultSet = category_id_retrieve.executeQuery();
         int id = resultSet.getInt("CATEGORY_ID");
@@ -81,7 +87,7 @@ public class TransactionDBHandler implements DBhandler{
     public static void addCategory(String categoryName) {
         try{
             Class.forName("org.h2.Driver");
-            Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+            Connection connection = DBhandler.getConnection();
             PreparedStatement ps = connection.prepareStatement("INSERT INTO EXPENSE_CATEGORY (Name) VALUES (?);"); //H2 specific statement
             ps.setString(1,categoryName);
             ps.executeUpdate();
@@ -101,7 +107,7 @@ public class TransactionDBHandler implements DBhandler{
         ResultSet resultSet = null;
 
         try{
-           Connection con = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+           Connection con = DBhandler.getConnection();
 
             psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category) VALUES (?,?,?," + id + ")");
             psInsert.setString(1,date);
@@ -115,6 +121,8 @@ public class TransactionDBHandler implements DBhandler{
         }catch (SQLException e){
             throw new RuntimeException(e);
 
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
     }

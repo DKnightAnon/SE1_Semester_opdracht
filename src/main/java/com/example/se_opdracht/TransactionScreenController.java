@@ -35,17 +35,17 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 //Table variables
     @FXML
-    private TableView<TransactionProduct> TransactionTable;
-    @FXML
-    private TableColumn<TransactionProduct, Integer> IDColumn;
-    @FXML
-    private TableColumn<TransactionProduct, String> DateColumn;
-    @FXML
-    private TableColumn<TransactionProduct, String> ItemColumn;
-    @FXML
-    private TableColumn<TransactionProduct, String> DescriptionColumn;
-    @FXML
-    private TableColumn<TransactionProduct, String> CategoryColumn;
+        private TableView<TransactionProduct> TransactionTable;
+     @FXML
+     private TableColumn<TransactionProduct, Integer> IDColumn;
+     @FXML
+     private TableColumn<TransactionProduct, String> DateColumn;
+     @FXML
+     private TableColumn<TransactionProduct, String> ItemColumn;
+     @FXML
+     private TableColumn<TransactionProduct, String> DescriptionColumn;
+     @FXML
+     private TableColumn<TransactionProduct, String> CategoryColumn;
 //Table variables
 
     //Purchase(Transaction) form variables

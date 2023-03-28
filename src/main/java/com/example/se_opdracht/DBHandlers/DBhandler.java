@@ -28,7 +28,11 @@ public  interface DBhandler {
 
     }
 
-
+    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+        Class.forName("org.h2.Driver");
+        Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+        return connection;
+    }
     public static String getJdcbURL() {
         return jdcbURL;
     }
