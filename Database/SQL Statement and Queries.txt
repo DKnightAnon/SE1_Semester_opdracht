@@ -1,0 +1,53 @@
+[Creating the tables] (date is in yyyy-mm-dd format)
+    DROP TABLE IF EXISTS Vendor;
+    CREATE TABLE Vendor(
+    Vendor_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255) NOT NULL,
+    Description varchar (255),
+    PRIMARY KEY(Vendor_ID)
+    );
+
+    DROP TABLE IF EXISTS Expense_Category;
+    CREATE TABLE Expense_Category(
+    Category_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255),
+    PRIMARY KEY(Category_ID)
+    );
+
+    DROP TABLE IF EXISTS Income;
+    CREATE TABLE Income(
+    Income_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255),
+    Description varchar(600),
+    Date DATE NOT NULL,
+    PRIMARY KEY(Income_ID)
+    );
+
+    DROP TABLE IF EXISTS Purchase;
+    CREATE TABLE Purchase(
+    Purchase_ID int not null auto_increment,
+    Date varchar(20) NOT NULL,
+    Item varchar(600),
+    Description varchar(255),
+    Category integer NOT NULL,
+    PRIMARY KEY (Purchase_ID),
+    FOREIGN KEY (Category) REFERENCES Expense_Category(Category_ID)
+    );
+
+[Queries]
+
+  [Insert new entry into purchases table]
+   INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem', 'testdescription' ,1); //Adding testentry. 1 is the id of 'testcategory'
+   INSERT INTO purchase (Date, Item , Description , Category) VALUES ( 'today' , 'test18:29' , 'testing insertion' ,2)//test entry for javafx, does not work currently.//This does work now. The error was because there are quotation marks around the table names. only put qoutations around string values that are inserted.
+   INSERT INTO 'Purchase'('Date', 'Item', 'Description', 'Category') VALUES (?,?,?,?);
+
+  [Get entries from the purchases table]
+   SELECT Purchase_ID, Date, Item, Description, Name
+   FROM purchase JOIN expense_category
+   ON purchase.Category = expense_category.Category_ID;
+
+  [Insert new entry into expense_category table]
+    INSERT INTO EXPENSE_CATEGORY (Name) VALUES ('testcategory1' ); //H2 specific statement
+  INSERT INTO 'expense_category'('Name') VALUES (?);
+
+  [Get entries from expense_category table]

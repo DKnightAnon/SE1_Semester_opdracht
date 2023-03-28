@@ -1,0 +1,18 @@
+2023-03-26 12:49:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
+2023-03-26 12:50:43 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
+2023-03-26 12:56:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
+2023-03-26 13:02:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
+2023-03-26 13:08:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
+2023-03-26 13:40:46 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
