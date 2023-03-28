@@ -76,7 +76,7 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProduct> transactions;
 
     public void AddNewPurchase(ActionEvent actionEvent) throws SQLException {
-        int id = TransactionDBHandler.getCategoryID(NewCategoryTextField.getText());
+
         LocalDate productdate = expenseDate.getValue();
         String date = productdate.toString();
         tdbh.addNewProduct(
@@ -84,7 +84,7 @@ public class TransactionScreenController extends GenericScreenController impleme
                 expenseItem.getText(),
                 purchaseDescription.getText(),
                 selectCategory.getSelectionModel().getSelectedItem().toString(),
-                id);
+                selectCategory.getSelectionModel().getSelectedIndex());
         TableLoad();
 
     }
@@ -110,12 +110,9 @@ public class TransactionScreenController extends GenericScreenController impleme
         transactions = TransactionDBHandler.getTransactions();
         TransactionTable.setItems(transactions);
         categoryList = TransactionDBHandler.getCategories();
-        /*for (int i = 0; i < categoryList.size(); i++){
-            categoryListName.add(categoryList.get(i).getCategoryName());
-            categoryListID.add(categoryList.get(i).getCategoryID());
-        }
-        categoryListID = TransactionDBHandler.getCategoryID();*/
-        selectCategory.setItems(categoryList.);
+        selectCategory.setItems(categoryList);
+
+
     }
 
 

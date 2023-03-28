@@ -55,6 +55,7 @@ public class TransactionDBHandler implements DBhandler{
 
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
             ResultSet rs = ps.executeQuery();
+            list.add(new TransactionProductCategory("Select a category",0)); // This is a dummy category. I'm not quite sure yet how to retrieve data apart from string values from items in the combobox, so this is a stopgap measure.
 
             while (rs.next()) {
                 //list.add(rs.getString("Name"));
