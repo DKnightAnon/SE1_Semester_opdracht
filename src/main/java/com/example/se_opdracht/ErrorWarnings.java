@@ -28,12 +28,16 @@ public class ErrorWarnings {
         alert.setTitle(missingData);
         alert.setHeaderText(missingDataHeader);
         alert.setContentText("Please be sure to fill in every field before pressing the 'Add new purchase' button.");
+        alert.showAndWait();
+
     }
     public void noCategoryEntered(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(missingData);
         alert.setHeaderText(missingDataHeader);
         alert.setContentText("Please enter a name in the textfield before pressing the 'Add new category' button.");
+        alert.showAndWait();
+
     }
 
     public void unableToSwitchScene() {

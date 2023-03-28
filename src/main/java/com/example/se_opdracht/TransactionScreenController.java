@@ -73,25 +73,38 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProductCategory> categoryList;
     ObservableList<TransactionProduct> transactions;
 
-    public void AddNewPurchase(ActionEvent actionEvent) throws SQLException {
-        if (expenseDate.getValue() != null
-                & expenseItem.getText() != null
-                & purchaseDescription.getText() != null
-                & selectCategory.getSelectionModel().getSelectedItem() != null)
-        {
-            error.noCompletePurchaseInfo();
+    public void AddNewPurchase(ActionEvent actionEvent){
+        Boolean emptyDate;
+        if (expenseDate.getValue() != null) {
+            emptyDate = false;
         }else {
-            LocalDate productdate = expenseDate.getValue();
-            String date = productdate.toString();
-            tdbh.addNewProduct(
-                    date,
-                    expenseItem.getText(),
-                    purchaseDescription.getText(),
-                    selectCategory.getSelectionModel().getSelectedItem().toString(),
-                    selectCategory.getSelectionModel().getSelectedIndex()
-            );
-            TableLoad();
+            emptyDate = true;
         }
+        LocalDate productdate = expenseDate.getValue();
+
+            if (
+                      emptyDate
+                    || expenseItem.getText().equals("")
+                    || purchaseDescription.getText().equals("")
+                    || selectCategory.getSelectionModel().getSelectedItem().equals(""))
+            {
+                error.noCompletePurchaseInfo();
+            } else {
+                try {
+                    String date = productdate.toString();
+                    tdbh.addNewProduct(
+                            date,
+                            expenseItem.getText(),
+                            purchaseDescription.getText(),
+                            selectCategory.getSelectionModel().getSelectedItem().toString(),
+                            selectCategory.getSelectionModel().getSelectedIndex()
+                    );
+                    TableLoad();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
 
     }
 
@@ -123,7 +136,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 
     public void OnAddNewCategoryClick(ActionEvent event) {
-        if (NewCategoryTextField.getText() == null){
+        if (NewCategoryTextField.getText().equals(null) || NewCategoryTextField.getText().equals("")){
             error.noCategoryEntered();
         }else {
             TransactionDBHandler.addCategory(NewCategoryTextField.getText());
