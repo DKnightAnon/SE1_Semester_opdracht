@@ -20,14 +20,14 @@ class DatabaseHandlerTest {
         //Prepare
 
         var dbhandler = new TransactionDBHandler();
-        int purchaseID = 2;
-        String date = "26-03-2022";
-        String item = "testitem";
-        String description = "testdescription";
-        String category = "testcategory1";//category
+        int purchaseID = 1;
+        String date = "29-03-2023";
+        String item = "TestItem";
+        String description = "Testing with database in projectroot";
+        String category = "Testcategory";//category
 
         //Act
-        TransactionProduct product = dbhandler.getSingularProduct(2);
+        TransactionProduct product = dbhandler.getSingularProduct(1);
 
         //Assert
         Assertions.assertEquals(purchaseID,product.getID());
@@ -42,19 +42,19 @@ class DatabaseHandlerTest {
     void selectPurchaseFromTimelineProduct() throws ClassNotFoundException {
         //Prepare
         var DBhandler = new TimelineDBHandler();
-        int purchaseid = 3;
+        int purchaseid = 1;
         String date = "29-03-2023";
-        BigDecimal price = new BigDecimal("13.49");
+        BigDecimal price = new BigDecimal("12.34");
         int productid = 1;
 
         //Act
-        ObservableList<TimelineProductPurchase> result = TimelineDBHandler.getPurchases(productid);
+        ObservableList<TimelineProductPurchase> result = DBhandler.getPurchases(productid);
 
         //Assert
-        Assertions.assertEquals(purchaseid,result.get(2).getPurchaseID());
-        Assertions.assertEquals(date,result.get(2).getPurchaseDate());
-        Assertions.assertEquals(price,result.get(2).getPurchasePrice());
-        Assertions.assertEquals(productid,result.get(2).getPurchaseProductID());
+        Assertions.assertEquals(purchaseid,result.get(0).getPurchaseID());
+        Assertions.assertEquals(date,result.get(0).getPurchaseDate());
+        Assertions.assertEquals(price,result.get(0).getPurchasePrice());
+        Assertions.assertEquals(productid,result.get(0).getPurchaseProductID());
 
     }
 }
