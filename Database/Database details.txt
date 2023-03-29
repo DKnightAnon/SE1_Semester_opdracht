@@ -5,5 +5,9 @@ The following video was used in the creation of the database : Java Connect to H
 Navigate to the folder that contains h2-2.1.214.jar in the command terminal
 Use the command  [java -jar h2-2.1.214.jar]
 
+ Choose this url for a database in home directory : jdbc:h2:~/bptDB
+   Choose this url for a database in projectroot/Database : jdbc:h2:file:./Database/bptDB
+
+
 Register the driver with the following command:
     Class.forName("org.h2.Driver");

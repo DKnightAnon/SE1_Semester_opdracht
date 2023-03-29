@@ -19,9 +19,9 @@ public class DatabaseTest {
 
     private static TimelineDBHandler TLDB = new TimelineDBHandler();
 
+//URL for home directory database : jdbc:h2:~/bptDB
 
-
-    private static String jdcbURL = "jdbc:h2:file:./Database/bptDB";
+    private static String jdcbURL = "jdbc:h2:~/bptDB";
     private static String user = "admin";
     private static String password = "admin";
     public static String connected = "Connected to database!";
@@ -227,8 +227,8 @@ public class DatabaseTest {
     }
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        TestAll();
-        //printDatabaseTransaction();
+        //TestAll();
+        printDatabaseTransaction();
         //printTimelineProducts();
         //printTimeLineCategories();
         //insertTransactionProduct();

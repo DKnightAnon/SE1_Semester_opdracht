@@ -2,10 +2,15 @@ import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.Products.Timeline.TimelineProductPurchase;
 import com.example.se_opdracht.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.TransactionScreenController;
 import javafx.collections.ObservableList;
+import javafx.scene.control.DatePicker;
+import org.h2.jdbc.JdbcSQLNonTransientConnectionException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,7 +18,7 @@ class DatabaseHandlerTest {
 
     @Test
             /*
-            Bij deze test wordt gecheckt of data van een entry in de database(specifiek uit  correct opgehaald wordt.
+            Bij deze test wordt gecheckt of data van een entry in de database(specifiek uit Purchase) correct opgehaald wordt.
             De variabelen die onder //prepare staan komen overeen met een entry, en de opgehaalde variabelen worden hiertegen getest.
              */
     void Transaction() throws SQLException, ClassNotFoundException {
@@ -39,6 +44,9 @@ class DatabaseHandlerTest {
 
 
     @Test
+    /*
+    Bij deze test wordt gecheckt of een product goed uit de database for timelineproducten gehaald wordt.
+     */
     void selectPurchaseFromTimelineProduct() throws ClassNotFoundException {
         //Prepare
         var DBhandler = new TimelineDBHandler();
@@ -57,4 +65,37 @@ class DatabaseHandlerTest {
         Assertions.assertEquals(productid,result.get(0).getPurchaseProductID());
 
     }
-}
+
+    @Test
+    /*
+    This tests if an exception is thrown when the database is in use. To properly test it, you should open the database with the H2 Console.
+    To do this, Navigate to the folder that contains h2-2.1.214.jar in the command terminal
+    and use the command  [java -jar h2-2.1.214.jar]
+     */
+    void assertDatabaseInUse () {
+        //Prepare
+        String jdcbURL = "jdbc:h2:~/bptDB";
+        String user = "Admin";
+        String password = "admin";
+
+        //Act
+
+        JdbcSQLNonTransientConnectionException thrown = Assertions.assertThrows(JdbcSQLNonTransientConnectionException.class, () -> {
+            Connection con = DriverManager.getConnection(jdcbURL, user,password);}, "SQL exception was expected");
+        }
+/*
+        @Test
+        void checkIfFieldReturnsFormattedDate() {
+            TransactionScreenController controller = new TransactionScreenController();
+            DatePicker datepicker;
+            datepicker.getEditor().setText("");
+        }
+
+ */
+
+
+
+
+
+    }
+
