@@ -74,7 +74,7 @@ public class ProductsScreenController extends GenericScreenController implements
 
 
 
-    public void addNewProduct(ActionEvent event) throws SQLException, ClassNotFoundException {
+    public void addNewProduct(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         String newProductName = NewProductTextfield.getText();
         int productIndex = newProductCategoryList.getSelectionModel().getSelectedIndex();
         Boolean emptyTextField = isTextFieldEmpty(NewProductTextfield);
@@ -136,7 +136,7 @@ public class ProductsScreenController extends GenericScreenController implements
         //productList.setItems(listViewProductList);
     }
 
-    public void ProductCategoryListItemSelected(ActionEvent event) throws ClassNotFoundException {
+    public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException {
         int productID = productCategoryList.getSelectionModel().getSelectedIndex();
         ObservableList<TimelineProduct> productlist;
         productlist = TimelineDBHandler.getProductsListview(productID);

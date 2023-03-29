@@ -39,12 +39,6 @@ public class Main extends Application {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
         launch();
-        //DatabaseTest.printTimelineProducts();
-        //DatabaseTest.printTimeLineCategories();
 
-        //DatabaseTest.printDatabaseAll();
-        //DatabaseTest.printdatabase();
-        //DatabaseTest.TestAll();
-        //System.exit(0);
     }
 }

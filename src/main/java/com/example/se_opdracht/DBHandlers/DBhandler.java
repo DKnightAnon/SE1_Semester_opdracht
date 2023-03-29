@@ -3,33 +3,32 @@ package com.example.se_opdracht.DBHandlers;
 
 import java.sql.*;
 
-public  interface DBhandler {
+public interface DBhandler {
 
- static String jdcbURL = "jdbc:h2:~/bptDB;";
- static String user = "Admin";
- static String password = "admin";
- static String connected = "Connected to database!";
- public static String disconnected = "Disconnected from database!";
- public static String connectionUnable = "Unable to connect to database...";
+    //Choose this url for a database in home directory : jdbc:h2:~/bptDB;
+    //Choose this url for a database in projectroot/Database : jdbc:h2:file:./Database/bptDB
+ String jdcbURL = "jdbc:h2:file:./Database/bptDB";
+ String user = "Admin";
+ String password = "admin";
 
     public default void addNewProduct(){
 
     }
 
-    public static Connection getConnection() throws SQLException, ClassNotFoundException {
+    static Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
-        Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
+        Connection connection = DriverManager.getConnection(jdcbURL, user,password);
         return connection;
     }
-    public static String getJdcbURL() {
+    static String getJdcbURL() {
         return jdcbURL;
     }
 
-    public static String getUser() {
+    static String getUser() {
         return user;
     }
 
-    public static String getPassword() {
+    static String getPassword() {
         return password;
     }
 }
