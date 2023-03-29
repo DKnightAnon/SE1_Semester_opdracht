@@ -1,0 +1,3 @@
+2023-03-29 18:54:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
+SELECT Purchase_ID, Date, Item, Description, Name FROM PURCHASE JOIN expense_category ON purchase.Category = expense_category.Category_ID; [42104-214]

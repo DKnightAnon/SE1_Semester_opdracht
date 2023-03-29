@@ -1,5 +1,3 @@
-package com.example.se_opdracht;
-
 import com.example.se_opdracht.DBHandlers.DBhandler;
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.Products.Timeline.TimelineProduct;
@@ -10,13 +8,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DatabaseTest {
+
+    /*
+    These methods are not Junit Tests. However, these were what I used during the development process to check
+
+     */
 
     private static TimelineDBHandler TLDB = new TimelineDBHandler();
 
 
-    private static String jdcbURL = "jdbc:h2:~/bptDB";
+
+    private static String jdcbURL = "jdbc:h2:file:./Database/bptDB";
     private static String user = "admin";
     private static String password = "admin";
     public static String connected = "Connected to database!";
@@ -37,6 +42,7 @@ public class DatabaseTest {
 
     public static void TestAll() throws SQLException, ClassNotFoundException {
        // printDatabaseAllTransactions();
+        createTablesInDatabase();
         printDatabaseTransaction();
         printTimelineProducts();
         printTimeLineCategories();
@@ -156,5 +162,78 @@ public class DatabaseTest {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void createTablesInDatabase() {
+        try {
+            String createExpenseCategory = "    DROP TABLE IF EXISTS Expense_Category; " +
+                    "    CREATE TABLE Expense_Category(" +
+                    "    Category_ID int NOT NULL AUTO_INCREMENT," +
+                    "    Name varchar(255)," +
+                    "    PRIMARY KEY(Category_ID)" +
+                    "    );";
+            String createTimelineProduct = "    DROP TABLE IF EXISTS TimelineProduct;\n" +
+                    "    CREATE TABLE IF NOT EXISTS TimelineProduct(\n" +
+                    "    Product_ID int NOT NULL AUTO_INCREMENT,\n" +
+                    "    Name varchar(255) NOT NULL,\n" +
+                    "    Description varchar(600),\n" +
+                    "    Category integer not null,\n" +
+                    "    PRIMARY KEY(Product_ID)\n" +
+                    "    );";
+            String createProductPurchaseDate = "    DROP TABLE IF EXISTS ProductPurchaseDate;\n" +
+                    "    CREATE TABLE IF NOT EXISTS ProductPurchaseDate(\n" +
+                    "    PurchaseDate_ID int NOT NULL AUTO_INCREMENT,\n" +
+                    "    Date varchar(20) NOT NULL,\n" +
+                    "    PurchasePrice NUMERIC(20,2),\n" +
+                    "    Product_ID integer NOT NULL,\n" +
+                    "    PRIMARY KEY(PurchaseDate_ID),\n" +
+                    "    FOREIGN KEY (Product_ID) REFERENCES TimelineProduct(Product_ID)\n" +
+                    "    );";
+            String createTimelineProductCategory = "    DROP TABLE IF EXISTS TimelineProductCategory;\n" +
+                    "    CREATE TABLE IF NOT EXISTS TimelineProductCategory(\n" +
+                    "    Category_ID int NOT NULL AUTO_INCREMENT,\n" +
+                    "    CategoryName varchar(255) NOT NULL,\n" +
+                    "    PRIMARY KEY(Category_ID)\n" +
+                    "    );";
+            String createPurchase = "    DROP TABLE IF EXISTS Purchase;\n" +
+                    "    CREATE TABLE Purchase(\n" +
+                    "    Purchase_ID int not null auto_increment,\n" +
+                    "    Date varchar(20) NOT NULL,\n" +
+                    "    Item varchar(600),\n" +
+                    "    Description varchar(255),\n" +
+                    "    Category integer NOT NULL,\n" +
+                    "    PRIMARY KEY (Purchase_ID),\n" +
+                    "    FOREIGN KEY (Category) REFERENCES Expense_Category(Category_ID)\n" +
+                    "    );";
+            ArrayList<String> createTables = new ArrayList<String>();
+            createTables.add(createExpenseCategory);
+            createTables.add(createTimelineProduct);
+            createTables.add(createProductPurchaseDate);
+            createTables.add(createTimelineProductCategory);
+            createTables.add(createPurchase);
+            Connection con = DriverManager.getConnection(jdcbURL, user, password);
+            for (int i = 0; i<createTables.size();i++) {
+                PreparedStatement psInsert = con.prepareStatement(createTables.get(i));
+                psInsert.executeUpdate();
+            }
+            con.close();
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
+        TestAll();
+        //printDatabaseTransaction();
+        //printTimelineProducts();
+        //printTimeLineCategories();
+        //insertTransactionProduct();
+        //printDatabaseAllTransactions();
+        //createTablesInDatabase();
+
     }
 }

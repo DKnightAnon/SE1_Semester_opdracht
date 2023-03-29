@@ -5,7 +5,6 @@ import com.example.se_opdracht.Products.Transaction.TransactionProduct;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -58,7 +57,4 @@ class DatabaseHandlerTest {
         Assertions.assertEquals(productid,result.get(2).getPurchaseProductID());
 
     }
-
-
-
 }

@@ -26,8 +26,6 @@ import java.util.ResourceBundle;
 
 public class TransactionScreenController extends GenericScreenController implements Initializable {
 
-    @FXML
-    private AnchorPane TransactionScreen;
 
     ErrorWarnings error = new ErrorWarnings();
     TransactionDBHandler tdbh = new TransactionDBHandler();
@@ -36,17 +34,17 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 //Table variables
     @FXML
-        private TableView<TransactionProduct> TransactionTable;
+        private TableView TransactionTable;
      @FXML
-     private TableColumn<TransactionProduct, Integer> IDColumn;
+     private TableColumn IDColumn;
      @FXML
-     private TableColumn<TransactionProduct, String> DateColumn;
+     private TableColumn DateColumn;
      @FXML
-     private TableColumn<TransactionProduct, String> ItemColumn;
+     private TableColumn ItemColumn;
      @FXML
-     private TableColumn<TransactionProduct, String> DescriptionColumn;
+     private TableColumn DescriptionColumn;
      @FXML
-     private TableColumn<TransactionProduct, String> CategoryColumn;
+     private TableColumn CategoryColumn;
 //Table variables
 
     //Purchase(Transaction) form variables
@@ -54,8 +52,6 @@ public class TransactionScreenController extends GenericScreenController impleme
     private DatePicker expenseDate;
     @FXML
     private TextField expenseItem;
-    @FXML
-    private TextField VendorTextField;
     @FXML
     private TextArea purchaseDescription;
     @FXML
@@ -65,12 +61,6 @@ public class TransactionScreenController extends GenericScreenController impleme
     //Purchase(Transaction) form variables
     @FXML
     private TextField NewCategoryTextField;
-
-    private Parent root;
-    private Stage stage;
-    private Scene scene;
-    @FXML
-    private Button Return;
     ObservableList<TransactionProductCategory> categoryList;
     ObservableList<TransactionProduct> transactions;
 
@@ -99,7 +89,6 @@ public class TransactionScreenController extends GenericScreenController impleme
                             dateFormat,
                             expenseItem.getText(),
                             purchaseDescription.getText(),
-                            selectCategory.getSelectionModel().getSelectedItem().toString(),
                             selectCategory.getSelectionModel().getSelectedIndex()
                     );
                     TableLoad();
@@ -120,7 +109,7 @@ public class TransactionScreenController extends GenericScreenController impleme
 
         }
 
-    public void onTableLoadClick(ActionEvent event) {
+    public void onTableLoadClick(ActionEvent actionEvent) {
         TableLoad();
     }
 

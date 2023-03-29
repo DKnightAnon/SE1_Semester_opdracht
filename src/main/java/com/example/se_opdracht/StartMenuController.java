@@ -19,8 +19,6 @@ public class StartMenuController {
     TransactionScreenController Transaction = new TransactionScreenController();
     ErrorWarnings error = new ErrorWarnings();
     @FXML
-    private Label welcomeText;
-    @FXML
     private Label WelcomeMessage;
     @FXML
     private Label WelcomeGuideMessage;

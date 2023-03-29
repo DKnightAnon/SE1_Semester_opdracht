@@ -112,11 +112,8 @@ public class TransactionDBHandler implements DBhandler{
         }
 
     }
-    public void addNewProduct(String date, String item, String description, String category, int id) {
+    public void addNewProduct(String date, String item, String description, int id) {
         PreparedStatement psInsert = null;
-        PreparedStatement category_id_retrieve;
-        ResultSet resultSet = null;
-
         try{
            Connection con = DBhandler.getConnection();
 
@@ -124,7 +121,6 @@ public class TransactionDBHandler implements DBhandler{
             psInsert.setString(1,date);
             psInsert.setString(2,item);
             psInsert.setString(3,description);
-            //psInsert.setString(4,category);
             psInsert.execute();
             //System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
             //Testing done
