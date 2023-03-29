@@ -1,4 +1,4 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.ErrorMessages;
 
 import javafx.scene.Parent;
 import javafx.scene.Scene;

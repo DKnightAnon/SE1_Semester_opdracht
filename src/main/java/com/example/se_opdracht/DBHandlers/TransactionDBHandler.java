@@ -51,6 +51,29 @@ public class TransactionDBHandler implements DBhandler{
         return list;
     }
 
+    public TransactionProduct getSingularProduct(int ID) throws SQLException, ClassNotFoundException {
+        String databasequery =
+                "SELECT Purchase_ID, Date, Item, Description, Name " +
+                        "FROM PURCHASE JOIN EXPENSE_CATEGORY" +
+                        " ON PURCHASE.Category = EXPENSE_CATEGORY.Category_ID " +
+                        "where purchase_id = ?; ";
+        Connection con = DBhandler.getConnection();
+        PreparedStatement ps = con.prepareStatement(databasequery);
+        ps.setInt(1, ID);
+        ResultSet rs = ps.executeQuery();
+        TransactionProduct SingularProduct = null;
+        while (rs.next()) {
+            SingularProduct = new TransactionProduct(
+                    rs.getInt("Purchase_ID"),
+                    rs.getString("Date"),
+                    rs.getString("Item"),
+                    rs.getString("Description"),
+                    rs.getString("Name"));
+
+        }
+        return SingularProduct;
+    }
+
     public static ObservableList<TransactionProductCategory> getCategories() {
         ObservableList<TransactionProductCategory>   list = FXCollections.observableArrayList();
         try {
@@ -114,7 +137,8 @@ public class TransactionDBHandler implements DBhandler{
             psInsert.setString(3,description);
             //psInsert.setString(4,category);
             psInsert.execute();
-            System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
+            //System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
+            //Testing done
             con.close();
 
         }catch (SQLException e){

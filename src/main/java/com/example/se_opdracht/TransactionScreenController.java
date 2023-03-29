@@ -3,6 +3,10 @@ package com.example.se_opdracht;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.Products.Transaction.TransactionProduct;
 import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
+
+import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
+
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +20,8 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
+
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class TransactionScreenController extends GenericScreenController implements Initializable {
@@ -76,28 +82,33 @@ public class TransactionScreenController extends GenericScreenController impleme
             emptyDate = true;
         }
         LocalDate productdate = expenseDate.getValue();
+        String dateFormat = productdate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));//use MM for months. mm is for minutes of hour
 
-        if (
-                emptyDate
-                        || expenseItem.getText().equals("")
-                        || purchaseDescription.getText().equals("")
-                        || selectCategory.getSelectionModel().getSelectedItem().equals("")) {
-            error.noCompletePurchaseInfo();
-        } else {
-            try {
-                String date = productdate.toString();
-                tdbh.addNewProduct(
-                        date,
-                        expenseItem.getText(),
-                        purchaseDescription.getText(),
-                        selectCategory.getSelectionModel().getSelectedItem().toString(),
-                        selectCategory.getSelectionModel().getSelectedIndex()
-                );
-                TableLoad();
-            } catch (Exception e) {
-                e.printStackTrace();
+            if (
+                      emptyDate
+                    || expenseItem.getText().equals("")
+                    || purchaseDescription.getText().equals("")
+                    || selectCategory.getSelectionModel().getSelectedItem().equals(""))
+            {
+                error.noCompletePurchaseInfo();
+            } else {
+                try {
+
+
+                    tdbh.addNewProduct(
+                            dateFormat,
+                            expenseItem.getText(),
+                            purchaseDescription.getText(),
+                            selectCategory.getSelectionModel().getSelectedItem().toString(),
+                            selectCategory.getSelectionModel().getSelectedIndex()
+                    );
+                    TableLoad();
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
+            selectCategory.setValue("Choose a category");
+
 
 
     }
