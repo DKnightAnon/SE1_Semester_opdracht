@@ -1,11 +1,14 @@
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
+import com.example.se_opdracht.Products.Timeline.TimelineProductPurchase;
 import com.example.se_opdracht.Products.Transaction.TransactionProduct;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 class DatabaseHandlerTest {
 
@@ -37,18 +40,22 @@ class DatabaseHandlerTest {
 
 
     @Test
-    void selectPurchaseFromTimelineProduct() {
+    void selectPurchaseFromTimelineProduct() throws ClassNotFoundException {
         //Prepare
         var DBhandler = new TimelineDBHandler();
-        int purchaseid = 1;
-        String date = "29-30-2023";
-        BigDecimal price = new BigDecimal(13.49);
+        int purchaseid = 3;
+        String date = "29-03-2023";
+        BigDecimal price = new BigDecimal("13.49");
         int productid = 1;
 
         //Act
-
+        ObservableList<TimelineProductPurchase> result = TimelineDBHandler.getPurchases(productid);
 
         //Assert
+        Assertions.assertEquals(purchaseid,result.get(2).getPurchaseID());
+        Assertions.assertEquals(date,result.get(2).getPurchaseDate());
+        Assertions.assertEquals(price,result.get(2).getPurchasePrice());
+        Assertions.assertEquals(productid,result.get(2).getPurchaseProductID());
 
     }
 
