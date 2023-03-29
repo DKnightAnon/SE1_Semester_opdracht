@@ -19,7 +19,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class TimelineDBHandler {
+public class TimelineDBHandler implements DBhandler{
 
     public static ObservableList<TimelineProductPurchase> getPurchases(int productID) throws ClassNotFoundException {
         ObservableList<TimelineProductPurchase> list = FXCollections.observableArrayList();

@@ -12,12 +12,6 @@ public  interface DBhandler {
  public static String disconnected = "Disconnected from database!";
  public static String connectionUnable = "Unable to connect to database...";
 
-  /*  public static Connection connection() throws SQLException {
-        Connection conn = DriverManager.getConnection(jdcbURL, user, password);
-        return conn;
-    };*/
-
-
     public default void addNewProduct(){
 
     }

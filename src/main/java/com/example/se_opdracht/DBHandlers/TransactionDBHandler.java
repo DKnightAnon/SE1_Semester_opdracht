@@ -50,7 +50,6 @@ public class TransactionDBHandler implements DBhandler{
 
         return list;
     }
-
     public TransactionProduct getSingularProduct(int ID) throws SQLException, ClassNotFoundException {
         String databasequery =
                 "SELECT Purchase_ID, Date, Item, Description, Name " +
@@ -73,7 +72,6 @@ public class TransactionDBHandler implements DBhandler{
         }
         return SingularProduct;
     }
-
     public static ObservableList<TransactionProductCategory> getCategories() {
         ObservableList<TransactionProductCategory>   list = FXCollections.observableArrayList();
         try {
@@ -96,15 +94,6 @@ public class TransactionDBHandler implements DBhandler{
             throw new RuntimeException(e);
         }
         return list;
-    }
-
-    public static int getCategoryID(String category) throws SQLException, ClassNotFoundException {
-        Connection con = DBhandler.getConnection();
-        PreparedStatement category_id_retrieve = con.prepareStatement("Select Category_ID from Expense_Category where NAME  like '" + category + "'");
-        ResultSet resultSet = category_id_retrieve.executeQuery();
-        int id = resultSet.getInt("CATEGORY_ID");
-        con.close();
-        return id;
     }
     public static void addCategory(String categoryName) {
         try{
