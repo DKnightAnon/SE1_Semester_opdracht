@@ -68,37 +68,36 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProductCategory> categoryList;
     ObservableList<TransactionProduct> transactions;
 
-    public void AddNewPurchase(ActionEvent actionEvent){
+    public void AddNewPurchase(ActionEvent actionEvent) {
         Boolean emptyDate;
         if (expenseDate.getValue() != null) {
             emptyDate = false;
-        }else {
+        } else {
             emptyDate = true;
         }
         LocalDate productdate = expenseDate.getValue();
 
-            if (
-                      emptyDate
-                    || expenseItem.getText().equals("")
-                    || purchaseDescription.getText().equals("")
-                    || selectCategory.getSelectionModel().getSelectedItem().equals(""))
-            {
-                error.noCompletePurchaseInfo();
-            } else {
-                try {
-                    String date = productdate.toString();
-                    tdbh.addNewProduct(
-                            date,
-                            expenseItem.getText(),
-                            purchaseDescription.getText(),
-                            selectCategory.getSelectionModel().getSelectedItem().toString(),
-                            selectCategory.getSelectionModel().getSelectedIndex()
-                    );
-                    TableLoad();
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
+        if (
+                emptyDate
+                        || expenseItem.getText().equals("")
+                        || purchaseDescription.getText().equals("")
+                        || selectCategory.getSelectionModel().getSelectedItem().equals("")) {
+            error.noCompletePurchaseInfo();
+        } else {
+            try {
+                String date = productdate.toString();
+                tdbh.addNewProduct(
+                        date,
+                        expenseItem.getText(),
+                        purchaseDescription.getText(),
+                        selectCategory.getSelectionModel().getSelectedItem().toString(),
+                        selectCategory.getSelectionModel().getSelectedIndex()
+                );
+                TableLoad();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+        }
 
 
     }

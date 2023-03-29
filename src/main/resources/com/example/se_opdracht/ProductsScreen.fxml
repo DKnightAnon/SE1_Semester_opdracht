@@ -19,12 +19,13 @@
       <Pane layoutY="80.0" prefHeight="570.0" prefWidth="1000.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#314151" height="570.0" stroke="BLACK" strokeType="INSIDE" width="1000.0" />
-            <ListView fx:id="productList" layoutX="14.0" layoutY="85.0" prefHeight="200.0" prefWidth="200.0" />
-            <ComboBox fx:id="productCategoryList" layoutX="14.0" layoutY="60.0" prefHeight="25.0" prefWidth="200.0" promptText="Select category" />
-            <TableView fx:id="PurchaseTable" layoutX="300.0" layoutY="60.0" prefHeight="200.0" prefWidth="200.0">
+            <ListView fx:id="productList" layoutX="14.0" layoutY="85.0" onMouseClicked="#FillTable" prefHeight="200.0" prefWidth="200.0" />
+            <ComboBox fx:id="productCategoryList" layoutX="14.0" layoutY="60.0" onAction="#ProductCategoryListItemSelected" prefHeight="25.0" prefWidth="200.0" promptText="Select category" />
+            <TableView fx:id="PurchaseTable" layoutX="257.0" layoutY="24.0" prefHeight="520.0" prefWidth="374.0">
               <columns>
-                <TableColumn fx:id="DateColumn" prefWidth="102.0" text="Date" />
-                <TableColumn fx:id="PriceColumn" prefWidth="97.0" text="Price" />
+                  <TableColumn fx:id="PurchaseID" prefWidth="100.0" text="Purchase No." />
+                <TableColumn fx:id="DateColumn" prefWidth="134.0" text="Date" />
+                <TableColumn fx:id="PriceColumn" prefWidth="139.0" text="Price" />
               </columns>
             </TableView>
             <Pane layoutX="645.0" layoutY="24.0" prefHeight="520.0" prefWidth="293.0">

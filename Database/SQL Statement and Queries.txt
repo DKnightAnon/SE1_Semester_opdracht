@@ -1,4 +1,4 @@
-[Creating the tables] (date is in yyyy-mm-dd format)
+[Creating the tables] (date is in dd-MM-yyyy format)
     DROP TABLE IF EXISTS Vendor;
     CREATE TABLE Vendor(
     Vendor_ID int NOT NULL AUTO_INCREMENT,
@@ -13,6 +13,33 @@
     Name varchar(255),
     PRIMARY KEY(Category_ID)
     );
+
+    DROP TABLE IF EXISTS TimelineProduct;
+    CREATE TABLE IF NOT EXISTS TimelineProduct(
+    Product_ID int NOT NULL AUTO_INCREMENT,
+    Name varchar(255) NOT NULL,
+    Description varchar(600),
+    Category integer not null,
+    PRIMARY KEY(Product_ID)
+    );
+
+    DROP TABLE IF EXISTS ProductPurchaseDate;
+    CREATE TABLE IF NOT EXISTS ProductPurchaseDate(
+    PurchaseDate_ID int NOT NULL AUTO_INCREMENT,
+    Date varchar(20) NOT NULL,
+    PurchasePrice NUMERIC(20,2),
+    Product_ID integer NOT NULL,
+    PRIMARY KEY(PurchaseDate_ID),
+    FOREIGN KEY (Product_ID) REFERENCES TimelineProduct(Product_ID)
+    );
+
+    DROP TABLE IF EXISTS TimelineProductCategory;
+    CREATE TABLE IF NOT EXISTS TimelineProductCategory(
+    Category_ID int NOT NULL AUTO_INCREMENT,
+    CategoryName varchar(255) NOT NULL,
+    PRIMARY KEY(Category_ID)
+    );
+
 
     DROP TABLE IF EXISTS Income;
     CREATE TABLE Income(
@@ -51,3 +78,13 @@
   INSERT INTO 'expense_category'('Name') VALUES (?);
 
   [Get entries from expense_category table]
+
+  [Fill TimelineProduct.java]
+  SELECT product.Product_ID, product.Name, product.Description,category.Name From TimelineProduct product join TimelineProductCategory category on product.category = category.Category_ID
+
+  [Insert new entry into TimelineProduct]
+  insert into TimelineProduct (Name, Description, Category) Values ('testproduct','testing value insertion from h2 GUI',1)//H2 specifictestentry
+  Insert into TimelineProduct (Name, Description, Category) Values (?,?,?)
+
+  [Insert new entry into ProductPurchaseDate]
+  Insert into ProductPurchaseDate (Date, PurchasePrice, Product_ID) Values ('today' , 12.34, 1) //H2 specific testentry

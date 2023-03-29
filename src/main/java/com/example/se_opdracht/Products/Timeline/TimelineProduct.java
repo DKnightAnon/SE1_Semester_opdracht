@@ -7,9 +7,7 @@ import java.math.BigDecimal;
 public class TimelineProduct extends Product {
     public TimelineProduct(String name,
                            String Description,
-                           BigDecimal productPrice,
                            String category,
-                           String purchaseDate,
                            int productID) {
         super(name, Description);
         this.Category = category;
@@ -35,6 +33,10 @@ public class TimelineProduct extends Product {
 
     public void setProductID(int productID) {
         this.productID = productID;
+    }
+    @Override
+    public String toString(){
+        return super.getName();
     }
 
 

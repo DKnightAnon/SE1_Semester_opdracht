@@ -1,33 +1,15 @@
 package com.example.se_opdracht.Products.Transaction;
 
-public class TransactionProductCategory {
-    private String categoryName;
-    private int categoryID;
+import com.example.se_opdracht.Products.ProductCategory;
+
+public class TransactionProductCategory extends ProductCategory {
 
     public TransactionProductCategory(String categoryName, int categoryID) {
-        this.categoryName = categoryName;
-        this.categoryID = categoryID;
-    }
+        super(categoryName,categoryID);
 
-    public String getCategoryName() {
-        return categoryName;
     }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    public int getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
-    }
-
     @Override
     public String toString() {
-
-        return categoryName;
+        return super.getCategoryName();
     }
 }
