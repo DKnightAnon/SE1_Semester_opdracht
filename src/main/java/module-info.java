@@ -15,6 +15,9 @@ module com.example.se_opdracht {
     opens com.example.se_opdracht.DBHandlers to javafx.fxml;
     exports com.example.se_opdracht.Products;
     opens com.example.se_opdracht.Products to javafx.fxml;
-    exports com.example.se_opdracht.ErrorMessages;
-    opens com.example.se_opdracht.ErrorMessages to javafx.fxml;
+    exports com.example.se_opdracht.Products.Transaction;
+    opens com.example.se_opdracht.Products.Transaction to javafx.fxml;
+    exports com.example.se_opdracht.Products.Timeline;
+    opens com.example.se_opdracht.Products.Timeline to javafx.fxml;
+
 }

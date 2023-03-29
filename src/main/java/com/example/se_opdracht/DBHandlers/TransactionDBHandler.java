@@ -1,10 +1,9 @@
 package com.example.se_opdracht.DBHandlers;
 
-import com.example.se_opdracht.Products.TransactionProduct;
-import com.example.se_opdracht.Products.TransactionProductCategory;
+import com.example.se_opdracht.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import org.h2.*;
 
 import java.sql.*;
 

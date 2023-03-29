@@ -1,9 +1,12 @@
 package com.example.se_opdracht;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
+import com.example.se_opdracht.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
+
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
-import com.example.se_opdracht.Products.TransactionProduct;
-import com.example.se_opdracht.Products.TransactionProductCategory;
+
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +20,7 @@ import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
+
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -70,11 +74,11 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProductCategory> categoryList;
     ObservableList<TransactionProduct> transactions;
 
-    public void AddNewPurchase(ActionEvent actionEvent){
+    public void AddNewPurchase(ActionEvent actionEvent) {
         Boolean emptyDate;
         if (expenseDate.getValue() != null) {
             emptyDate = false;
-        }else {
+        } else {
             emptyDate = true;
         }
         LocalDate productdate = expenseDate.getValue();
@@ -104,6 +108,7 @@ public class TransactionScreenController extends GenericScreenController impleme
                 }
             }
             selectCategory.setValue("Choose a category");
+
 
 
     }

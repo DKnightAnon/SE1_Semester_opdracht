@@ -1,9 +1,6 @@
 package com.example.se_opdracht;
 
-import com.example.se_opdracht.DBHandlers.DBhandler;
-import com.example.se_opdracht.Products.TransactionProduct;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,8 +39,12 @@ public class Main extends Application {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
 
         launch();
+        //DatabaseTest.printTimelineProducts();
+        //DatabaseTest.printTimeLineCategories();
 
         //DatabaseTest.printDatabaseAll();
         //DatabaseTest.printdatabase();
+        //DatabaseTest.TestAll();
+        //System.exit(0);
     }
 }

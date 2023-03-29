@@ -1,10 +1,10 @@
 package com.example.se_opdracht.Products;
 
-public class TransactionProductCategory {
+public class ProductCategory {
     private String categoryName;
     private int categoryID;
 
-    public TransactionProductCategory(String categoryName, int categoryID) {
+    public ProductCategory(String categoryName, int categoryID) {
         this.categoryName = categoryName;
         this.categoryID = categoryID;
     }
@@ -23,11 +23,5 @@ public class TransactionProductCategory {
 
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
-    }
-
-    @Override
-    public String toString() {
-
-        return categoryName;
     }
 }
