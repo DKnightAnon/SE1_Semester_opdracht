@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
@@ -60,6 +61,9 @@ public class ProductsScreenController extends GenericScreenController implements
     private DatePicker purchaseDatePicker;
 
         TimelineDBHandler DB = new TimelineDBHandler();
+
+        @FXML
+        private AnchorPane TimelineScreen;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -172,5 +176,13 @@ public class ProductsScreenController extends GenericScreenController implements
         int productID = selectedProduct.getProductID();
         fillPurchaseTable(productID);
         //System.out.println("TestClick!");
+    }
+
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+        try {
+            error.logoutConfirm(TimelineScreen);
+        } catch (Exception e) {
+            error.unableToCloseApplication();
+        }
     }
 }

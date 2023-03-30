@@ -64,6 +64,9 @@ public class TransactionScreenController extends GenericScreenController impleme
     ObservableList<TransactionProductCategory> categoryList;
     ObservableList<TransactionProduct> transactions;
 
+    @FXML
+    private AnchorPane TransactionScreen;
+
     public void AddNewPurchase(ActionEvent actionEvent) {
         Boolean emptyDate;
         if (expenseDate.getValue() != null) {
@@ -136,6 +139,14 @@ public class TransactionScreenController extends GenericScreenController impleme
             TransactionDBHandler.addCategory(NewCategoryTextField.getText());
             NewCategoryTextField.clear();
             TableLoad();
+        }
+    }
+
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+        try {
+            error.logoutConfirm(TransactionScreen);
+        } catch (Exception e) {
+            error.unableToCloseApplication();
         }
     }
 }

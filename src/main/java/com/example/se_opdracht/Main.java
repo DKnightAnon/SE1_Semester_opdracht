@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.*;
@@ -18,6 +19,9 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
+            //stage.initStyle(StageStyle.UNDECORATED);
+            stage.setMinHeight(650);
+            stage.setMinWidth(1000);
             stage.setScene(scene);
             stage.show();
             try {
