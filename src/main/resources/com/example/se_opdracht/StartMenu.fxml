@@ -85,7 +85,7 @@
                   <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="459.0" style="-fx-background-color: #f9b17a;" text="Home" textFill="#6f6969" translateY="30.0" />
                   <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="697.0" style="-fx-background-color: #f9b17a;" text="Price Tracking" textFill="#6f6969" translateY="50.0" />
                   <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="668.0" style="-fx-background-color: #f9b17a;" text="Transactions" textFill="#6f6969" translateY="67.0" />
-                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="599.0" stylesheets="@../../../../java/CSS_Files/Buttons.css" text="Settings" textFill="#6f6969" translateY="90.0" />
+                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="599.0" text="Settings" textFill="#6f6969" translateY="90.0" />
                </children>
             </VBox>
             <VBox layoutX="58.0" layoutY="392.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">

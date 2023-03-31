@@ -172,9 +172,19 @@ public class ProductsScreenController extends GenericScreenController implements
 
 
     public void FillTable(MouseEvent mouseEvent) throws ClassNotFoundException {
-        TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
-        int productID = selectedProduct.getProductID();
-        fillPurchaseTable(productID);
+        try {
+            TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
+            int productID = selectedProduct.getProductID();
+            if (selectedProduct.equals(null)){
+                error.noItemSelected();
+            } else {
+                fillPurchaseTable(productID);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         //System.out.println("TestClick!");
     }
 
