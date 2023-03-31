@@ -9,17 +9,29 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.sql.*;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Main extends Application {
 
 
     @Override
     public void start(Stage stage) throws IOException {
+        AtomicReference<Double> x = new AtomicReference<>((double) 0);
+        AtomicReference<Double> y = new AtomicReference<>((double) 0);
         try {
             Parent root = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
-            //stage.initStyle(StageStyle.UNDECORATED);
+           /* stage.initStyle(StageStyle.UNDECORATED);
+            root.setOnMousePressed(event -> {
+                x.set(event.getScreenX());
+                y.set(event.getScreenY());
+            });
+            root.setOnMouseDragged(event -> {
+                stage.setX(event.getScreenX()- x.get());
+                stage.setY(event.getScreenY()- y.get());
+            });
+            */
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
             stage.setScene(scene);
