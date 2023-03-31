@@ -9,29 +9,88 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 
-public class StartMenuController {
+public class StartMenuController extends GenericScreenController {
     TransactionScreenController Transaction = new TransactionScreenController();
     ErrorWarnings error = new ErrorWarnings();
+    //Image Hamburger1 = new Image("Hamburger_Menu_Icon.png");
+
+
+    @FXML
+       private AnchorPane BlackScreen;
+
+        @FXML
+        private AnchorPane ButtonBar;
+
+        @FXML
+        private Button Close;
+
+        @FXML
+        private ImageView ExitIcon;
+
+        @FXML
+        private Button GraphsButton;
+
+        @FXML
+        private Button HomeButton;
+
+        @FXML
+        private ImageView HomeIcon;
+
+        @FXML
+        private AnchorPane MainScreen;
+
+        @FXML
+        private Button MenuButton;
+
+        @FXML
+        private ImageView MenuIcon;
+
+        @FXML
+        private ImageView MenuIconMaster ;
+
+
+
+        @FXML
+        private Button ProductsButton;
+
+        @FXML
+        private Button SettingsButton;
+
+        @FXML
+        private ImageView SettingsIcon;
+
+        @FXML
+        private AnchorPane SideBar;
+
+        @FXML
+        private AnchorPane StartMenu;
+
+        @FXML
+        private ImageView TimelineProductIcon;
+
+        @FXML
+        private AnchorPane TopBar;
+
+        @FXML
+        private ImageView TransactionIcon;
+
+        @FXML
+        private Button TransactionsButton;
+
+        @FXML
+        private Label WelcomeGuideMessage;
+
     @FXML
     private Label WelcomeMessage;
-    @FXML
-    private Label WelcomeGuideMessage;
-    @FXML
-    private Button ProductsButton;
-    @FXML
-    private Button GraphsButton;
-    @FXML
-    private Button TransactionsButton;
-    @FXML
-    private Button close;
-    @FXML
-    private AnchorPane StartMenu;
+
 
     private Stage stage;
     private Scene scene;
@@ -40,7 +99,8 @@ public class StartMenuController {
 
 
 
-@FXML
+
+
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
         //Switch scenes
         try {
@@ -51,6 +111,8 @@ public class StartMenuController {
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
+            stage.setMinHeight(650);
+            stage.setMinWidth(1000);
             stage.show();
         } catch (Exception e) {
             //Removing the e.printStackTrace(); causes the sceneswitching to work for some reason? Needs looking into on a different date.
@@ -73,6 +135,8 @@ public class StartMenuController {
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
+            stage.setMinHeight(650);
+            stage.setMinWidth(1000);
             stage.show();
         } catch (Exception e) {
             //Removing the e.printStackTrace(); causes the sceneswitching to work for some reason? Needs looking into on a different date.
@@ -89,4 +153,5 @@ public class StartMenuController {
         error.unableToCloseApplication();
     }
     }
+
 }

@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.math.BigDecimal;
@@ -60,6 +61,9 @@ public class ProductsScreenController extends GenericScreenController implements
     private DatePicker purchaseDatePicker;
 
         TimelineDBHandler DB = new TimelineDBHandler();
+
+        @FXML
+        private AnchorPane TimelineScreen;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -168,9 +172,27 @@ public class ProductsScreenController extends GenericScreenController implements
 
 
     public void FillTable(MouseEvent mouseEvent) throws ClassNotFoundException {
-        TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
-        int productID = selectedProduct.getProductID();
-        fillPurchaseTable(productID);
+        try {
+            TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
+            int productID = selectedProduct.getProductID();
+            if (selectedProduct.equals(null)){
+                error.noItemSelected();
+            } else {
+                fillPurchaseTable(productID);
+            }
+
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
         //System.out.println("TestClick!");
+    }
+
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+        try {
+            error.logoutConfirm(TimelineScreen);
+        } catch (Exception e) {
+            error.unableToCloseApplication();
+        }
     }
 }

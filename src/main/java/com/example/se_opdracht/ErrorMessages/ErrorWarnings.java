@@ -68,4 +68,10 @@ public class ErrorWarnings {
         }
 
     }
+
+    public void noItemSelected() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("No item selected");
+        alert.setContentText("You havent selected an item to display yet!");
+    }
 }
