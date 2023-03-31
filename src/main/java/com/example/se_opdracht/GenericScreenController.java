@@ -36,6 +36,10 @@ public abstract class GenericScreenController {
     Image BudgetTransactionProductIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/BudgetTransactionProductIcon.png")));
     Image CrossmarkSmall = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/CrossmarkSmall.png")));
     Image exitIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/ExitIcon.png")));
+    Image Home = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HomeMenuIcon.png")));
+    Image Settings = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/SettingsIcon.png")));
+    Image Timeline = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/TimelineProductIcon.png")));
+
 
     public Boolean getDarkMode() {
         return darkMode;

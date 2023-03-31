@@ -22,12 +22,6 @@ import java.util.ResourceBundle;
 
 public class StartMenuController extends GenericScreenController implements Initializable{
     TransactionScreenController Transaction = new TransactionScreenController();
-    ErrorWarnings error = new ErrorWarnings();
-
-    //Image BurgerMenuIcon = new Image(String.valueOf((new File("images/HamburgerMenuIcon.png"))));
-
-
-
     @FXML
        private AnchorPane BlackScreen;
 
@@ -89,6 +83,8 @@ public class StartMenuController extends GenericScreenController implements Init
 
         @FXML
         private Button TransactionsButton;
+        @FXML
+        private ImageView Crossmark;
 
         @FXML
         private Label WelcomeGuideMessage;
@@ -162,5 +158,13 @@ public class StartMenuController extends GenericScreenController implements Init
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         MenuIconMaster.setImage(BurgerMenuIcon);
+        MenuIcon.setImage(BurgerMenuIcon);
+        SettingsIcon.setImage(Settings);
+        ExitIcon.setImage(exitIcon);
+        Crossmark.setImage(CrossmarkSmall);
+        HomeIcon.setImage(Home);
+        TransactionIcon.setImage(BudgetTransactionProductIcon);
+        TimelineProductIcon.setImage(Timeline);
+
     }
 }

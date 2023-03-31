@@ -14,7 +14,7 @@
          <children>
             <VBox layoutX="873.0" layoutY="-73.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="8.0">
+                  <ImageView fx:id="Crossmark" fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="8.0">
                      <image>
                         <Image url="@../../../../java/com/example/se_opdracht/images/CrossmarkSmall.png" />
                      </image>
