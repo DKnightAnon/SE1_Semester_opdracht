@@ -1,5 +1,6 @@
 package com.example.se_opdracht;
 
+import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 
 public abstract class GenericScreenController {
     private Parent root;
@@ -27,6 +30,12 @@ public abstract class GenericScreenController {
     private Button HomeButton;
     ErrorWarnings error = new ErrorWarnings();
     private Boolean darkMode;
+    TransactionDBHandler tdbh = new TransactionDBHandler();
+
+    Image BurgerMenuIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HamburgerMenuIcon.png")));
+    Image BudgetTransactionProductIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/BudgetTransactionProductIcon.png")));
+    Image CrossmarkSmall = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/CrossmarkSmall.png")));
+    Image exitIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/ExitIcon.png")));
 
     public Boolean getDarkMode() {
         return darkMode;

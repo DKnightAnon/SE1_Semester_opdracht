@@ -26,12 +26,6 @@ import java.util.ResourceBundle;
 
 public class TransactionScreenController extends GenericScreenController implements Initializable {
 
-
-    ErrorWarnings error = new ErrorWarnings();
-    TransactionDBHandler tdbh = new TransactionDBHandler();
-
-
-
 //Table variables
     @FXML
         private TableView TransactionTable;

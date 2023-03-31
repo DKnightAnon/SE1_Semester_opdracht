@@ -4,6 +4,7 @@ import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,13 +15,17 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
+import java.util.Objects;
+import java.util.ResourceBundle;
 
-public class StartMenuController extends GenericScreenController {
+public class StartMenuController extends GenericScreenController implements Initializable{
     TransactionScreenController Transaction = new TransactionScreenController();
     ErrorWarnings error = new ErrorWarnings();
-    //Image Hamburger1 = new Image("Hamburger_Menu_Icon.png");
+
+    //Image BurgerMenuIcon = new Image(String.valueOf((new File("images/HamburgerMenuIcon.png"))));
+
 
 
     @FXML
@@ -54,7 +59,7 @@ public class StartMenuController extends GenericScreenController {
         private ImageView MenuIcon;
 
         @FXML
-        private ImageView MenuIconMaster ;
+        private ImageView MenuIconMaster;
 
 
 
@@ -92,13 +97,13 @@ public class StartMenuController extends GenericScreenController {
     private Label WelcomeMessage;
 
 
+
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-
-
-
+    public StartMenuController() throws FileNotFoundException {
+    }
 
 
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
@@ -154,4 +159,8 @@ public class StartMenuController extends GenericScreenController {
     }
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        MenuIconMaster.setImage(BurgerMenuIcon);
+    }
 }

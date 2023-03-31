@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
@@ -175,14 +176,13 @@ public class ProductsScreenController extends GenericScreenController implements
         try {
             TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
             int productID = selectedProduct.getProductID();
-            if (selectedProduct.equals(null)){
-                error.noItemSelected();
-            } else {
-                fillPurchaseTable(productID);
-            }
+            fillPurchaseTable(productID);
+
+
 
         }catch (Exception e) {
             e.printStackTrace();
+            error.noItemSelected();
             throw new RuntimeException(e);
         }
         //System.out.println("TestClick!");
