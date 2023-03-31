@@ -26,6 +26,15 @@ public abstract class GenericScreenController {
     @FXML
     private Button HomeButton;
     ErrorWarnings error = new ErrorWarnings();
+    private Boolean darkMode;
+
+    public Boolean getDarkMode() {
+        return darkMode;
+    }
+
+    public void setDarkMode(Boolean darkMode) {
+        this.darkMode = darkMode;
+    }
 
     public Boolean isDatePickerEmpty(DatePicker datePicker) {
         if (datePicker.getValue() != null) {
@@ -119,6 +128,18 @@ public abstract class GenericScreenController {
 
     public void onCloseButtonClick(ActionEvent actionEvent) {
 
+    }
+
+    public void setScreenTheme () {
+        while (true) {
+            Boolean mode = getDarkMode();
+            if (mode = false) {
+
+            } else if (mode = true) {
+
+
+            }
+        }
     }
 
 

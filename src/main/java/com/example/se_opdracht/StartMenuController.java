@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -19,54 +20,73 @@ import java.net.URL;
 public class StartMenuController extends GenericScreenController {
     TransactionScreenController Transaction = new TransactionScreenController();
     ErrorWarnings error = new ErrorWarnings();
+    //Image Hamburger1 = new Image("Hamburger_Menu_Icon.png");
+
 
     @FXML
-    private Button Close;
+       private AnchorPane BlackScreen;
 
-    @FXML
-    private ImageView ExitIcon;
+        @FXML
+        private AnchorPane ButtonBar;
 
-    @FXML
-    private Button GraphsButton;
+        @FXML
+        private Button Close;
 
-    @FXML
-    private Button GraphsButton1;
+        @FXML
+        private ImageView ExitIcon;
 
-    @FXML
-    private ImageView HomeIcon;
+        @FXML
+        private Button GraphsButton;
 
-    @FXML
-    private ImageView MenuIcon;
+        @FXML
+        private Button HomeButton;
 
-    @FXML
-    private ImageView MenuIcon1;
+        @FXML
+        private ImageView HomeIcon;
 
-    @FXML
-    private Button ProductsButton;
+        @FXML
+        private AnchorPane MainScreen;
 
-    @FXML
-    private Button ProductsButton1;
+        @FXML
+        private Button MenuButton;
 
-    @FXML
-    private Button ProductsButton2;
+        @FXML
+        private ImageView MenuIcon;
 
-    @FXML
-    private ImageView SettingsIcon;
+        @FXML
+        private ImageView MenuIconMaster ;
 
-    @FXML
-    private AnchorPane StartMenu;
 
-    @FXML
-    private ImageView TimelineProductIcon;
 
-    @FXML
-    private ImageView TransactionIcon;
+        @FXML
+        private Button ProductsButton;
 
-    @FXML
-    private Button TransactionsButton;
+        @FXML
+        private Button SettingsButton;
 
-    @FXML
-    private Label WelcomeGuideMessage;
+        @FXML
+        private ImageView SettingsIcon;
+
+        @FXML
+        private AnchorPane SideBar;
+
+        @FXML
+        private AnchorPane StartMenu;
+
+        @FXML
+        private ImageView TimelineProductIcon;
+
+        @FXML
+        private AnchorPane TopBar;
+
+        @FXML
+        private ImageView TransactionIcon;
+
+        @FXML
+        private Button TransactionsButton;
+
+        @FXML
+        private Label WelcomeGuideMessage;
 
     @FXML
     private Label WelcomeMessage;
@@ -75,6 +95,7 @@ public class StartMenuController extends GenericScreenController {
     private Stage stage;
     private Scene scene;
     private Parent root;
+
 
 
 

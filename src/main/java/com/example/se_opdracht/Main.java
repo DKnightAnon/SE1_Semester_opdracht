@@ -22,7 +22,7 @@ public class Main extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("StartMenu.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
-           /* stage.initStyle(StageStyle.UNDECORATED);
+            stage.initStyle(StageStyle.UNDECORATED);
             root.setOnMousePressed(event -> {
                 x.set(event.getScreenX());
                 y.set(event.getScreenY());
@@ -31,7 +31,7 @@ public class Main extends Application {
                 stage.setX(event.getScreenX()- x.get());
                 stage.setY(event.getScreenY()- y.get());
             });
-            */
+
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
             stage.setScene(scene);
