@@ -1,6 +1,8 @@
 package com.example.se_opdracht;
 
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
+import com.gn.lab.ButtonType;
+import com.gn.lab.GNButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +15,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.net.URL;
@@ -155,8 +160,7 @@ public class StartMenuController extends GenericScreenController implements Init
     }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void setImageViewIcons(){
         MenuIconMaster.setImage(BurgerMenuIcon);
         MenuIcon.setImage(BurgerMenuIcon);
         SettingsIcon.setImage(Settings);
@@ -165,6 +169,34 @@ public class StartMenuController extends GenericScreenController implements Init
         HomeIcon.setImage(Home);
         TransactionIcon.setImage(BudgetTransactionProductIcon);
         TimelineProductIcon.setImage(Timeline);
+    }
+
+String swipeButton = " -gn-button-type : swipe;\n" +
+        " -gn-transition-color : #33B5E5;\n" +
+        " -gn-transition-text : white;\n" +
+        " -gn-transition-duration : 500m;";
+    public void loadButtonStyle(){
+        //MenuButton.setId(darkmodeID);
+        MenuButton.setStyle(swipeButton);
+        /*MenuButton.setButtonType(ButtonType.SWIPE);
+        MenuButton.setTransitionColor(Color.AQUA);
+        MenuButton.setTransitionText(Color.WHITE);
+        MenuButton.setTransitionDuration(Duration.ONE);
+         */
+
+        GraphsButton.setId(darkmodeID);
+        HomeButton.setId(darkmodeID);
+        ProductsButton.setId(darkmodeID);
+        TransactionsButton.setId(darkmodeID);
+        SettingsButton.setId(darkmodeID);
+        Close.setId(darkmodeID);
+    }
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        setImageViewIcons();
+        loadButtonStyle();
 
     }
 }

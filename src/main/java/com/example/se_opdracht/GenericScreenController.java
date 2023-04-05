@@ -19,6 +19,10 @@ import java.net.URL;
 import java.util.Objects;
 
 public abstract class GenericScreenController {
+    String darkmodeID = "generalmenubutton-darkmode";
+    String darkmodeIDHover = "generalmenubutton-darkmode : hover";
+
+
     private Parent root;
     private Stage stage;
     private Scene scene;

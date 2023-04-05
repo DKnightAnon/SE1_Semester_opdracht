@@ -23,6 +23,9 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
             stage.initStyle(StageStyle.UNDECORATED);
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+
+
             root.setOnMousePressed(event -> {
                 x.set(event.getScreenX());
                 y.set(event.getScreenY());
