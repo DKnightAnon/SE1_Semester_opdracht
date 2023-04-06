@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +24,8 @@ public abstract class GenericScreenController {
     String darkmodeIDHover = "generalmenubutton-darkmode : hover";
 
 
+
+    private AnchorPane ScreenName;
     private Parent root;
     private Stage stage;
     private Scene scene;
@@ -144,7 +147,11 @@ public abstract class GenericScreenController {
     }
 
     public void onCloseButtonClick(ActionEvent actionEvent) {
-
+        try {
+            error.logoutConfirm(ScreenName);
+        } catch (Exception e) {
+            error.unableToCloseApplication();
+        }
     }
 
     public void setScreenTheme () {

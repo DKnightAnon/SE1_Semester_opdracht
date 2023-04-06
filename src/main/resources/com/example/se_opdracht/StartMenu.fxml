@@ -82,7 +82,7 @@
          <children>
             <VBox layoutX="56.0" layoutY="207.0" prefHeight="269.0" prefWidth="200.0" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../../../../java/com/example/se_opdracht/CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0" />
+                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../../../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0" />
                   <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="459.0" text="Home" translateY="30.0" />
                   <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="697.0" text="Price Tracking" textFill="#6f6969" translateY="50.0" />
                   <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="668.0" text="Transactions" textFill="#6f6969" translateY="67.0" />

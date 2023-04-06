@@ -76,6 +76,7 @@ public class StartMenuController extends GenericScreenController implements Init
 
         @FXML
         private AnchorPane StartMenu;
+        AnchorPane ScreenName = StartMenu;
 
         @FXML
         private ImageView TimelineProductIcon;
@@ -171,13 +172,13 @@ public class StartMenuController extends GenericScreenController implements Init
         TimelineProductIcon.setImage(Timeline);
     }
 
-String swipeButton = " -gn-button-type : swipe;\n" +
-        " -gn-transition-color : #33B5E5;\n" +
-        " -gn-transition-text : white;\n" +
-        " -gn-transition-duration : 500m;";
+//String swipeButton = " -gn-button-type : swipe;\n" +
+//        " -gn-transition-color : #33B5E5;\n" +
+//        " -gn-transition-text : white;\n" +
+//        " -gn-transition-duration : 500m;";
     public void loadButtonStyle(){
-        //MenuButton.setId(darkmodeID);
-        MenuButton.setStyle(swipeButton);
+        MenuButton.setId(darkmodeID);
+        //MenuButton.setStyle(swipeButton);
         /*MenuButton.setButtonType(ButtonType.SWIPE);
         MenuButton.setTransitionColor(Color.AQUA);
         MenuButton.setTransitionText(Color.WHITE);
