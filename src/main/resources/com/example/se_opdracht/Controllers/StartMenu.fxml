@@ -16,7 +16,7 @@
                <children>
                   <ImageView fx:id="Crossmark" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#onCloseImageClick" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="8.0">
                      <image>
-                        <Image url="@../../../images/CrossmarkSmall.png" />
+                        <Image url="@../images/CrossmarkSmall.png" />
                      </image>
                   </ImageView>
                </children>
@@ -24,7 +24,7 @@
             <VBox layoutX="18.0" layoutY="-72.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <ImageView fx:id="MenuIconMaster" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-2.0">
                <image>
-                  <Image url="@../../../images/HamburgerMenuIcon.png" />
+                  <Image url="@../images/HamburgerMenuIcon.png" />
                </image>
             </ImageView>
          </children>
@@ -35,7 +35,7 @@
                <children>
                   <ImageView fx:id="ExitIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../images/ExitIcon.png" />
+                        <Image url="@../images/ExitIcon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -44,27 +44,27 @@
                <children>
                   <ImageView fx:id="MenuIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="10.0">
                      <image>
-                        <Image url="@../../../images/HamburgerMenuIcon.png" />
+                        <Image url="@../images/HamburgerMenuIcon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="HomeIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="15.0">
                      <image>
-                        <Image url="@../../../images/HomeMenuIcon.png" />
+                        <Image url="@../images/HomeMenuIcon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="TimelineProductIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">
                      <image>
-                        <Image url="@../../../images/TimelineProductIcon.png" />
+                        <Image url="@../images/TimelineProductIcon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="TransactionIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="35.0">
                      <image>
-                        <Image url="@../../../images/BudgetTransactionProductIcon.png" />
+                        <Image url="@../images/BudgetTransactionProductIcon.png" />
                      </image>
                   </ImageView>
                   <ImageView fx:id="SettingsIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="45.0">
                      <image>
-                        <Image url="@../../../images/SettingsIcon.png" />
+                        <Image url="@../images/SettingsIcon.png" />
                      </image>
                   </ImageView>
                </children>
@@ -82,7 +82,7 @@
          <children>
             <VBox layoutX="56.0" layoutY="207.0" prefHeight="269.0" prefWidth="200.0" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../../../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0" />
+                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0" />
                   <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="459.0" text="Home" translateY="30.0" />
                   <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="697.0" text="Price Tracking" textFill="#6f6969" translateY="50.0" />
                   <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="668.0" text="Transactions" textFill="#6f6969" translateY="67.0" />

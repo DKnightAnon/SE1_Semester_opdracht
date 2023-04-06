@@ -77,12 +77,16 @@ public abstract class GenericScreenController {
 
     public void OnReturnButtonClicked(ActionEvent actionEvent) {
         try {
-            URL fxmlLocation = getClass().getResource("StartMenu.fxml");
+            URL fxmlLocation = getClass().getResource("Controllers/StartMenu.fxml");
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().addAll(getClass().getResource("com/example/se_opdracht/CSS_Files/Buttons.css").toExternalForm());
             stage.setScene(scene);
+            stage.setMinHeight(650);
+            stage.setMinWidth(1000);
+            Main.genericstage = stage;
             stage.show();
         } catch (Exception e) {
             error.unableToSwitchScene();
