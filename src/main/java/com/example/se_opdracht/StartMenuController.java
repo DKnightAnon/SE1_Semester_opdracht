@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -80,9 +81,6 @@ public class StartMenuController extends GenericScreenController implements Init
 
         @FXML
         private ImageView TimelineProductIcon;
-
-        @FXML
-        private AnchorPane TopBar;
 
         @FXML
         private ImageView TransactionIcon;
@@ -194,10 +192,12 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setImageViewIcons();
         loadButtonStyle();
 
     }
+
 }

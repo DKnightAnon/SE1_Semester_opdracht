@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -29,6 +30,8 @@ public abstract class GenericScreenController {
     private Parent root;
     private Stage stage;
     private Scene scene;
+    @FXML
+    private AnchorPane TopBar;
     @FXML
     private Button ReturnButton;
     @FXML
@@ -167,4 +170,24 @@ public abstract class GenericScreenController {
     }
 
 
+    public void onCloseImageClick(MouseEvent mouseEvent) {
+        stage = (Stage) Main.genericstage.getScene().getWindow();
+        stage.close();
+
+    }
+
+
+    double x = 0;
+    double y = 0;
+    public void TopBar_pressed(MouseEvent mouseEvent) {
+        x = mouseEvent.getSceneX();
+        y = mouseEvent.getSceneY();
+
+    }
+
+    public void TopBar_dragged(MouseEvent mouseEvent) {
+        Stage stage = (Stage) TopBar.getScene().getWindow();
+        stage.setY(mouseEvent.getScreenY()-y);
+        stage.setX(mouseEvent.getScreenX()-x);
+    }
 }
