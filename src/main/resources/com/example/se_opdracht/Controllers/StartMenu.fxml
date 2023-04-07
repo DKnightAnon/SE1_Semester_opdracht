@@ -22,9 +22,9 @@
                </children>
             </VBox>
             <VBox layoutX="18.0" layoutY="-72.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <ImageView fx:id="MenuIconMaster" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-2.0">
+            <ImageView fx:id="AppIconView" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-2.0">
                <image>
-                  <Image url="@../images/HamburgerMenuIcon.png" />
+                  <Image url="@../images/AppIcon.png" />
                </image>
             </ImageView>
          </children>

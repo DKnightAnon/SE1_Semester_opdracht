@@ -42,6 +42,7 @@ public abstract class GenericScreenController {
     private Boolean darkMode;
     TransactionDBHandler tdbh = new TransactionDBHandler();
 
+    Image AppIcon = new Image((Objects.requireNonNull(getClass().getResourceAsStream("images/AppIcon.png"))));
     Image BurgerMenuIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HamburgerMenuIcon.png")));
     Image BudgetTransactionProductIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/BudgetTransactionProductIcon.png")));
     Image CrossmarkSmall = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/CrossmarkSmall.png")));

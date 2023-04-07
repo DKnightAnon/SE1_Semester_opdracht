@@ -1,8 +1,7 @@
 package com.example.se_opdracht;
 
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
-import com.gn.lab.ButtonType;
-import com.gn.lab.GNButton;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,7 +58,7 @@ public class StartMenuController extends GenericScreenController implements Init
         private ImageView MenuIcon;
 
         @FXML
-        private ImageView MenuIconMaster;
+        private ImageView AppIconView;
 
 
 
@@ -160,7 +159,7 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
     public void setImageViewIcons(){
-        MenuIconMaster.setImage(BurgerMenuIcon);
+        AppIconView.setImage(AppIcon);
         MenuIcon.setImage(BurgerMenuIcon);
         SettingsIcon.setImage(Settings);
         ExitIcon.setImage(exitIcon);
@@ -170,19 +169,12 @@ public class StartMenuController extends GenericScreenController implements Init
         TimelineProductIcon.setImage(Timeline);
     }
 
-//String swipeButton = " -gn-button-type : swipe;\n" +
-//        " -gn-transition-color : #33B5E5;\n" +
-//        " -gn-transition-text : white;\n" +
-//        " -gn-transition-duration : 500m;";
     public void loadButtonStyle(){
-        MenuButton.setId(darkmodeID);
-        //MenuButton.setStyle(swipeButton);
-        /*MenuButton.setButtonType(ButtonType.SWIPE);
-        MenuButton.setTransitionColor(Color.AQUA);
-        MenuButton.setTransitionText(Color.WHITE);
-        MenuButton.setTransitionDuration(Duration.ONE);
-         */
+       loadButtonStyleDarkMode();
+    }
 
+    private void loadButtonStyleDarkMode(){
+        MenuButton.setId(darkmodeID);
         GraphsButton.setId(darkmodeID);
         HomeButton.setId(darkmodeID);
         ProductsButton.setId(darkmodeID);
@@ -190,7 +182,6 @@ public class StartMenuController extends GenericScreenController implements Init
         SettingsButton.setId(darkmodeID);
         Close.setId(darkmodeID);
     }
-
 
 
     @Override
