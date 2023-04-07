@@ -205,7 +205,8 @@ public class StartMenuController extends GenericScreenController implements Init
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setImageViewIcons();
         loadButtonStyle();
-
+        ButtonSideBar.setTranslateX(-200);
+        MenuIconClose.setVisible(false);
 
 
     }
@@ -214,9 +215,9 @@ public class StartMenuController extends GenericScreenController implements Init
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(ButtonSideBar);
-        slide.setToX(200);
+        slide.setToX(0);
         slide.play();
-        ButtonSideBar.setTranslateX(0);
+        ButtonSideBar.setTranslateX(-200);
         slide.setOnFinished(event -> {
             System.out.println("The sidebar should have opened now!");
             MenuIcon.setVisible(false);
@@ -228,9 +229,9 @@ public class StartMenuController extends GenericScreenController implements Init
         TranslateTransition slide = new TranslateTransition();
         slide.setDuration(Duration.seconds(0.4));
         slide.setNode(ButtonSideBar);
-        slide.setToX(0);
+        slide.setToX(-200);
         slide.play();
-        ButtonSideBar.setTranslateX(200);
+        ButtonSideBar.setTranslateX(0);
         slide.setOnFinished(event -> {
             System.out.println("The sidebar should have closed now!");
             MenuIcon.setVisible(true);
