@@ -2,6 +2,7 @@ package com.example.se_opdracht;
 
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,7 +32,7 @@ public class StartMenuController extends GenericScreenController implements Init
        private AnchorPane BlackScreen;
 
         @FXML
-        private AnchorPane ButtonBar;
+        private AnchorPane ButtonSideBar;
 
         @FXML
         private Button Close;
@@ -56,6 +57,8 @@ public class StartMenuController extends GenericScreenController implements Init
 
         @FXML
         private ImageView MenuIcon;
+        @FXML
+        private ImageView MenuIconClose;
 
         @FXML
         private ImageView AppIconView;
@@ -161,6 +164,7 @@ public class StartMenuController extends GenericScreenController implements Init
     public void setImageViewIcons(){
         AppIconView.setImage(AppIcon);
         MenuIcon.setImage(BurgerMenuIcon);
+        MenuIconClose.setImage(BurgerMenuIcon);
         SettingsIcon.setImage(Settings);
         ExitIcon.setImage(exitIcon);
         Crossmark.setImage(CrossmarkSmall);
@@ -202,8 +206,35 @@ public class StartMenuController extends GenericScreenController implements Init
         setImageViewIcons();
         loadButtonStyle();
 
+
+
     }
 
     public void onMenuClicked(MouseEvent mouseEvent) {
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(ButtonSideBar);
+        slide.setToX(200);
+        slide.play();
+        ButtonSideBar.setTranslateX(0);
+        slide.setOnFinished(event -> {
+            System.out.println("The sidebar should have opened now!");
+            MenuIcon.setVisible(false);
+            MenuIconClose.setVisible(true);
+        });
+    }
+
+    public void onMenuCloseClicked(MouseEvent mouseEvent) {
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(ButtonSideBar);
+        slide.setToX(0);
+        slide.play();
+        ButtonSideBar.setTranslateX(200);
+        slide.setOnFinished(event -> {
+            System.out.println("The sidebar should have closed now!");
+            MenuIcon.setVisible(true);
+            MenuIconClose.setVisible(false);
+        });
     }
 }

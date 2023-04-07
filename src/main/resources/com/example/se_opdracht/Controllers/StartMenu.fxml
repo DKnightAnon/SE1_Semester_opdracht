@@ -25,6 +25,22 @@
                         <Insets left="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
+                  <ImageView fx:id="MenuIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/HamburgerMenuIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <ImageView fx:id="MenuIconClose" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuCloseClicked" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
+                     <image>
+                        <Image url="@../images/HamburgerMenuIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
             </HBox>
             <HBox layoutX="830.0" layoutY="-25.0" prefHeight="50.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -56,11 +72,13 @@
             </VBox>
             <VBox layoutX="-478.0" layoutY="-254.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <ImageView fx:id="MenuIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuClicked" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="10.0" />
                   <ImageView fx:id="HomeIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="15.0">
                      <image>
                         <Image url="@../images/HomeMenuIcon.png" />
                      </image>
+                     <VBox.margin>
+                        <Insets top="45.0" />
+                     </VBox.margin>
                   </ImageView>
                   <ImageView fx:id="TimelineProductIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">
                      <image>
@@ -88,27 +106,27 @@
             <Label fx:id="WelcomeGuideMessage" layoutX="577.0" layoutY="276.0" text="Make a selection below" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ButtonBar" layoutX="200.0" layoutY="209.0" prefHeight="600.0" prefWidth="211.0" style="-fx-background-color: #676f9d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="ButtonSideBar" layoutX="200.0" layoutY="209.0" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #676f9d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <VBox layoutX="56.0" layoutY="207.0" prefHeight="269.0" prefWidth="200.0" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0">
+                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="200.0" stylesheets="@../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="459.0" text="Home" translateY="30.0">
+                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="200.0" text="Home" translateY="30.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="697.0" text="Price Tracking" textFill="#6f6969" translateY="50.0">
+                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Price Tracking" textFill="#6f6969" translateY="50.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="668.0" text="Transactions" textFill="#6f6969" translateY="67.0">
+                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Transactions" textFill="#6f6969" translateY="67.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="599.0" text="Settings" textFill="#6e6868" translateY="90.0">
+                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Settings" textFill="#6e6868" translateY="90.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -116,7 +134,7 @@
             </VBox>
             <VBox layoutX="58.0" layoutY="392.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <Button fx:id="Close" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="25.0" prefWidth="888.0" text="Close Application" textFill="#6f6969" translateY="7.0" />
+                  <Button fx:id="Close" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="25.0" prefWidth="200.0" text="Close Application" textFill="#6f6969" translateY="7.0" />
                </children>
             </VBox>
          </children>
