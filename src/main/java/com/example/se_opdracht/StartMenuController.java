@@ -167,6 +167,12 @@ public class StartMenuController extends GenericScreenController implements Init
         HomeIcon.setImage(Home);
         TransactionIcon.setImage(BudgetTransactionProductIcon);
         TimelineProductIcon.setImage(Timeline);
+        ImageView MenuIconView = new ImageView(String.valueOf(getClass().getResource("images/HamburgerMenuIcon.png")));
+        //MenuIconView.setFitHeight(35); MenuIconView.setFitWidth(35);
+        MenuIconView.fitWidthProperty().bind(MenuButton.widthProperty().divide(10)); MenuIconView.setPreserveRatio(true);
+
+        MenuButton.setGraphic(MenuIconView);
+
     }
 
     public void loadButtonStyle(){
@@ -175,12 +181,19 @@ public class StartMenuController extends GenericScreenController implements Init
 
     private void loadButtonStyleDarkMode(){
         MenuButton.setId(darkmodeID);
+            MenuButton.setMaxWidth(200);
         GraphsButton.setId(darkmodeID);
+            GraphsButton.setMaxWidth(200);
         HomeButton.setId(darkmodeID);
+            HomeButton.setMaxWidth(200);
         ProductsButton.setId(darkmodeID);
+            ProductsButton.setMaxWidth(200);
         TransactionsButton.setId(darkmodeID);
+            TransactionsButton.setMaxWidth(200);
         SettingsButton.setId(darkmodeID);
+            SettingsButton.setMaxWidth(200);
         Close.setId(darkmodeID);
+            Close.setMaxWidth(200);
     }
 
 
@@ -191,4 +204,6 @@ public class StartMenuController extends GenericScreenController implements Init
 
     }
 
+    public void onMenuClicked(MouseEvent mouseEvent) {
+    }
 }

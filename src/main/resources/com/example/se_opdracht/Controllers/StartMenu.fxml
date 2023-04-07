@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane fx:id="StartMenu" minHeight="650.0" minWidth="1000.0" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.StartMenuController">
@@ -12,21 +15,32 @@
       <AnchorPane fx:id="BlackScreen" layoutX="44.0" layoutY="32.0" prefHeight="689.0" prefWidth="390.0" style="-fx-background-color: #000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
       <AnchorPane fx:id="TopBar" onMouseDragged="#TopBar_dragged" onMousePressed="#TopBar_pressed" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #2d3250;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <VBox layoutX="873.0" layoutY="-73.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox layoutX="-8.0" layoutY="-14.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fx:id="Crossmark" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#onCloseImageClick" pickOnBounds="true" preserveRatio="true" translateX="30.0" translateY="8.0">
+                  <ImageView fx:id="AppIconView" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/AppIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox layoutX="830.0" layoutY="-25.0" prefHeight="50.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="Crossmark" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#onCloseImageClick" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/CrossmarkSmall.png" />
                      </image>
+                     <HBox.margin>
+                        <Insets right="5.0" top="5.0" />
+                     </HBox.margin>
                   </ImageView>
                </children>
-            </VBox>
-            <VBox layoutX="18.0" layoutY="-72.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <ImageView fx:id="AppIconView" fitHeight="40.0" fitWidth="40.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-2.0">
-               <image>
-                  <Image url="@../images/AppIcon.png" />
-               </image>
-            </ImageView>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="SideBar" layoutY="90.0" prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #424769;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
@@ -42,11 +56,7 @@
             </VBox>
             <VBox layoutX="-478.0" layoutY="-254.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <ImageView fx:id="MenuIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="10.0">
-                     <image>
-                        <Image url="@../images/HamburgerMenuIcon.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="MenuIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuClicked" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="10.0" />
                   <ImageView fx:id="HomeIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="15.0">
                      <image>
                         <Image url="@../images/HomeMenuIcon.png" />
@@ -82,11 +92,26 @@
          <children>
             <VBox layoutX="56.0" layoutY="207.0" prefHeight="269.0" prefWidth="200.0" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0" />
-                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="459.0" text="Home" translateY="30.0" />
-                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="697.0" text="Price Tracking" textFill="#6f6969" translateY="50.0" />
-                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="668.0" text="Transactions" textFill="#6f6969" translateY="67.0" />
-                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="599.0" text="Settings" textFill="#6e6868" translateY="90.0" />
+                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="506.0" stylesheets="@../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="459.0" text="Home" translateY="30.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="697.0" text="Price Tracking" textFill="#6f6969" translateY="50.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="668.0" text="Transactions" textFill="#6f6969" translateY="67.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="599.0" text="Settings" textFill="#6e6868" translateY="90.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </VBox>
             <VBox layoutX="58.0" layoutY="392.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
