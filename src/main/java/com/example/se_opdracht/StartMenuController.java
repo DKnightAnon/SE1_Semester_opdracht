@@ -111,7 +111,7 @@ public class StartMenuController extends GenericScreenController implements Init
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
         //Switch scenes
         try {
-            URL fxmlLocation = getClass().getResource("TransactionScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TransactionProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
@@ -135,7 +135,7 @@ public class StartMenuController extends GenericScreenController implements Init
 
     public void onProductsButtonClick(ActionEvent actionEvent) {
         try {
-            URL fxmlLocation = getClass().getResource("ProductsScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TimelineProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();

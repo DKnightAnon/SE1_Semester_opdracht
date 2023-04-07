@@ -15,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -77,21 +78,22 @@ public abstract class GenericScreenController {
     }
 
     public void OnReturnButtonClicked(ActionEvent actionEvent) {
-        try {
-            URL fxmlLocation = getClass().getResource("Controllers/StartMenu.fxml");
-            FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            scene.getStylesheets().addAll(getClass().getResource("com/example/se_opdracht/CSS_Files/Buttons.css").toExternalForm());
-            stage.setScene(scene);
-            stage.setMinHeight(650);
-            stage.setMinWidth(1000);
-            Main.genericstage = stage;
-            stage.show();
-        } catch (Exception e) {
-            error.unableToSwitchScene();
-        }
+            try {
+                URL fxmlLocation = getClass().getResource("Controllers/StartMenu.fxml");
+
+                FXMLLoader loader = new FXMLLoader(fxmlLocation);
+                root = loader.load();
+                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+                stage.setScene(scene);
+                stage.setMinHeight(650);
+                stage.setMinWidth(1000);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                error.unableToSwitchScene();
+            }
     }
 
 
@@ -112,12 +114,13 @@ public abstract class GenericScreenController {
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
         //Switch scenes
         try {
-            URL fxmlLocation = getClass().getResource("TransactionScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TransactionProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
@@ -136,12 +139,13 @@ public abstract class GenericScreenController {
 
     public void onProductsButtonClick(ActionEvent actionEvent) {
         try {
-            URL fxmlLocation = getClass().getResource("ProductsScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TimelineProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinHeight(650);
             stage.setMinWidth(1000);

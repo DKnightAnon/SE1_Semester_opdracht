@@ -32,6 +32,9 @@
                      <HBox.margin>
                         <Insets left="5.0" top="5.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fx:id="MenuIconClose" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuCloseClicked" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
                      <image>
@@ -40,6 +43,9 @@
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
             </HBox>

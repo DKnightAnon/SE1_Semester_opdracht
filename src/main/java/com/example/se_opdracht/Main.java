@@ -1,5 +1,6 @@
 package com.example.se_opdracht;
 
+import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -37,6 +38,7 @@ public class Main extends Application {
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
+
         }
     }
 
