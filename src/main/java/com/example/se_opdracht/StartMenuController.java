@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.*;
 import java.net.URL;
@@ -99,6 +100,8 @@ public class StartMenuController extends GenericScreenController implements Init
     private Label WelcomeMessage;
 
 
+    @FXML
+    private Label testlabelIcon;
 
     private Stage stage;
     private Scene scene;
@@ -168,7 +171,7 @@ public class StartMenuController extends GenericScreenController implements Init
         SettingsIcon.setImage(Settings);
         ExitIcon.setImage(exitIcon);
         Crossmark.setImage(CrossmarkSmall);
-        HomeIcon.setImage(Home);
+        //HomeIcon.setImage(Home);
         TransactionIcon.setImage(BudgetTransactionProductIcon);
         TimelineProductIcon.setImage(Timeline);
         ImageView MenuIconView = new ImageView(String.valueOf(getClass().getResource("images/HamburgerMenuIcon.png")));
@@ -201,12 +204,16 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
 
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setImageViewIcons();
         loadButtonStyle();
         ButtonSideBar.setTranslateX(-200);
         MenuIconClose.setVisible(false);
+
 
 
     }
@@ -237,5 +244,22 @@ public class StartMenuController extends GenericScreenController implements Init
             MenuIcon.setVisible(true);
             MenuIconClose.setVisible(false);
         });
+    }
+
+    @FXML
+    private FontIcon testIcon;
+
+    @FXML
+    private Button testButton1;
+    public void Test1Click(ActionEvent event) {
+        testIcon.setIconColor(Color.YELLOW);
+
+    }
+
+    @FXML
+    private Button testButton2;
+    public void Test2Click(ActionEvent event) {
+        testIcon.setIconColor(Color.STEELBLUE);
+
     }
 }

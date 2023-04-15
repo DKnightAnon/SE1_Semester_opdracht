@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <AnchorPane fx:id="StartMenu" minHeight="650.0" minWidth="1000.0" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.StartMenuController">
    <children>
@@ -70,6 +71,10 @@
             <Button fx:id="GraphsButton" layoutX="450.0" layoutY="359.0" mnemonicParsing="false" onAction="#onGraphsButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #f9b17a;" text="Graphs" textFill="#6f6969" />
             <Label fx:id="WelcomeMessage" layoutX="450.0" layoutY="226.0" text="Welcome" textFill="WHITE" />
             <Label fx:id="WelcomeGuideMessage" layoutX="577.0" layoutY="276.0" text="Make a selection below" textFill="WHITE" />
+            <Label fx:id="testlabelIcon" layoutX="486.0" layoutY="135.0" prefHeight="50.0" prefWidth="124.0" />
+            <FontIcon fx:id="testIcon" iconLiteral="fas-home" iconSize="50" layoutX="298.0" layoutY="52.0" wrappingWidth="75.0" />
+            <Button fx:id="testButton1" layoutX="272.0" layoutY="148.0" mnemonicParsing="false" onAction="#Test1Click" text="Test1" />
+            <Button fx:id="testButton2" layoutX="353.0" layoutY="148.0" mnemonicParsing="false" onAction="#Test2Click" text="Test2" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="ButtonSideBar" layoutX="200.0" layoutY="209.0" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #676f9d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
@@ -118,14 +123,11 @@
             </VBox>
             <VBox layoutX="-478.0" layoutY="-254.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <ImageView fx:id="HomeIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="15.0">
-                     <image>
-                        <Image url="@../images/HomeMenuIcon.png" />
-                     </image>
+                  <FontIcon fx:id="HomeIconFont" iconLiteral="fas-home" iconSize="35" stroke="BLACK">
                      <VBox.margin>
-                        <Insets top="45.0" />
+                        <Insets left="5.0" top="60.0" />
                      </VBox.margin>
-                  </ImageView>
+                  </FontIcon>
                   <ImageView fx:id="TimelineProductIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">
                      <image>
                         <Image url="@../images/TimelineProductIcon.png" />
