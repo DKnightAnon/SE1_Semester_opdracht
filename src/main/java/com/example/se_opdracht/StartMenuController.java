@@ -20,6 +20,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.kordamp.ikonli.Ikon;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.*;
@@ -101,7 +102,8 @@ public class StartMenuController extends GenericScreenController implements Init
 
 
     @FXML
-    private Label testlabelIcon;
+    private FontIcon testIcon;
+
 
     private Stage stage;
     private Scene scene;
@@ -183,8 +185,17 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
     public void loadButtonStyle(){
-       loadButtonStyleDarkMode();
+        if (getDarkMode()) {
+            loadButtonStyleDarkMode();
+        }else if (!getDarkMode()){
+
+        }
     }
+
+    private void loadButtonStyleLightMode(){
+
+    }
+
 
     private void loadButtonStyleDarkMode(){
         MenuButton.setId(darkmodeID);
@@ -201,6 +212,8 @@ public class StartMenuController extends GenericScreenController implements Init
             SettingsButton.setMaxWidth(200);
         Close.setId(darkmodeID);
             Close.setMaxWidth(200);
+
+
     }
 
 
@@ -210,9 +223,12 @@ public class StartMenuController extends GenericScreenController implements Init
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setImageViewIcons();
+        setDarkMode(true);
         loadButtonStyle();
+
         ButtonSideBar.setTranslateX(-200);
         MenuIconClose.setVisible(false);
+
 
 
 
@@ -246,12 +262,12 @@ public class StartMenuController extends GenericScreenController implements Init
         });
     }
 
-    @FXML
-    private FontIcon testIcon;
+
 
     @FXML
     private Button testButton1;
     public void Test1Click(ActionEvent event) {
+        System.out.println(testIcon.getIconCode());
         testIcon.setIconColor(Color.YELLOW);
 
     }

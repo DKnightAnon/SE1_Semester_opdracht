@@ -71,7 +71,6 @@
             <Button fx:id="GraphsButton" layoutX="450.0" layoutY="359.0" mnemonicParsing="false" onAction="#onGraphsButtonClick" prefHeight="25.0" prefWidth="100.0" style="-fx-background-color: #f9b17a;" text="Graphs" textFill="#6f6969" />
             <Label fx:id="WelcomeMessage" layoutX="450.0" layoutY="226.0" text="Welcome" textFill="WHITE" />
             <Label fx:id="WelcomeGuideMessage" layoutX="577.0" layoutY="276.0" text="Make a selection below" textFill="WHITE" />
-            <Label fx:id="testlabelIcon" layoutX="486.0" layoutY="135.0" prefHeight="50.0" prefWidth="124.0" />
             <FontIcon fx:id="testIcon" iconLiteral="fas-home" iconSize="50" layoutX="298.0" layoutY="52.0" wrappingWidth="75.0" />
             <Button fx:id="testButton1" layoutX="272.0" layoutY="148.0" mnemonicParsing="false" onAction="#Test1Click" text="Test1" />
             <Button fx:id="testButton2" layoutX="353.0" layoutY="148.0" mnemonicParsing="false" onAction="#Test2Click" text="Test2" />
@@ -81,14 +80,21 @@
          <children>
             <VBox layoutX="56.0" layoutY="207.0" prefHeight="269.0" prefWidth="200.0" AnchorPane.bottomAnchor="311.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="20.0">
                <children>
-                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="200.0" stylesheets="@../CSS_Files/Buttons.css" text="Menu" textFill="#dadada" translateY="5.0">
+                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="200.0" text="Home">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="200.0" text="Home" translateY="30.0">
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="200.0" stylesheets="@../CSS_Files/DarkMode.css" text="Menu" textFill="#dadada" translateY="5.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin></Button>
                   <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Price Tracking" textFill="#6f6969" translateY="50.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -123,9 +129,9 @@
             </VBox>
             <VBox layoutX="-478.0" layoutY="-254.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
                <children>
-                  <FontIcon fx:id="HomeIconFont" iconLiteral="fas-home" iconSize="35" stroke="BLACK">
+                  <FontIcon fx:id="HomeIconFont" iconLiteral="fas-home" iconSize="35">
                      <VBox.margin>
-                        <Insets left="5.0" top="60.0" />
+                        <Insets left="5.0" top="25.0" />
                      </VBox.margin>
                   </FontIcon>
                   <ImageView fx:id="TimelineProductIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">

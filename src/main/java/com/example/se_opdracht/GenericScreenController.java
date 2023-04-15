@@ -23,7 +23,7 @@ import java.util.Objects;
 
 public abstract class GenericScreenController {
     String darkmodeID = "generalmenubutton-darkmode";
-    String darkmodeIDHover = "generalmenubutton-darkmode : hover";
+    String darkmodeIDIcons = "#generalicon-darkmode";
 
 
 
@@ -51,6 +51,7 @@ public abstract class GenericScreenController {
     Image Home = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HomeMenuIcon.png")));
     Image Settings = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/SettingsIcon.png")));
     Image Timeline = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/TimelineProductIcon.png")));
+
 
 
     public Boolean getDarkMode() {
@@ -85,7 +86,7 @@ public abstract class GenericScreenController {
                 root = loader.load();
                 stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                 scene = new Scene(root);
-                scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+                scene.getStylesheets().addAll(getClass().getResource("CSS_Files/DarkMode.css").toExternalForm());
                 stage.setScene(scene);
                 stage.setMinHeight(650);
                 stage.setMinWidth(1000);
@@ -120,7 +121,7 @@ public abstract class GenericScreenController {
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/DarkMode.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
@@ -145,7 +146,7 @@ public abstract class GenericScreenController {
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
-            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/DarkMode.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinHeight(650);
             stage.setMinWidth(1000);

@@ -9,6 +9,16 @@
 -fx-text-fill : #6f6969;
 }
 
+/* if you put .ikonli-font-icon down it affects every single icon. Need to look into IDs. */
+ #generalicon-darkmode {
+ -fx-icon-color : #ab28d7;
+ }
+
+ .ikonli-font-icon {
+-fx-fill : #1c8c2f;
+}
+
+
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 

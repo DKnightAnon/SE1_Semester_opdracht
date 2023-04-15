@@ -29,7 +29,7 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
             stage.initStyle(StageStyle.UNDECORATED);
-            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/DarkMode.css").toExternalForm());
             stage.getIcons().add(new Image(getClass().getResourceAsStream("images/AppIcon.png")));
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
