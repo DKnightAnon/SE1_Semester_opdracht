@@ -12,8 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +32,8 @@ public abstract class GenericScreenController {
     private Stage stage;
     private Scene scene;
     @FXML
+    private AnchorPane TopBar;
+    @FXML
     private Button ReturnButton;
     @FXML
     private Button MenuButton;
@@ -39,6 +43,7 @@ public abstract class GenericScreenController {
     private Boolean darkMode;
     TransactionDBHandler tdbh = new TransactionDBHandler();
 
+    Image AppIcon = new Image((Objects.requireNonNull(getClass().getResourceAsStream("images/AppIcon.png"))));
     Image BurgerMenuIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HamburgerMenuIcon.png")));
     Image BudgetTransactionProductIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/BudgetTransactionProductIcon.png")));
     Image CrossmarkSmall = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/CrossmarkSmall.png")));
@@ -73,17 +78,22 @@ public abstract class GenericScreenController {
     }
 
     public void OnReturnButtonClicked(ActionEvent actionEvent) {
-        try {
-            URL fxmlLocation = getClass().getResource("StartMenu.fxml");
-            FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        } catch (Exception e) {
-            error.unableToSwitchScene();
-        }
+            try {
+                URL fxmlLocation = getClass().getResource("Controllers/StartMenu.fxml");
+
+                FXMLLoader loader = new FXMLLoader(fxmlLocation);
+                root = loader.load();
+                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
+                stage.setScene(scene);
+                stage.setMinHeight(650);
+                stage.setMinWidth(1000);
+                stage.show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                error.unableToSwitchScene();
+            }
     }
 
 
@@ -104,12 +114,13 @@ public abstract class GenericScreenController {
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
         //Switch scenes
         try {
-            URL fxmlLocation = getClass().getResource("TransactionScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TransactionProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
@@ -128,12 +139,13 @@ public abstract class GenericScreenController {
 
     public void onProductsButtonClick(ActionEvent actionEvent) {
         try {
-            URL fxmlLocation = getClass().getResource("ProductsScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TimelineProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
             stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             scene = new Scene(root);
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
             stage.setScene(scene);
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
@@ -167,4 +179,24 @@ public abstract class GenericScreenController {
     }
 
 
+    public void onCloseImageClick(MouseEvent mouseEvent) {
+        stage = (Stage) Main.genericstage.getScene().getWindow();
+        stage.close();
+
+    }
+
+
+    double x = 0;
+    double y = 0;
+    public void TopBar_pressed(MouseEvent mouseEvent) {
+        x = mouseEvent.getSceneX();
+        y = mouseEvent.getSceneY();
+
+    }
+
+    public void TopBar_dragged(MouseEvent mouseEvent) {
+        Stage stage = (Stage) TopBar.getScene().getWindow();
+        stage.setY(mouseEvent.getScreenY()-y);
+        stage.setX(mouseEvent.getScreenX()-x);
+    }
 }

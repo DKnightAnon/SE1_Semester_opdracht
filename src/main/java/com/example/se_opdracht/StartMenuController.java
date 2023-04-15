@@ -1,8 +1,8 @@
 package com.example.se_opdracht;
 
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
-import com.gn.lab.ButtonType;
-import com.gn.lab.GNButton;
+
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
@@ -31,7 +32,7 @@ public class StartMenuController extends GenericScreenController implements Init
        private AnchorPane BlackScreen;
 
         @FXML
-        private AnchorPane ButtonBar;
+        private AnchorPane ButtonSideBar;
 
         @FXML
         private Button Close;
@@ -56,9 +57,11 @@ public class StartMenuController extends GenericScreenController implements Init
 
         @FXML
         private ImageView MenuIcon;
+        @FXML
+        private ImageView MenuIconClose;
 
         @FXML
-        private ImageView MenuIconMaster;
+        private ImageView AppIconView;
 
 
 
@@ -80,9 +83,6 @@ public class StartMenuController extends GenericScreenController implements Init
 
         @FXML
         private ImageView TimelineProductIcon;
-
-        @FXML
-        private AnchorPane TopBar;
 
         @FXML
         private ImageView TransactionIcon;
@@ -111,7 +111,7 @@ public class StartMenuController extends GenericScreenController implements Init
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
         //Switch scenes
         try {
-            URL fxmlLocation = getClass().getResource("TransactionScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TransactionProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
@@ -135,7 +135,7 @@ public class StartMenuController extends GenericScreenController implements Init
 
     public void onProductsButtonClick(ActionEvent actionEvent) {
         try {
-            URL fxmlLocation = getClass().getResource("ProductsScreen.fxml");
+            URL fxmlLocation = getClass().getResource("TimelineProductsScreen.fxml");
 
             FXMLLoader loader = new FXMLLoader(fxmlLocation);
             root = loader.load();
@@ -162,35 +162,42 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
     public void setImageViewIcons(){
-        MenuIconMaster.setImage(BurgerMenuIcon);
+        AppIconView.setImage(AppIcon);
         MenuIcon.setImage(BurgerMenuIcon);
+        MenuIconClose.setImage(BurgerMenuIcon);
         SettingsIcon.setImage(Settings);
         ExitIcon.setImage(exitIcon);
         Crossmark.setImage(CrossmarkSmall);
         HomeIcon.setImage(Home);
         TransactionIcon.setImage(BudgetTransactionProductIcon);
         TimelineProductIcon.setImage(Timeline);
+        ImageView MenuIconView = new ImageView(String.valueOf(getClass().getResource("images/HamburgerMenuIcon.png")));
+        //MenuIconView.setFitHeight(35); MenuIconView.setFitWidth(35);
+        MenuIconView.fitWidthProperty().bind(MenuButton.widthProperty().divide(10)); MenuIconView.setPreserveRatio(true);
+
+        MenuButton.setGraphic(MenuIconView);
+
     }
 
-//String swipeButton = " -gn-button-type : swipe;\n" +
-//        " -gn-transition-color : #33B5E5;\n" +
-//        " -gn-transition-text : white;\n" +
-//        " -gn-transition-duration : 500m;";
     public void loadButtonStyle(){
-        MenuButton.setId(darkmodeID);
-        //MenuButton.setStyle(swipeButton);
-        /*MenuButton.setButtonType(ButtonType.SWIPE);
-        MenuButton.setTransitionColor(Color.AQUA);
-        MenuButton.setTransitionText(Color.WHITE);
-        MenuButton.setTransitionDuration(Duration.ONE);
-         */
+       loadButtonStyleDarkMode();
+    }
 
+    private void loadButtonStyleDarkMode(){
+        MenuButton.setId(darkmodeID);
+            MenuButton.setMaxWidth(200);
         GraphsButton.setId(darkmodeID);
+            GraphsButton.setMaxWidth(200);
         HomeButton.setId(darkmodeID);
+            HomeButton.setMaxWidth(200);
         ProductsButton.setId(darkmodeID);
+            ProductsButton.setMaxWidth(200);
         TransactionsButton.setId(darkmodeID);
+            TransactionsButton.setMaxWidth(200);
         SettingsButton.setId(darkmodeID);
+            SettingsButton.setMaxWidth(200);
         Close.setId(darkmodeID);
+            Close.setMaxWidth(200);
     }
 
 
@@ -198,6 +205,37 @@ public class StartMenuController extends GenericScreenController implements Init
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setImageViewIcons();
         loadButtonStyle();
+        ButtonSideBar.setTranslateX(-200);
+        MenuIconClose.setVisible(false);
 
+
+    }
+
+    public void onMenuClicked(MouseEvent mouseEvent) {
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(ButtonSideBar);
+        slide.setToX(0);
+        slide.play();
+        ButtonSideBar.setTranslateX(-200);
+        slide.setOnFinished(event -> {
+            System.out.println("The sidebar should have opened now!");
+            MenuIcon.setVisible(false);
+            MenuIconClose.setVisible(true);
+        });
+    }
+
+    public void onMenuCloseClicked(MouseEvent mouseEvent) {
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(ButtonSideBar);
+        slide.setToX(-200);
+        slide.play();
+        ButtonSideBar.setTranslateX(0);
+        slide.setOnFinished(event -> {
+            System.out.println("The sidebar should have closed now!");
+            MenuIcon.setVisible(true);
+            MenuIconClose.setVisible(false);
+        });
     }
 }
