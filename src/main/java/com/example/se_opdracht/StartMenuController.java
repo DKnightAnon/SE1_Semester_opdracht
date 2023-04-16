@@ -40,16 +40,10 @@ public class StartMenuController extends GenericScreenController implements Init
         private Button Close;
 
         @FXML
-        private ImageView ExitIcon;
-
-        @FXML
         private Button GraphsButton;
 
         @FXML
         private Button HomeButton;
-
-        @FXML
-        private ImageView HomeIcon;
 
         @FXML
         private AnchorPane MainScreen;
@@ -58,23 +52,11 @@ public class StartMenuController extends GenericScreenController implements Init
         private Button MenuButton;
 
         @FXML
-        private ImageView MenuIcon;
-        @FXML
-        private ImageView MenuIconClose;
-
-        @FXML
-        private ImageView AppIconView;
-
-
-
-        @FXML
         private Button ProductsButton;
 
         @FXML
         private Button SettingsButton;
 
-        @FXML
-        private ImageView SettingsIcon;
 
         @FXML
         private AnchorPane SideBar;
@@ -83,16 +65,11 @@ public class StartMenuController extends GenericScreenController implements Init
         private AnchorPane StartMenu;
         AnchorPane ScreenName = StartMenu;
 
-        @FXML
-        private ImageView TimelineProductIcon;
-
-        @FXML
-        private ImageView TransactionIcon;
 
         @FXML
         private Button TransactionsButton;
         @FXML
-        private ImageView Crossmark;
+        private FontIcon Crossmark;
 
         @FXML
         private Label WelcomeGuideMessage;
@@ -101,6 +78,10 @@ public class StartMenuController extends GenericScreenController implements Init
     private Label WelcomeMessage;
 
 
+    @FXML
+    private FontIcon MenuIcon;
+    @FXML
+    private FontIcon MenuIconClose;
     @FXML
     private FontIcon testIcon;
 
@@ -167,15 +148,7 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
     public void setImageViewIcons(){
-        AppIconView.setImage(AppIcon);
-        MenuIcon.setImage(BurgerMenuIcon);
-        MenuIconClose.setImage(BurgerMenuIcon);
-        SettingsIcon.setImage(Settings);
-        ExitIcon.setImage(exitIcon);
-        Crossmark.setImage(CrossmarkSmall);
-        //HomeIcon.setImage(Home);
-        TransactionIcon.setImage(BudgetTransactionProductIcon);
-        TimelineProductIcon.setImage(Timeline);
+
         ImageView MenuIconView = new ImageView(String.valueOf(getClass().getResource("images/HamburgerMenuIcon.png")));
         //MenuIconView.setFitHeight(35); MenuIconView.setFitWidth(35);
         MenuIconView.fitWidthProperty().bind(MenuButton.widthProperty().divide(10)); MenuIconView.setPreserveRatio(true);
@@ -277,5 +250,11 @@ public class StartMenuController extends GenericScreenController implements Init
     public void Test2Click(ActionEvent event) {
         testIcon.setIconColor(Color.STEELBLUE);
 
+    }
+
+    public void MinimizeClicked(MouseEvent mouseEvent) {
+    }
+
+    public void SizeRestoreClicked(MouseEvent mouseEvent) {
     }
 }

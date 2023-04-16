@@ -26,42 +26,35 @@
                         <Insets left="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView fx:id="MenuIcon" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuClicked" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/HamburgerMenuIcon.png" />
-                     </image>
+                  <FontIcon fx:id="MenuIcon" iconLiteral="fas-bars" iconSize="35" onMouseClicked="#onMenuClicked">
                      <HBox.margin>
-                        <Insets left="5.0" top="5.0" />
+                        <Insets left="20.0" top="7.0" />
                      </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
-                  <ImageView fx:id="MenuIconClose" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#onMenuCloseClicked" pickOnBounds="true" preserveRatio="true" translateX="-40.0">
-                     <image>
-                        <Image url="@../images/HamburgerMenuIcon.png" />
-                     </image>
+                  </FontIcon>
+                  <FontIcon fx:id="MenuIconClose" iconLiteral="fas-bars" iconSize="35" onMouseClicked="#onMenuCloseClicked" translateX="-51.0">
                      <HBox.margin>
-                        <Insets top="5.0" />
+                        <Insets left="20.0" top="7.0" />
                      </HBox.margin>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </ImageView>
+                  </FontIcon>
                </children>
             </HBox>
             <HBox layoutX="830.0" layoutY="-25.0" prefHeight="50.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="Crossmark" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#onCloseImageClick" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/CrossmarkSmall.png" />
-                     </image>
+                  <FontIcon fx:id="MinimizeIcon" iconLiteral="fas-minus-circle" iconSize="20" onMouseClicked="#MinimizeClicked">
                      <HBox.margin>
-                        <Insets right="5.0" top="5.0" />
+                        <Insets right="20.0" top="15.0" />
                      </HBox.margin>
-                  </ImageView>
+                  </FontIcon>
+                  <FontIcon fx:id="SizeRestore" iconLiteral="fas-window-restore" iconSize="20" onMouseClicked="#SizeRestoreClicked">
+                     <HBox.margin>
+                        <Insets right="20.0" top="15.0" />
+                     </HBox.margin>
+                  </FontIcon>
+                  <FontIcon fx:id="Crossmark" iconLiteral="fas-times-circle" iconSize="20" onMouseClicked="#onCloseImageClick">
+                     <HBox.margin>
+                        <Insets right="20.0" top="15.0" />
+                     </HBox.margin>
+                  </FontIcon>
                </children>
             </HBox>
          </children>
@@ -85,28 +78,37 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets top="25.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="200.0" stylesheets="@../CSS_Files/DarkMode.css" text="Menu" textFill="#dadada" translateY="5.0">
+                  <Button fx:id="MenuButton" mnemonicParsing="false" onAction="#onMenuButtonClick" prefHeight="25.0" prefWidth="200.0" stylesheets="@../CSS_Files/DarkMode.css" text="Menu" textFill="#dadada">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin></Button>
-                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Price Tracking" textFill="#6f6969" translateY="50.0">
+                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Price Tracking" textFill="#6f6969">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Transactions" textFill="#6f6969" translateY="67.0">
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Transactions" textFill="#6f6969">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
-                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Settings" textFill="#6e6868" translateY="90.0">
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Settings" textFill="#6e6868">
                      <cursor>
                         <Cursor fx:constant="HAND" />
-                     </cursor></Button>
+                     </cursor>
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin></Button>
                </children>
             </VBox>
             <VBox layoutX="58.0" layoutY="392.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -120,11 +122,11 @@
          <children>
             <VBox layoutX="-23.0" layoutY="125.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <ImageView fx:id="ExitIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/ExitIcon.png" />
-                     </image>
-                  </ImageView>
+                  <FontIcon iconLiteral="fas-door-open" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="2.0" top="5.0" />
+                     </VBox.margin>
+                  </FontIcon>
                </children>
             </VBox>
             <VBox layoutX="-478.0" layoutY="-254.0" prefHeight="200.0" prefWidth="50.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
@@ -134,21 +136,26 @@
                         <Insets left="5.0" top="25.0" />
                      </VBox.margin>
                   </FontIcon>
-                  <ImageView fx:id="TimelineProductIcon" fitHeight="30.0" fitWidth="30.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="25.0">
-                     <image>
-                        <Image url="@../images/TimelineProductIcon.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="TransactionIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="35.0">
-                     <image>
-                        <Image url="@../images/BudgetTransactionProductIcon.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="SettingsIcon" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true" translateX="5.0" translateY="45.0">
-                     <image>
-                        <Image url="@../images/SettingsIcon.png" />
-                     </image>
-                  </ImageView>
+                  <FontIcon iconLiteral="fas-clipboard-list" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon iconLiteral="fas-chart-line" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="7.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon iconLiteral="fas-chart-pie" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="5.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon iconLiteral="fas-cog" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="7.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
                </children>
             </VBox>
          </children>
