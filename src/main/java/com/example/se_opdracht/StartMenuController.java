@@ -16,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
@@ -31,59 +32,17 @@ import java.util.ResourceBundle;
 public class StartMenuController extends GenericScreenController implements Initializable{
     TransactionScreenController Transaction = new TransactionScreenController();
     @FXML
-       private AnchorPane BlackScreen;
-
-        @FXML
-        private AnchorPane ButtonSideBar;
-
-        @FXML
-        private Button Close;
-
-        @FXML
-        private Button GraphsButton;
-
-        @FXML
-        private Button HomeButton;
-
-        @FXML
-        private AnchorPane MainScreen;
-
-        @FXML
-        private Button MenuButton;
-
-        @FXML
-        private Button ProductsButton;
-
-        @FXML
-        private Button SettingsButton;
-
-
-        @FXML
-        private AnchorPane SideBar;
-
-        @FXML
-        private AnchorPane StartMenu;
-        AnchorPane ScreenName = StartMenu;
-
-
-        @FXML
-        private Button TransactionsButton;
-        @FXML
-        private FontIcon Crossmark;
-
-        @FXML
-        private Label WelcomeGuideMessage;
-
+       private AnchorPane BlackScreen,ButtonSideBar,CurrentScreen,Screen,MainScreen,SideBar,StartMenu;
     @FXML
-    private Label WelcomeMessage;
+    private BorderPane ScreenStage;
 
+        @FXML
+        private Button Close,GraphsButton,HomeButton,MenuButton,ProductsButton,SettingsButton,TransactionsButton;
+        @FXML
+        private FontIcon Crossmark,MenuIcon,MenuIconClose,testIcon;
 
-    @FXML
-    private FontIcon MenuIcon;
-    @FXML
-    private FontIcon MenuIconClose;
-    @FXML
-    private FontIcon testIcon;
+        @FXML
+        private Label WelcomeGuideMessage,WelcomeMessage;
 
 
     private Stage stage;
@@ -97,16 +56,9 @@ public class StartMenuController extends GenericScreenController implements Init
     public void onTransactionsButtonClick(ActionEvent actionEvent) throws IOException {
         //Switch scenes
         try {
-            URL fxmlLocation = getClass().getResource("TransactionProductsScreen.fxml");
+            CurrentScreen = getScreen("Screens/TransactionScreen.fxml");
+            ScreenStage.setCenter(CurrentScreen);
 
-            FXMLLoader loader = new FXMLLoader(fxmlLocation);
-            root = loader.load();
-            stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setMinHeight(650);
-            stage.setMinWidth(1000);
-            stage.show();
         } catch (Exception e) {
             //Removing the e.printStackTrace(); causes the sceneswitching to work for some reason? Needs looking into on a different date.
             //Sceneswtiching works if both controllers are in source package.
@@ -207,33 +159,7 @@ public class StartMenuController extends GenericScreenController implements Init
 
     }
 
-    public void onMenuClicked(MouseEvent mouseEvent) {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.4));
-        slide.setNode(ButtonSideBar);
-        slide.setToX(0);
-        slide.play();
-        ButtonSideBar.setTranslateX(-200);
-        slide.setOnFinished(event -> {
-            System.out.println("The sidebar should have opened now!");
-            MenuIcon.setVisible(false);
-            MenuIconClose.setVisible(true);
-        });
-    }
 
-    public void onMenuCloseClicked(MouseEvent mouseEvent) {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.4));
-        slide.setNode(ButtonSideBar);
-        slide.setToX(-200);
-        slide.play();
-        ButtonSideBar.setTranslateX(0);
-        slide.setOnFinished(event -> {
-            System.out.println("The sidebar should have closed now!");
-            MenuIcon.setVisible(true);
-            MenuIconClose.setVisible(false);
-        });
-    }
 
 
 
@@ -256,5 +182,19 @@ public class StartMenuController extends GenericScreenController implements Init
     }
 
     public void SizeRestoreClicked(MouseEvent mouseEvent) {
+    }
+
+    private AnchorPane getScreen(String Filename){
+        try{
+            URL fxmlLocation = getClass().getResource(Filename);
+            if (fxmlLocation == null){
+                throw new FileNotFoundException("FXML file cannot be found!");
+            }
+            Screen = new FXMLLoader().load(fxmlLocation);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return Screen;
+
     }
 }
