@@ -25,7 +25,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Controllers/StartMenu.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("Controllers/Sidebar.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("Controllers/StartMenu.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
             stage.initStyle(StageStyle.UNDECORATED);
