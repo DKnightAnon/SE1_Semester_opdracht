@@ -10,9 +10,52 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<BorderPane fx:id="ScreenStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.SidebarController">
-   <top>
-      <AnchorPane fx:id="TopBar" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #2d3250;" BorderPane.alignment="CENTER">
+
+<AnchorPane minHeight="650.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.SidebarController">
+   <children>
+      <AnchorPane prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #424769;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <VBox layoutX="-25.0" layoutY="65.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <FontIcon fx:id="HomeIconFont" iconLiteral="fas-home" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="5.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon iconLiteral="fas-clipboard-list" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="10.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon fx:id="PriceTrackingIcon" iconLiteral="fas-chart-line" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="7.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon fx:id="TransactionIcon" iconLiteral="fas-chart-pie" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="5.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+                  <FontIcon fx:id="TransactionIcon" iconLiteral="fas-cog" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="7.0" top="25.0" />
+                     </VBox.margin>
+                  </FontIcon>
+               </children>
+            </VBox>
+            <VBox layoutX="-36.0" layoutY="362.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <FontIcon fx:id="CloseApplicationIcon" iconLiteral="fas-door-open" iconSize="35">
+                     <VBox.margin>
+                        <Insets left="2.0" top="5.0" />
+                     </VBox.margin>
+                  </FontIcon>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="TopBar" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #2d3250;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -57,95 +100,48 @@
             </HBox>
          </children>
       </AnchorPane>
-   </top>
-   <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <BorderPane fx:id="ScreenStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+      <AnchorPane fx:id="ButtonSideBar" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #676f9d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
-            <AnchorPane fx:id="ButtonSideBar" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #676f9d;" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <VBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
-                  <VBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <Button fx:id="Close" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="25.0" prefWidth="200.0" text="Close Application">
-                           <VBox.margin>
-                              <Insets top="48.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="50.0" layoutY="25.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="200.0" text="Home">
-                           <VBox.margin>
-                              <Insets top="35.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Button">
-                           <VBox.margin>
-                              <Insets top="30.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Price Tracking">
-                           <VBox.margin>
-                              <Insets top="35.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Transactions">
-                           <VBox.margin>
-                              <Insets top="35.0" />
-                           </VBox.margin>
-                        </Button>
-                        <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Settings">
-                           <VBox.margin>
-                              <Insets top="35.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
+                  <Button fx:id="Close" mnemonicParsing="false" onAction="#onCloseButtonClick" prefHeight="25.0" prefWidth="200.0" text="Close Application">
+                     <VBox.margin>
+                        <Insets top="48.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #424769;">
+            </VBox>
+            <VBox layoutX="50.0" layoutY="25.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <VBox layoutX="-25.0" layoutY="65.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <FontIcon fx:id="HomeIconFont" iconLiteral="fas-home" iconSize="35">
-                           <VBox.margin>
-                              <Insets left="5.0" top="25.0" />
-                           </VBox.margin>
-                        </FontIcon>
-                        <FontIcon iconLiteral="fas-clipboard-list" iconSize="35">
-                           <VBox.margin>
-                              <Insets left="10.0" top="25.0" />
-                           </VBox.margin>
-                        </FontIcon>
-                        <FontIcon fx:id="PriceTrackingIcon" iconLiteral="fas-chart-line" iconSize="35">
-                           <VBox.margin>
-                              <Insets left="7.0" top="25.0" />
-                           </VBox.margin>
-                        </FontIcon>
-                        <FontIcon fx:id="TransactionIcon" iconLiteral="fas-chart-pie" iconSize="35">
-                           <VBox.margin>
-                              <Insets left="5.0" top="25.0" />
-                           </VBox.margin>
-                        </FontIcon>
-                        <FontIcon fx:id="TransactionIcon" iconLiteral="fas-cog" iconSize="35">
-                           <VBox.margin>
-                              <Insets left="7.0" top="25.0" />
-                           </VBox.margin>
-                        </FontIcon>
-                     </children>
-                  </VBox>
-                  <VBox layoutX="-36.0" layoutY="362.0" prefHeight="60.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <FontIcon fx:id="CloseApplicationIcon" iconLiteral="fas-door-open" iconSize="35">
-                           <VBox.margin>
-                              <Insets left="2.0" top="5.0" />
-                           </VBox.margin>
-                        </FontIcon>
-                     </children>
-                  </VBox>
+                  <Button fx:id="HomeButton" mnemonicParsing="false" onAction="#onHomeButtonClick" prefHeight="25.0" prefWidth="200.0" text="Home">
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="200.0" text="Button">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="ProductsButton" mnemonicParsing="false" onAction="#onProductsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Price Tracking">
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="TransactionsButton" mnemonicParsing="false" onAction="#onTransactionsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Transactions">
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Button fx:id="SettingsButton" mnemonicParsing="false" onAction="#onSettingsButtonClick" prefHeight="25.0" prefWidth="200.0" text="Settings">
+                     <VBox.margin>
+                        <Insets top="35.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
-            </AnchorPane>
+            </VBox>
          </children>
       </AnchorPane>
-   </left>
-</BorderPane>
+   </children>
+</AnchorPane>
