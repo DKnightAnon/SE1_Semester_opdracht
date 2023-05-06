@@ -1,6 +1,6 @@
 package com.example.se_opdracht;
 
-import javafx.animation.TranslateTransition;
+import com.example.se_opdracht.Controllers.GenericScreenController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,18 +9,16 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SidebarController extends GenericScreenController implements Initializable {
     @FXML
-    private AnchorPane ButtonSideBar,Screen,TopBar;
+    private AnchorPane ButtonSideBar,TopBar,MainAnchor;
     @FXML
     private AnchorPane CurrentScreen = new AnchorPane();
     @FXML
@@ -46,35 +44,31 @@ public class SidebarController extends GenericScreenController implements Initia
 
     }
     @Override
-    public void onProductsButtonClick(ActionEvent event) {
+    public void onProductsButtonClick(ActionEvent event) throws IOException {
+        File currentDirFile = new File(".");
+        String helper = currentDirFile.getAbsolutePath();
+        String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());//this line may need a try-catch block
+        System.out.println(currentDir);
 
     }
 
     @FXML
     void onSettingsButtonClick(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader();
+        CurrentScreen = getScreen("Screens/SettingsScreen.fxml");
+        ScreenStage.setCenter(CurrentScreen);
 
     }
 
     @Override
     public void onTransactionsButtonClick(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        CurrentScreen = getScreen("Screens/TransactionScreen.fxml");
+        CurrentScreen = getScreen("../Screens/TransactionScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
     }
 
-    private AnchorPane getScreen(String Filename){
-        try{
-            URL fxmlLocation = getClass().getResource(Filename);
-            if (fxmlLocation == null){
-                throw new FileNotFoundException("FXML file cannot be found!");
-            }
-            Screen = new FXMLLoader().load(fxmlLocation);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return Screen;
 
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -83,5 +77,9 @@ public class SidebarController extends GenericScreenController implements Initia
 
         ButtonSideBar.setTranslateX(-200);
         MenuIconClose.setVisible(false);
+
+        ScreenName = MainAnchor;
+        System.out.println();
+
     }
 }

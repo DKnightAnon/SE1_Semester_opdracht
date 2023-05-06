@@ -1,7 +1,8 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
+import com.example.se_opdracht.Main;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -20,6 +21,7 @@ import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
@@ -34,7 +36,8 @@ public abstract class GenericScreenController {
     private Stage stage;
     private Scene scene;
     @FXML
-    private AnchorPane TopBar,ScreenName,ButtonSideBar,CurrentScreen;
+    private AnchorPane TopBar,ButtonSideBar,Screen,CurrentScreen;
+    public static AnchorPane ScreenName;
 
     @FXML
     private Button ReturnButton,MenuButton,HomeButton;
@@ -44,16 +47,6 @@ public abstract class GenericScreenController {
     ErrorWarnings error = new ErrorWarnings();
     private Boolean darkMode;
     TransactionDBHandler tdbh = new TransactionDBHandler();
-
-    Image AppIcon = new Image((Objects.requireNonNull(getClass().getResourceAsStream("images/AppIcon.png"))));
-    Image BurgerMenuIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HamburgerMenuIcon.png")));
-    Image BudgetTransactionProductIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/BudgetTransactionProductIcon.png")));
-    Image CrossmarkSmall = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/CrossmarkSmall.png")));
-    Image exitIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/ExitIcon.png")));
-    Image Home = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/HomeMenuIcon.png")));
-    Image Settings = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/SettingsIcon.png")));
-    Image Timeline = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/TimelineProductIcon.png")));
-
 
 
     public Boolean getDarkMode() {
@@ -140,7 +133,7 @@ public abstract class GenericScreenController {
     public void onGraphsButtonClick(ActionEvent actionEvent) {
     }
 
-    public void onProductsButtonClick(ActionEvent actionEvent) {
+    public void onProductsButtonClick(ActionEvent actionEvent) throws IOException {
         try {
             URL fxmlLocation = getClass().getResource("TimelineProductsScreen.fxml");
 
@@ -185,6 +178,20 @@ public abstract class GenericScreenController {
     public void onCloseImageClick(MouseEvent mouseEvent) {
         stage = (Stage) Main.genericstage.getScene().getWindow();
         stage.close();
+
+    }
+
+    public AnchorPane getScreen(String Filename){
+        try{
+            URL fxmlLocation = getClass().getResource(Filename);
+            if (fxmlLocation == null){
+                throw new FileNotFoundException("FXML file cannot be found!");
+            }
+            Screen = new FXMLLoader().load(fxmlLocation);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return Screen;
 
     }
 

@@ -1,4 +1,4 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.Products.Timeline.TimelineProduct;
@@ -8,18 +8,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
@@ -27,44 +21,27 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class ProductsScreenController extends GenericScreenController implements Initializable {
-    //Variables
+public class ProductPriceTrackingScreenController extends GenericScreenController implements Initializable {
 
     @FXML
-        private TableView PurchaseTable;
-        @FXML
-        private TableColumn DateColumn;
-        @FXML
-        private TableColumn PriceColumn;
-        @FXML
-        private TableColumn PurchaseID;
-        @FXML
-        private ComboBox productCategoryList;
-        @FXML
-        private ComboBox productFormList;
-        @FXML
-        private ComboBox newProductCategoryList;
-        @FXML
-        private Button addNewProductButton;
-        @FXML
-        private Button addNewPurchaseButton;
-        @FXML
-        private Button addNewCategoryButton;
-        @FXML
-        private TextField NewProductTextfield;
-        @FXML
-        private TextField purchasePriceTextfield;
-        @FXML
-        private TextField newCategoryTextfield;
-        @FXML
-        private ListView productList;
-        @FXML
+    private TableView PurchaseTable;
+    @FXML
+    private TableColumn DateColumn,PriceColumn,PurchaseID;
+    @FXML
+    private ComboBox productCategoryList,productFormList,newProductCategoryList;
+    @FXML
+    private Button addNewProductButton,addNewPurchaseButton,addNewCategoryButton;
+    @FXML
+    private TextField NewProductTextfield,purchasePriceTextfield,newCategoryTextfield;
+    @FXML
+    private ListView productList;
+    @FXML
     private DatePicker purchaseDatePicker;
 
-        TimelineDBHandler DB = new TimelineDBHandler();
+    TimelineDBHandler DB = new TimelineDBHandler();
 
-        @FXML
-        private AnchorPane TimelineScreen;
+    @FXML
+    private AnchorPane TimelineScreen;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -97,8 +74,8 @@ public class ProductsScreenController extends GenericScreenController implements
         Boolean emptyDate = isDatePickerEmpty(purchaseDatePicker);
 
         if (emptyDate ||
-            purchaseDatePicker.getEditor().getText().isEmpty() ||
-            purchasePriceTextfield.getText().isEmpty())
+                purchaseDatePicker.getEditor().getText().isEmpty() ||
+                purchasePriceTextfield.getText().isEmpty())
         {
             error.noCompletePurchaseInfo();
         } else {
@@ -131,9 +108,9 @@ public class ProductsScreenController extends GenericScreenController implements
         ObservableList<TimelineProduct> DBProductList = DB.getProducts();
         ObservableList<TimelineProduct> listViewProductList = FXCollections.observableArrayList();
         listViewProductList.add(new TimelineProduct("Select a product","You shouldn't see this","You shouldn't see this.",0));
-            for (int i = 0; i<DBProductList.size();i++){
+        for (int i = 0; i<DBProductList.size();i++){
             listViewProductList.add(DBProductList.get(i));
-         }
+        }
         //Above is a stopgap measure to have index start at 1 instead of 0. I've done something similar in TransactionDBHandler.java and TimelineDBHandler.java
         productCategoryList.setItems(categoryList);
         newProductCategoryList.setItems(categoryList);
@@ -169,7 +146,7 @@ public class ProductsScreenController extends GenericScreenController implements
             System.out.println("No further results");
             */
 
-        }
+    }
 
 
     public void FillTable(MouseEvent mouseEvent) throws ClassNotFoundException {

@@ -1,22 +1,17 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.Products.Transaction.TransactionProduct;
 import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
-
-import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.time.LocalDate;
