@@ -1,4 +1,4 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.Controllers.GenericScreenController;
 import javafx.event.ActionEvent;
@@ -14,6 +14,8 @@ import org.kordamp.ikonli.javafx.FontIcon;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ResourceBundle;
 
 public class SidebarController extends GenericScreenController implements Initializable {
@@ -41,7 +43,8 @@ public class SidebarController extends GenericScreenController implements Initia
 
     @FXML
     void onHomeButtonClick(ActionEvent event) {
-
+        File directory = new File("./");
+        System.out.println(directory.getAbsolutePath());
     }
     @Override
     public void onProductsButtonClick(ActionEvent event) throws IOException {
@@ -55,7 +58,7 @@ public class SidebarController extends GenericScreenController implements Initia
     @FXML
     void onSettingsButtonClick(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        CurrentScreen = getScreen("Screens/SettingsScreen.fxml");
+        CurrentScreen = getScreen("SettingsScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
 
     }
@@ -63,7 +66,8 @@ public class SidebarController extends GenericScreenController implements Initia
     @Override
     public void onTransactionsButtonClick(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        CurrentScreen = getScreen("../Screens/TransactionScreen.fxml");
+
+        CurrentScreen = getScreen("TransactionScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
     }
 

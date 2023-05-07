@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.ToggleSwitch?>
+
+<AnchorPane prefHeight="650.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.SettingsScreenController">
+   <children>
+      <VBox layoutX="505.0" layoutY="225.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #6c5fa7;">
+               <children>
+                  <VBox>
+                     <HBox.margin>
+                        <Insets left="20.0" top="10.0" />
+                     </HBox.margin>
+                     <children>
+                        <ImageView fx:id="ProfileImage" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/AppIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="EditProfileImageButton" mnemonicParsing="false" onAction="#onEditProfileImageButtonClicked" text="Edit profile image" translateY="-30.0">
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="300.0">
+                     <children>
+                        <Label fx:id="UsernameLabel" text="USERNAME">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="Username" text="Label" />
+                        <Label fx:id="EMAILLabel" text="EMAIL">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="Email" text="Label" />
+                        <Label fx:id="TBALabel" text="TBA">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="TBA" text="Label" />
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </HBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                     </padding>
+                  </VBox>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Button fx:id="EditUsernameButton" mnemonicParsing="false" onAction="#onEditUsernameButtonClicked" text="EDIT">
+                           <VBox.margin>
+                              <Insets top="12.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="Editemail" mnemonicParsing="false" onAction="#onEditEmailButtonClicked" text="EDIT">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="TBAButton" mnemonicParsing="false" onAction="#onTBAButtonClicked" text="EDIT">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+            <Separator prefHeight="30.0" prefWidth="950.0" style="-fx-background-color: #6c5fa7;" />
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #6c5fa7;">
+               <children>
+                  <Label fx:id="Darkmodelabel" text="Darkmode">
+                     <HBox.margin>
+                        <Insets left="10.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ToggleSwitch fx:id="DarkmodeToggle">
+                     <HBox.margin>
+                        <Insets left="5.0" top="5.0" />
+                     </HBox.margin>
+                  </ToggleSwitch>
+               </children>
+            </HBox>
+            <Separator prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
