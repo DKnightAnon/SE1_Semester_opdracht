@@ -10,6 +10,7 @@ module com.example.se_opdracht {
     requires org.kordamp.ikonli.fontawesome5;
     requires javafx.fxml;
     requires java.sql;
+    requires org.controlsfx.controls;
 
 
     opens com.example.se_opdracht to javafx.fxml;

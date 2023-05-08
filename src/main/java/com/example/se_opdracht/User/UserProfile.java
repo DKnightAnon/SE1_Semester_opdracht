@@ -4,6 +4,10 @@ public class UserProfile{
     private String username,email;
 
 
+    public void UserProfile(){
+
+    }
+
     public void UserProfile(String username, String email){
         this.username = username;
         this.email = email;
