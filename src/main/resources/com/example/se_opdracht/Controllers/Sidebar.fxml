@@ -124,7 +124,7 @@
                         <Insets left="5.0" top="25.0" />
                      </VBox.margin>
                   </FontIcon>
-                  <FontIcon fx:id="TransactionIcon" iconLiteral="fas-cog" iconSize="35">
+                  <FontIcon fx:id="SettingsIcon" iconLiteral="fas-cog" iconSize="35">
                      <VBox.margin>
                         <Insets left="7.0" top="25.0" />
                      </VBox.margin>

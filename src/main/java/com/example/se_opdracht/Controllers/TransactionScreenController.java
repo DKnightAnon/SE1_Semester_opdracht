@@ -1,6 +1,8 @@
 package com.example.se_opdracht.Controllers;
 
+import com.example.se_opdracht.BudgetHandlers.MonthlyBudget;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
+import com.example.se_opdracht.DescriptionChecker;
 import com.example.se_opdracht.Products.Transaction.TransactionProduct;
 import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
 
@@ -25,22 +27,14 @@ public class TransactionScreenController extends GenericScreenController impleme
     @FXML
         private TableView TransactionTable;
      @FXML
-     private TableColumn IDColumn;
-     @FXML
-     private TableColumn DateColumn;
-     @FXML
-     private TableColumn ItemColumn;
-     @FXML
-     private TableColumn DescriptionColumn;
-     @FXML
-     private TableColumn CategoryColumn;
+     private TableColumn IDColumn,DateColumn,ItemColumn,DescriptionColumn,CategoryColumn;
 //Table variables
 
     //Purchase(Transaction) form variables
     @FXML
     private DatePicker expenseDate;
     @FXML
-    private TextField expenseItem;
+    private TextField expenseItem,NewCategoryTextField;
     @FXML
     private TextArea purchaseDescription;
     @FXML
@@ -48,10 +42,10 @@ public class TransactionScreenController extends GenericScreenController impleme
     @FXML
     private Button addPurchaseButton;
     //Purchase(Transaction) form variables
-    @FXML
-    private TextField NewCategoryTextField;
+
     ObservableList<TransactionProductCategory> categoryList;
     ObservableList<TransactionProduct> transactions;
+    DescriptionChecker DesCheck = new DescriptionChecker(250);//250 character limit for descriptions
 
     @FXML
     private AnchorPane TransactionScreen;
@@ -69,7 +63,7 @@ public class TransactionScreenController extends GenericScreenController impleme
             if (
                       emptyDate
                     || expenseItem.getText().equals("")
-                    || purchaseDescription.getText().equals("")
+                    || DesCheck.checkDescription(Integer.valueOf(purchaseDescription.getText().length())) == 1
                     || selectCategory.getSelectionModel().getSelectedItem().equals(""))
             {
                 error.noCompletePurchaseInfo();

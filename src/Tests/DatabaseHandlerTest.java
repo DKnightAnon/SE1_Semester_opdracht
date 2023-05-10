@@ -63,32 +63,27 @@ class DatabaseHandlerTest {
 
     }
 
-    @Test
+    //@Test
     /*
     This tests if an exception is thrown when the database is in use. To properly test it, you should open the database with the H2 Console.
     To do this, Navigate to the folder that contains h2-2.1.214.jar in the command terminal
     and use the command  [java -jar h2-2.1.214.jar]
      */
-    void assertDatabaseInUse () {
-        //Prepare
-        String jdcbURL = "jdbc:h2:~/bptDB";
-        String user = "Admin";
-        String password = "admin";
 
-        //Act
+//    void assertDatabaseInUse () {
+//        //Prepare
+//        String jdcbURL = "jdbc:h2:~/bptDB";
+//        String user = "Admin";
+//        String password = "admin";
+//
+//        //Act
+//
+//        JdbcSQLNonTransientConnectionException thrown = Assertions.assertThrows(JdbcSQLNonTransientConnectionException.class, () -> {
+//            Connection con = DriverManager.getConnection(jdcbURL, user,password);}, "SQL exception was expected");
+//        }
 
-        JdbcSQLNonTransientConnectionException thrown = Assertions.assertThrows(JdbcSQLNonTransientConnectionException.class, () -> {
-            Connection con = DriverManager.getConnection(jdcbURL, user,password);}, "SQL exception was expected");
-        }
-/*
-        @Test
-        void checkIfFieldReturnsFormattedDate() {
-            TransactionScreenController controller = new TransactionScreenController();
-            DatePicker datepicker;
-            datepicker.getEditor().setText("");
-        }
 
- */
+
 
 
 
