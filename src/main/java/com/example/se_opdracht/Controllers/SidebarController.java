@@ -48,11 +48,13 @@ public class SidebarController extends GenericScreenController implements Initia
     }
     @Override
     public void onProductsButtonClick(ActionEvent event) throws IOException {
-        File currentDirFile = new File(".");
-        String helper = currentDirFile.getAbsolutePath();
-        String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());//this line may need a try-catch block
-        System.out.println(currentDir);
-
+//        File currentDirFile = new File(".");
+//        String helper = currentDirFile.getAbsolutePath();
+//        String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());//this line may need a try-catch block
+//        System.out.println(currentDir);
+        FXMLLoader loader = new FXMLLoader();
+        CurrentScreen = getScreen("TimelineProductsScreen.fxml");
+        ScreenStage.setCenter(CurrentScreen);
     }
 
     @FXML

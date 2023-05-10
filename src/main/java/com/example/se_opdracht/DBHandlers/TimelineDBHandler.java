@@ -14,12 +14,42 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class TimelineDBHandler implements DBhandler{
+
+    public static ArrayList<TimelineProduct> getProductsAsArrayList(){
+        ArrayList list = new ArrayList<>();
+        Class.forName("org.h2.Driver");
+        String query = "Select Name, Product_ID from TimelineProduct where Category = ?";
+        try {
+            Connection connection = DBhandler.getConnection();
+            PreparedStatement ps = connection.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            list.add(new TimelineProduct(
+                    "Items in category are:",
+                    "empty",
+                    "empty",
+                    0
+            ));
+            while (rs.next()) {
+                list.add(new TimelineProduct(
+                        rs.getString("Name"),
+                        "this should be empty",
+                        "Empty",
+                        rs.getInt("Product_ID")
+
+                ));
+            }
+        }catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+
 
     public static ObservableList<TimelineProductPurchase> getPurchases(int productID) throws ClassNotFoundException {
         ObservableList<TimelineProductPurchase> list = FXCollections.observableArrayList();
