@@ -19,9 +19,6 @@ public class Main extends Application {
     double y = 0;
 
 
-    public Main() throws IOException {
-    }
-
     @Override
     public void start(Stage stage) throws IOException {
         try {

@@ -26,5 +26,6 @@ module com.example.se_opdracht {
     exports com.example.se_opdracht.Products.Timeline;
     opens com.example.se_opdracht.Products.Timeline to javafx.fxml;
     exports com.example.se_opdracht.BudgetHandlers;
+    exports com.example.se_opdracht.InputCheckers;
 
 }

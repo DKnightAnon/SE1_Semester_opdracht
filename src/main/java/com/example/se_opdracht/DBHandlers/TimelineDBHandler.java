@@ -18,30 +18,36 @@ import java.util.*;
 
 public class TimelineDBHandler implements DBhandler{
 
-    public static ArrayList<TimelineProduct> getProductsAsArrayList(){
+    public static ArrayList<TimelineProduct> getProductsAsArrayList() throws ClassNotFoundException {
         ArrayList list = new ArrayList<>();
         Class.forName("org.h2.Driver");
-        String query = "Select Name, Product_ID from TimelineProduct where Category = ?";
+        String query = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName " +
+                "From TimelineProduct product join TimelineProductCategory category " +
+                "on product.category = category.Category_ID";
         try {
-            Connection connection = DBhandler.getConnection();
-            PreparedStatement ps = connection.prepareStatement(query);
+            Connection con = DBhandler.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            list.add(new TimelineProduct(
-                    "Items in category are:",
-                    "empty",
-                    "empty",
+            list.add(new TimelineProduct("Select a product",
+                    "You shoudln't see this.",
+                    "You shouldn't see this.",
                     0
             ));
             while (rs.next()) {
                 list.add(new TimelineProduct(
                         rs.getString("Name"),
-                        "this should be empty",
-                        "Empty",
+                        rs.getString("Description"),
+                        rs.getString("CategoryName"),
                         rs.getInt("Product_ID")
-
                 ));
+
             }
-        }catch (SQLException | ClassNotFoundException e) {
+            con.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             e.printStackTrace();
             throw new RuntimeException(e);
         }
@@ -60,6 +66,33 @@ public class TimelineDBHandler implements DBhandler{
             Connection con = DBhandler.getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1,productID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                list.add(new TimelineProductPurchase(
+                        rs.getInt("PurchaseDate_ID"),
+                        rs.getString("Date"),
+                        rs.getBigDecimal("PurchasePrice"),
+                        rs.getInt("Product_ID")));
+            }
+            con.close();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public static ArrayList<TimelineProductPurchase> getPurchasesAsArrayList() throws ClassNotFoundException {
+        ArrayList<TimelineProductPurchase> list = new ArrayList<>();
+        Class.forName("org.h2.Driver");
+        String query = "SELECT * FROM PRODUCTPURCHASEDATE";
+
+        try{
+            Connection con = DBhandler.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
                 list.add(new TimelineProductPurchase(
@@ -141,6 +174,29 @@ public class TimelineDBHandler implements DBhandler{
             e.printStackTrace();
             throw new RuntimeException(e);
         }catch (ClassNotFoundException e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+        return list;
+    }
+
+    public static ArrayList<TimelineProductCategory> getCategoriesAsArrayList() throws ClassNotFoundException {
+        ArrayList list = new ArrayList<TimelineProductCategory>();
+        String query = "SELECT * FROM TIMELINEPRODUCTCATEGORY";
+        Class.forName("org.h2.Driver");
+        try {
+            Connection con = DBhandler.getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new TimelineProductCategory(rs.getInt("Category_ID"), rs.getString("CategoryName")));
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        } catch (ClassNotFoundException e){
             e.printStackTrace();
             throw new RuntimeException(e);
         }

@@ -9,6 +9,11 @@ private String Description;
         this.Description = Description;
     }
 
+    public Product(String name){
+        this.Name = name;
+        this.Description = null;
+    }
+
     public String getDescription() {
         return Description;
     }

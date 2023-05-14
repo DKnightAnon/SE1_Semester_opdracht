@@ -33,29 +33,13 @@ public class ProductsScreenController extends GenericScreenController implements
     @FXML
     private TableView PurchaseTable;
     @FXML
-    private TableColumn DateColumn;
+    private TableColumn DateColumn,PriceColumn,PurchaseID;
     @FXML
-    private TableColumn PriceColumn;
+    private ComboBox productCategoryList,productFormList,newProductCategoryList;
     @FXML
-    private TableColumn PurchaseID;
+    private Button addNewProductButton,addNewPurchaseButton,addNewCategoryButton;
     @FXML
-    private ComboBox productCategoryList;
-    @FXML
-    private ComboBox productFormList;
-    @FXML
-    private ComboBox newProductCategoryList;
-    @FXML
-    private Button addNewProductButton;
-    @FXML
-    private Button addNewPurchaseButton;
-    @FXML
-    private Button addNewCategoryButton;
-    @FXML
-    private TextField NewProductTextfield;
-    @FXML
-    private TextField purchasePriceTextfield;
-    @FXML
-    private TextField newCategoryTextfield;
+    private TextField NewProductTextfield,purchasePriceTextfield,newCategoryTextfield;
     @FXML
     private ListView productList;
     @FXML
@@ -155,19 +139,7 @@ public class ProductsScreenController extends GenericScreenController implements
         DateColumn.setCellValueFactory(new PropertyValueFactory<TimelineProductPurchase,String>("PurchaseDate"));
         PriceColumn.setCellValueFactory(new PropertyValueFactory<TimelineProductPurchase, BigDecimal>("PurchasePrice"));
         PurchaseTable.setItems(purchaseHistory);
-        /*
-        for (int i = 0;i<purchaseHistory.size();i++) {
-            System.out.println(purchaseHistory.get(i).getPurchaseID()
-                    + ", " +
-                    purchaseHistory.get(i).getPurchaseDate()
-                    + ", " +
-                    purchaseHistory.get(i).getPurchasePrice()
-                    + ", " +
-                    purchaseHistory.get(i).getPurchaseProductID()
-            );
-            }
-            System.out.println("No further results");
-            */
+
 
     }
 

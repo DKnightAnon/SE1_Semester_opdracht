@@ -14,6 +14,13 @@ public class TimelineProduct extends Product {
         this.productID = productID;
     }
 
+    public TimelineProduct(String name, String category, int productID){
+        super(name);
+        this.Category = category;
+        this.productID = productID;
+
+    }
+
 
     private String Category;
 
@@ -34,6 +41,8 @@ public class TimelineProduct extends Product {
     public void setProductID(int productID) {
         this.productID = productID;
     }
+
+
     @Override
     public String toString(){
         return super.getName();
