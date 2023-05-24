@@ -163,27 +163,25 @@ public abstract class GenericScreenController {
     }
 
     public void setScreenTheme () {
-        while (true) {
             Boolean mode = getDarkMode();
             if (mode = false) {
 
             } else if (mode = true) {
 
 
-            }
+
         }
     }
 
 
     public void onCloseImageClick(MouseEvent mouseEvent) {
-        stage = (Stage) Main.genericstage.getScene().getWindow();
-        stage.close();
+        javafx.application.Platform.exit();
 
     }
 
     public AnchorPane getScreen(String Filename){
         try{
-            URL fxmlLocation = getClass().getResource(Filename);
+            URL fxmlLocation = Main.class.getResource(Filename);
             if (fxmlLocation == null){
                 throw new FileNotFoundException("FXML file cannot be found!");
             }

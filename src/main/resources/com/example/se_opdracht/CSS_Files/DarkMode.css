@@ -14,8 +14,8 @@
  -fx-icon-color : #ab28d7;
  }
 
- .ikonli-font-icon {
--fx-fill : #1c8c2f;
+ #SidebarIcon .ikonli-font-icon {
+-fx-icon-color : #1c8c2f;
 }
 
 

@@ -8,6 +8,7 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.scene.Node;
 
 import java.math.BigDecimal;
 import java.sql.Connection;
@@ -17,7 +18,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class TimelineDBHandler implements DBhandler{
-
+//TODO see if its possible to use this in template method
+    //TODO looks more like Strategy, ask Pascal
     public static ArrayList<TimelineProduct> getProductsAsArrayList() throws ClassNotFoundException {
         ArrayList list = new ArrayList<>();
         Class.forName("org.h2.Driver");
@@ -276,6 +278,8 @@ public class TimelineDBHandler implements DBhandler{
             throw new RuntimeException(e);
         }
     }
+
+
 
 
     }

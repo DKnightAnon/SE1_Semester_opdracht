@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
@@ -16,6 +18,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class SidebarController extends GenericScreenController implements Initializable {
@@ -30,9 +33,11 @@ public class SidebarController extends GenericScreenController implements Initia
 
     @FXML
     private Button Close,HomeButton,ProductsButton,SettingsButton,TransactionsButton;
+    ArrayList<Button> buttonList = new ArrayList<Button>();
     @FXML
     void MinimizeClicked(MouseEvent event) {
-
+        Stage stage = (Stage) MinimizeIcon.getScene().getWindow();
+        stage.setIconified(true);
     }
 
     @FXML
@@ -53,14 +58,14 @@ public class SidebarController extends GenericScreenController implements Initia
 //        String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());//this line may need a try-catch block
 //        System.out.println(currentDir);
         FXMLLoader loader = new FXMLLoader();
-        CurrentScreen = getScreen("TimelineProductsScreen.fxml");
+        CurrentScreen = getScreen("Screens/TimelineProductsScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
     }
 
     @FXML
     void onSettingsButtonClick(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
-        CurrentScreen = getScreen("SettingsScreen.fxml");
+        CurrentScreen = getScreen("Screens/SettingsScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
 
     }
@@ -69,11 +74,26 @@ public class SidebarController extends GenericScreenController implements Initia
     public void onTransactionsButtonClick(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader();
 
-        CurrentScreen = getScreen("TransactionScreen.fxml");
+        CurrentScreen = getScreen("Screens/TransactionScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
     }
 
 
+    private void loadIconColor(){
+        PriceTrackingIcon.setIconColor(Color.valueOf("#f44343"));
+    }
+
+    private void addButtonsToList(){
+        buttonList.add(Close);
+        buttonList.add(HomeButton);
+        buttonList.add(ProductsButton);
+        buttonList.add(SettingsButton);
+        buttonList.add(TransactionsButton);
+        for (Button button : buttonList){
+            button.setId("#generalmenubutton-darkmode");
+        }
+
+    }
 
 
     @Override
@@ -86,6 +106,10 @@ public class SidebarController extends GenericScreenController implements Initia
 
         ScreenName = MainAnchor;
         System.out.println();
+        loadIconColor();
+        setDarkMode(true);
+        addButtonsToList();
+        setScreenTheme();
 
     }
 }
