@@ -79,22 +79,6 @@ public class SidebarController extends GenericScreenController implements Initia
     }
 
 
-    private void loadIconColor(){
-        PriceTrackingIcon.setIconColor(Color.valueOf("#f44343"));
-    }
-
-    private void addButtonsToList(){
-        buttonList.add(Close);
-        buttonList.add(HomeButton);
-        buttonList.add(ProductsButton);
-        buttonList.add(SettingsButton);
-        buttonList.add(TransactionsButton);
-        for (Button button : buttonList){
-            button.setId("#generalmenubutton-darkmode");
-        }
-
-    }
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -106,9 +90,7 @@ public class SidebarController extends GenericScreenController implements Initia
 
         ScreenName = MainAnchor;
         System.out.println();
-        loadIconColor();
         setDarkMode(true);
-        addButtonsToList();
         setScreenTheme();
 
     }

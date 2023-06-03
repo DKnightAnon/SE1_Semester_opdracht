@@ -12,7 +12,7 @@
 
 <AnchorPane fx:id="MainAnchor" minHeight="650.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.SidebarController">
    <children>
-      <AnchorPane fx:id="TopBar" onMouseDragged="#TopBar_dragged" onMousePressed="#TopBar_pressed" prefHeight="50.0" prefWidth="1000.0" style="-fx-background-color: #2d3250;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="TopBar" onMouseDragged="#TopBar_dragged" onMousePressed="#TopBar_pressed" prefHeight="50.0" prefWidth="1000.0" style="-fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -58,7 +58,7 @@
          </children>
       </AnchorPane>
       <BorderPane fx:id="ScreenStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-      <AnchorPane fx:id="ButtonSideBar" prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #676f9d;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="ButtonSideBar" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
          <children>
             <VBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
@@ -100,7 +100,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="600.0" prefWidth="50.0" style="-fx-background-color: #424769;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="IconSideBar" prefHeight="600.0" prefWidth="50.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <VBox layoutX="-25.0" layoutY="65.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

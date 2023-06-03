@@ -1,5 +1,6 @@
 package com.example.se_opdracht.ErrorMessages;
 
+import com.example.se_opdracht.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -58,8 +59,10 @@ public class ErrorWarnings {
 
     public void logoutConfirm(AnchorPane screenName) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to exit the application.");
+        //alert.setTitle("Logout");
+        alert.setHeaderText("Logout");
+        alert.setContentText("You're about to exit the application.");
+        alert.getDialogPane().getStylesheets().add(String.valueOf(Main.class.getResource("CSS_Files/DarkMode.css")));
 
         if (alert.showAndWait().get() == ButtonType.OK) {
             stage = (Stage) screenName.getScene().getWindow();
