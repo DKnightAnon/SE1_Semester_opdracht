@@ -5,6 +5,7 @@ import java.sql.*;
 
 public interface DBhandler {
 //TODO rename this to DBConnector, since thats really all it does
+    //TODO make this an Abstract base class DBHandler?
     //Choose this url for a database in home directory : jdbc:h2:~/bptDB;
     //Choose this url for a database in projectroot/Database : jdbc:h2:file:./Database/bptDB
  String jdcbURL = "jdbc:h2:file:./Database/bptDB";
