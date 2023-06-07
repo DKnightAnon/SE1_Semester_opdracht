@@ -109,8 +109,7 @@ public class ProductsScreenController extends GenericScreenController implements
 
     public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException {
         int productID = productCategoryList.getSelectionModel().getSelectedIndex();
-        ObservableList<TimelineProduct> productlist;
-        productlist = TimelineDBHandler.getProductsListview(productID);
+        ObservableList<IProduct> productlist = DB.getProducts();
         productList.setItems(productlist);
     }
 
@@ -136,7 +135,7 @@ public class ProductsScreenController extends GenericScreenController implements
     public void FillTable(MouseEvent mouseEvent) throws ClassNotFoundException {
         try {
             TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
-            fillPurchaseTable(productID);
+            fillPurchaseTable(selectedProduct);
 
 
 
