@@ -1,14 +1,11 @@
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
-import com.example.se_opdracht.Products.Timeline.TimelineProductPurchase;
-import com.example.se_opdracht.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductPurchase;
+import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
 import javafx.collections.ObservableList;
-import org.h2.jdbc.JdbcSQLNonTransientConnectionException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 class DatabaseHandlerTest {

@@ -1,9 +1,9 @@
 package com.example.se_opdracht.InputCheckers;
 
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
-import com.example.se_opdracht.Products.Timeline.TimelineProduct;
-import com.example.se_opdracht.Products.Timeline.TimelineProductCategory;
-import com.example.se_opdracht.Products.Timeline.TimelineProductPurchase;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductCategory;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductPurchase;
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

@@ -1,6 +1,6 @@
 import com.example.se_opdracht.InputCheckers.NewTimelinePurchaseCheck;
-import com.example.se_opdracht.Products.Timeline.TimelineProduct;
-import com.example.se_opdracht.Products.Timeline.TimelineProductCategory;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductCategory;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

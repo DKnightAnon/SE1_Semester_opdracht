@@ -1,10 +1,9 @@
 package com.example.se_opdracht.Controllers;
 
-import com.example.se_opdracht.BudgetHandlers.MonthlyBudget;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.DescriptionChecker;
-import com.example.se_opdracht.Products.Transaction.TransactionProduct;
-import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
+import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProductCategory;
 
 
 import javafx.collections.ObservableList;

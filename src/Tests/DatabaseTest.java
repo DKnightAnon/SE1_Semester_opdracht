@@ -1,9 +1,9 @@
 import com.example.se_opdracht.DBHandlers.DBhandler;
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
-import com.example.se_opdracht.Products.Timeline.TimelineProduct;
-import com.example.se_opdracht.Products.Timeline.TimelineProductCategory;
-import com.example.se_opdracht.Products.Transaction.TransactionProduct;
-import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
+import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductCategory;
+import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProductCategory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

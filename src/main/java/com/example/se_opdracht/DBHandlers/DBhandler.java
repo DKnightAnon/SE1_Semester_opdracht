@@ -3,9 +3,8 @@ package com.example.se_opdracht.DBHandlers;
 
 import java.sql.*;
 
-public interface DBhandler {
-//TODO rename this to DBConnector, since thats really all it does
-    //TODO make this an Abstract base class DBHandler?
+public abstract class DBhandler {
+
     //Choose this url for a database in home directory : jdbc:h2:~/bptDB;
     //Choose this url for a database in projectroot/Database : jdbc:h2:file:./Database/bptDB
  String jdcbURL = "jdbc:h2:file:./Database/bptDB";
@@ -14,20 +13,20 @@ public interface DBhandler {
 
 
 
-    static Connection getConnection() throws SQLException, ClassNotFoundException {
+    protected Connection getConnection() throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
         Connection connection = DriverManager.getConnection(jdcbURL, user,password);
         return connection;
     }
-    static String getJdcbURL() {
+    protected String getJdcbURL() {
         return jdcbURL;
     }
 
-    static String getUser() {
+    protected String getUser() {
         return user;
     }
 
-    static String getPassword() {
+    protected String getPassword() {
         return password;
     }
 }
