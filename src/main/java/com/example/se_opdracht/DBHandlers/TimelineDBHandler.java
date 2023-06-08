@@ -49,9 +49,39 @@ public class TimelineDBHandler extends DBhandler implements DBInsertTransaction,
     }
 
 
+public boolean checkConnection() throws SQLException, ClassNotFoundException {
+    Class.forName("org.h2.Driver");
+    try{String query = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName, category.Category_ID " +
+            "From TimelineProduct product join TimelineProductCategory category " +
+            "on product.category = category.Category_ID";
+    Connection con = getConnection();
+    PreparedStatement ps = con.prepareStatement(query);
+    ResultSet rs = ps.executeQuery();
+    if (rs.next()){
+        con.close();
+        return true;
+    }else {
+        con.close();
+        return false;
+    }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw new RuntimeException(e);
+    } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+        throw new RuntimeException(e);
+    }
+
+}
+
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
+        TimelineDBHandler db = new TimelineDBHandler();
+        //System.out.println(db.checkConnection());
+        db.getProducts();
 
 
-
+    }
 
 
     public  ObservableList<IProduct> getProducts() {
@@ -64,7 +94,9 @@ public class TimelineDBHandler extends DBhandler implements DBInsertTransaction,
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            AbstractFactory.Timeline.createCategory().addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
+//            AbstractFactory.Timeline.createCategory().addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
+
+//            System.out.println(rs.next());
             while (rs.next()) {
                 ICategory tempCat =  AbstractFactory.Timeline.createCategory();
                 tempCat.addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));

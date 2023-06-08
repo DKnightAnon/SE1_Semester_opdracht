@@ -71,3 +71,93 @@ SELECT * FROM PRODUCTPURCHASEDATE where Product_ID = ? [90012-214]
 	at com.example.se_opdracht/com.example.se_opdracht.DBHandlers.TimelineDBHandler.getPurchasesAsArrayList(TimelineDBHandler.java:96)
 	at com.example.se_opdracht/com.example.se_opdracht.InputCheckers.PurchaseDateCheck.<init>(PurchaseDateCheck.java:23)
 	at com.example.se_opdracht/com.example.se_opdracht.InputCheckers.PurchaseDateCheck.main(PurchaseDateCheck.java:72)
+2023-06-08 18:47:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 19:05:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 19:09:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 19:16:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 19:57:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 19:58:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 20:08:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 20:09:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "CATEGORY.NAME" not found; SQL statement:
+SELECT product.Product_ID, product.Name, product.Description,category.Name From TimelineProduct product join TimelineProductCategory category on product.category = category.Category_ID [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1103)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1090)
+	at org.h2.server.web.WebThread.process(WebThread.java:188)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-06-08 20:22:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "CATEGORY.NAME" not found; SQL statement:
+SELECT product.Product_ID, product.Name, product.Description,category.Name From TimelineProduct product join TimelineProductCategory category on product.category = category.Category_ID [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.command.query.Select.prepareExpressions(Select.java:1170)
+	at org.h2.command.query.Query.prepare(Query.java:218)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:237)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:223)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1339)
+	at org.h2.server.web.WebApp.query(WebApp.java:1137)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1103)
+	at org.h2.server.web.WebApp$1.next(WebApp.java:1090)
+	at org.h2.server.web.WebThread.process(WebThread.java:188)
+	at org.h2.server.web.WebThread.run(WebThread.java:101)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-06-08 20:25:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 20:26:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 20:40:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 20:47:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 20:55:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 21:04:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 21:11:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 21:12:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: No data is available [2000-214]
+2023-06-08 21:15:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "Category_ID" not found [42122-214]
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at com.h2database@2.1.214/org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:223)
+	at com.h2database@2.1.214/org.h2.message.DbException.get(DbException.java:199)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492)
+	at com.h2database@2.1.214/org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:337)
+	at com.example.se_opdracht/com.example.se_opdracht.DBHandlers.TimelineDBHandler.getProducts(TimelineDBHandler.java:102)
+	at com.example.se_opdracht/com.example.se_opdracht.DBHandlers.TimelineDBHandler.main(TimelineDBHandler.java:81)

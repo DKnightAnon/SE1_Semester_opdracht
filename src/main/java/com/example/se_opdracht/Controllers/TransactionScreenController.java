@@ -2,8 +2,8 @@ package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.DescriptionChecker;
+import com.example.se_opdracht.ProductMaker.Products.ICategory;
 import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
-import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProductCategory;
 
 
 import javafx.collections.ObservableList;
@@ -42,9 +42,11 @@ public class TransactionScreenController extends GenericScreenController impleme
     private Button addPurchaseButton;
     //Purchase(Transaction) form variables
 
-    ObservableList<TransactionProductCategory> categoryList;
+    ObservableList<ICategory> categoryList;
     ObservableList<TransactionProduct> transactions;
     DescriptionChecker DesCheck = new DescriptionChecker(250);//250 character limit for descriptions
+
+    TransactionDBHandler db = new TransactionDBHandler();
 
     @FXML
     private AnchorPane TransactionScreen;
@@ -105,9 +107,9 @@ public class TransactionScreenController extends GenericScreenController impleme
         ItemColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Name"));//(product) name in database
         DescriptionColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description")); //(product) description in database
         CategoryColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));//(Expense_Category) name in database
-        transactions = TransactionDBHandler.getTransactions();
+        transactions = db.getTransactions();
         TransactionTable.setItems(transactions);
-        categoryList = TransactionDBHandler.getCategories();
+//        categoryList = db.getCategories();
         selectCategory.setItems(categoryList);
 
 
@@ -118,7 +120,7 @@ public class TransactionScreenController extends GenericScreenController impleme
         if (NewCategoryTextField.getText().equals(null) || NewCategoryTextField.getText().equals("")){
             error.noCategoryEntered();
         }else {
-            TransactionDBHandler.addCategory(NewCategoryTextField.getText());
+            db.addCategory(NewCategoryTextField.getText());
             NewCategoryTextField.clear();
             TableLoad();
         }

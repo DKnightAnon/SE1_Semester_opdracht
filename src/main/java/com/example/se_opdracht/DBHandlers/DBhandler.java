@@ -8,6 +8,7 @@ public abstract class DBhandler {
     //Choose this url for a database in home directory : jdbc:h2:~/bptDB;
     //Choose this url for a database in projectroot/Database : jdbc:h2:file:./Database/bptDB
  String jdcbURL = "jdbc:h2:file:./Database/bptDB";
+ String url2 = "jdbc:h2:file:./bptDB";
  String user = "Admin";
  String password = "admin";
 

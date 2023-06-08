@@ -51,6 +51,11 @@ public class TransactionProduct implements IProduct {
     }
 
     @Override
+    public void addAll(String name, String description, int productID, ICategory category) {
+
+    }
+
+    @Override
     public String toString() {
         return this.name;
     }

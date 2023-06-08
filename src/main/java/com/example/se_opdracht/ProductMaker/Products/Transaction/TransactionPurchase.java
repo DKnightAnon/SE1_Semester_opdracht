@@ -53,4 +53,19 @@ public class TransactionPurchase implements IPurchase {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    @Override
+    public int getPurchaseID() {
+        return 0;
+    }
+
+    @Override
+    public void setPurchaseID(int id) {
+
+    }
+
+    @Override
+    public void addAll(IProduct product, ICategory category, String date, BigDecimal price, int purchaseID) {
+
+    }
 }

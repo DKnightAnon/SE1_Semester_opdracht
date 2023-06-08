@@ -16,3 +16,6 @@ INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', '
 2023-03-26 13:40:46 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PURCHASE" not found (this database is empty); SQL statement:
 INSERT INTO PURCHASE (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem','testdescription',1); [42104-214]
+2023-06-08 20:26:38 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TIMELINEPRODUCT" not found (this database is empty); SQL statement:
+SELECT product.Product_ID, product.Name, product.Description,category.CategoryName From TimelineProduct product join TimelineProductCategory category on product.category = category.Category_ID [42104-214]

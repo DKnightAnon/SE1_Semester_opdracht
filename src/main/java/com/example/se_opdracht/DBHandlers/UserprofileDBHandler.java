@@ -1,6 +1,6 @@
 package com.example.se_opdracht.DBHandlers;
 
-public class UserprofileDBHandler implements DBhandler{
+public class UserprofileDBHandler extends DBhandler{
 
 
     public String getUsernameFromDB(){

@@ -81,6 +81,7 @@
 
   [Fill TimelineProduct.java]
   SELECT product.Product_ID, product.Name, product.Description,category.Name From TimelineProduct product join TimelineProductCategory category on product.category = category.Category_ID
+  SELECT product.Product_ID, product.Name, product.Description,category.CategoryName From TimelineProduct product join TimelineProductCategory category on product.category = category.Category_ID //updated
 
   [Insert new entry into TimelineProduct]
   insert into TimelineProduct (Name, Description, Category) Values ('testproduct','testing value insertion from h2 GUI',1)//H2 specifictestentry

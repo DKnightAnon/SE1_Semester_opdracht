@@ -1,9 +1,11 @@
 package com.example.se_opdracht.InputCheckers;
 
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
+import com.example.se_opdracht.ProductMaker.Products.ICategory;
+import com.example.se_opdracht.ProductMaker.Products.IProduct;
+import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductCategory;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductPurchase;
+
 
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -13,14 +15,16 @@ public class NewTimelinePurchaseCheck {
 
     private String format = "dd/MM/YYYY";
 
-   public ArrayList<TimelineProductCategory> AvailableCategories = new ArrayList<>();
-    public ArrayList<TimelineProduct> AvailableProducts = new ArrayList<>();
-    public ArrayList<TimelineProductPurchase> AvailablePurchases = new ArrayList<>();
+   public ArrayList<ICategory> AvailableCategories = new ArrayList<>();
+    public ArrayList<IProduct> AvailableProducts = new ArrayList<>();
+    public ArrayList<IPurchase> AvailablePurchases = new ArrayList<>();
+
+    TimelineDBHandler db = new TimelineDBHandler();
 
     public NewTimelinePurchaseCheck() throws ClassNotFoundException {
-        AvailableProducts = TimelineDBHandler.getProductsAsArrayList();
-        AvailableCategories = TimelineDBHandler.getCategoriesAsArrayList();
-        AvailablePurchases = TimelineDBHandler.getPurchasesAsArrayList();
+        AvailableProducts = db.getProductsAsArrayList();
+        AvailableCategories = db.getCategoriesAsArrayList();
+//        AvailablePurchases = db.getPurchasesAsArrayList();
     }
 
     private boolean isFormatValid(String date){
@@ -33,7 +37,7 @@ public class NewTimelinePurchaseCheck {
         return true;
     }
 
-    private boolean doesCategoryExist(TimelineProductCategory category){
+    private boolean doesCategoryExist(ICategory category){
 
        boolean exists = false;
        int contains = 0;
@@ -65,7 +69,7 @@ public class NewTimelinePurchaseCheck {
         }
         return exists;
     }
-    private boolean doesProductExistInCategory(TimelineProductCategory category,TimelineProduct product){
+    private boolean doesProductExistInCategory(ICategory category,TimelineProduct product){
 
         if (category.getCategoryName().equals(product.getCategory())){
             return true;
@@ -75,7 +79,7 @@ public class NewTimelinePurchaseCheck {
 
     }
 
-    public int inputCheck(String Price,TimelineProductCategory category, TimelineProduct product,String date){
+    public int inputCheck(String Price,ICategory category, TimelineProduct product,String date){
         DateTimeFormatter formatter;
         int Code = 0;
         //Code 0 means every input is valid
