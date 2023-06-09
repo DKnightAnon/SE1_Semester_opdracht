@@ -28,7 +28,6 @@ public class SettingsScreenController implements Initializable {
     @FXML
     private Button EditProfileImageButton,EditUsernameButton,Editemail,TBAButton;
 
-    private boolean mode;
 
 
     @FXML
@@ -36,34 +35,22 @@ public class SettingsScreenController implements Initializable {
 
     @FXML
     public void modeToggle(MouseEvent event){
-        if (DarkmodeToggle.isSelected()){
-            mode = true;
-        }else {
-            mode = false;
-        }
-        switchTheme();
+       switchTheme();
     }
     private void switchTheme(){
-        if (mode){
-            loadDark();
+        String path;
+        if (DarkmodeToggle.isSelected()){
             UserProfile.getInstance().setDarkMode(true);
-        }else{
-            loadLight();
+            path = String.valueOf(Main.class.getResource("CSS_Files/LightMode.css"));
+        }else {
             UserProfile.getInstance().setDarkMode(false);
+            path = String.valueOf(Main.class.getResource("CSS_Files/DarkMode.css"));
         }
-    }
-
-    private void loadLight(){
-        String path = String.valueOf(Main.class.getResource("CSS_Files/LightMode.css"));
         Main.genericstage.getScene().getStylesheets().clear();
         Main.genericstage.getScene().getStylesheets().add(path);
     }
 
-    private void loadDark(){
-        String path = String.valueOf(Main.class.getResource("CSS_Files/DarkMode.css"));
-        Main.genericstage.getScene().getStylesheets().clear();
-        Main.genericstage.getScene().getStylesheets().add(path);
-    }
+
 
     @FXML
     void onEditEmailButtonClicked(ActionEvent event) {
