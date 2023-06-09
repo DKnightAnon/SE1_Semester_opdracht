@@ -2,6 +2,7 @@ package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.Controllers.GenericScreenController;
 import com.example.se_opdracht.Main;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.kordamp.ikonli.javafx.FontIcon;
 
 import java.io.File;
@@ -38,7 +40,7 @@ public class SidebarController extends GenericScreenController implements Initia
 
     @FXML
     private Button Close,HomeButton,ProductsButton,SettingsButton,TransactionsButton;
-
+    /*<---------------------Screensize--------------------->*/
     private boolean maximized = false;
     private boolean fullscreen = false;
     @FXML
@@ -49,7 +51,13 @@ public class SidebarController extends GenericScreenController implements Initia
 
     @FXML
     void SizeRestoreClicked(MouseEvent event) {
-
+        if (maximized){
+            setScreenSmall(Main.genericstage);
+            maximized = false;
+        }else {
+            setScreenLarge(Main.genericstage);
+            maximized = true;
+        }
     }
     @FXML
     public void fullScreen(KeyEvent event){
@@ -66,17 +74,18 @@ public class SidebarController extends GenericScreenController implements Initia
             }else{
                 Main.genericstage.setMaximized(true);
                 fullscreen = true;
+
             }
 
 
         }
     }
 
-    /*<---------------------Screensize--------------------->*/
+
 
     private void setScreenSmall(Stage stage){
-        stage.setWidth(800);
-        stage.setHeight(600);
+        stage.setWidth(1000);
+        stage.setHeight(650);
         stage.centerOnScreen();
         maximized = false;
     }
@@ -90,10 +99,14 @@ public class SidebarController extends GenericScreenController implements Initia
         maximized = true;
     }
 
+    /*<---------------------Screenloading--------------------->*/
+
     @FXML
     void onHomeButtonClick(ActionEvent event) {
         File directory = new File("./");
         System.out.println(directory.getAbsolutePath());
+        slideSidebarIn();
+
     }
     @Override
     public void onProductsButtonClick(ActionEvent event) throws IOException {
@@ -104,22 +117,24 @@ public class SidebarController extends GenericScreenController implements Initia
         FXMLLoader loader = new FXMLLoader();
         CurrentScreen = getScreen("Screens/TimelineProductsScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
+        slideSidebarIn();
     }
 
     @FXML
     void onSettingsButtonClick(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
         CurrentScreen = getScreen("Screens/SettingsScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
+        slideSidebarIn();
+
 
     }
 
     @Override
     public void onTransactionsButtonClick(ActionEvent event) {
-        FXMLLoader loader = new FXMLLoader();
-
         CurrentScreen = getScreen("Screens/TransactionScreen.fxml");
         ScreenStage.setCenter(CurrentScreen);
+        slideSidebarIn();
+
     }
 
 
@@ -134,8 +149,58 @@ public class SidebarController extends GenericScreenController implements Initia
 
         ScreenName = MainAnchor;
         System.out.println();
-        setDarkMode(true);
-        setScreenTheme();
+
 
     }
+
+    double x = 0;
+    double y = 0;
+    public void TopBar_pressed(MouseEvent mouseEvent) {
+        x = mouseEvent.getSceneX();
+        y = mouseEvent.getSceneY();
+
+    }
+
+    public void TopBar_dragged(MouseEvent mouseEvent) {
+        Stage stage = (Stage) TopBar.getScene().getWindow();
+        stage.setY(mouseEvent.getScreenY()-y);
+        stage.setX(mouseEvent.getScreenX()-x);
+    }
+
+    public void onMenuClicked(MouseEvent mouseEvent) {
+    slideSidebarOut();
+    }
+
+    public void onMenuCloseClicked(MouseEvent mouseEvent) {
+        slideSidebarIn();
+    }
+
+    private void slideSidebarOut(){
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(ButtonSideBar);
+        slide.setToX(0);
+        slide.play();
+        ButtonSideBar.setTranslateX(-200);
+        slide.setOnFinished(event -> {
+            System.out.println("The sidebar should have opened now!");
+            MenuIcon.setVisible(false);
+            MenuIconClose.setVisible(true);
+        });
+    }
+
+    private void slideSidebarIn(){
+        TranslateTransition slide = new TranslateTransition();
+        slide.setDuration(Duration.seconds(0.4));
+        slide.setNode(ButtonSideBar);
+        slide.setToX(-200);
+        slide.play();
+        ButtonSideBar.setTranslateX(0);
+        slide.setOnFinished(event -> {
+            System.out.println("The sidebar should have closed now!");
+            MenuIcon.setVisible(true);
+            MenuIconClose.setVisible(false);
+        });
+    }
+
 }

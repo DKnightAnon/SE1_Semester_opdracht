@@ -1,4 +1,4 @@
-import com.example.se_opdracht.DescriptionChecker;
+import com.example.se_opdracht.InputCheckers.DescriptionChecker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

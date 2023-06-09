@@ -1,6 +1,6 @@
 
 #TopBar{
- -fx-background-color :  #2d3250;
+ -fx-background-color :  #578cef;
 }
 
 #IconSideBar{
@@ -15,7 +15,6 @@
 .button {
 -fx-text-fill : #000000;
 -fx-background-color :   #e28740;
-
 }
 
 .button:hover{
@@ -83,18 +82,6 @@
 
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
-
-#AddItemsBox .button{
--fx-text-fill : #000000;
--fx-background-color :   #e28740;
-
-}
-
-# AddItemsBox .button:hover{
- -fx-text-fill : #000000;
- -fx-background-color : #f9b17a;
- -fx-cursor : hand;
-}
 
 /*------------------------------------------------------------------------------------------------------------------------------------*/
 

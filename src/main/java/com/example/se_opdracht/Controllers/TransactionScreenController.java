@@ -1,7 +1,7 @@
 package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
-import com.example.se_opdracht.DescriptionChecker;
+import com.example.se_opdracht.InputCheckers.DescriptionChecker;
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
 

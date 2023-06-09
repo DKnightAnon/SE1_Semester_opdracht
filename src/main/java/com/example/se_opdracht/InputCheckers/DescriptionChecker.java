@@ -1,4 +1,4 @@
-package com.example.se_opdracht;
+package com.example.se_opdracht.InputCheckers;
 
 public class DescriptionChecker {
 

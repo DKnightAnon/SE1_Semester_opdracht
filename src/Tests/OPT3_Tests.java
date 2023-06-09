@@ -1,5 +1,5 @@
 import com.example.se_opdracht.BudgetHandlers.MonthlyBudget;
-import com.example.se_opdracht.DescriptionChecker;
+import com.example.se_opdracht.InputCheckers.DescriptionChecker;
 import com.example.se_opdracht.InputCheckers.NewTimelinePurchaseCheck;
 import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
 import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductCategory;

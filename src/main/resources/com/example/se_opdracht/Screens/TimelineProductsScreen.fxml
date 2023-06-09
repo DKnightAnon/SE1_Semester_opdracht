@@ -28,18 +28,23 @@
             </TableView>
             <VBox alignment="BASELINE_CENTER" layoutX="645.0" layoutY="24.0" prefHeight="520.0">
                <children>
-                  <Button fx:id="addNewProductButton" mnemonicParsing="false" onAction="#addNewProduct" text="Add new product" />
+                  <ComboBox fx:id="newProductCategoryList" prefHeight="25.0" prefWidth="230.0" promptText="Select a category for the product.">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </ComboBox>
                   <TextField fx:id="NewProductTextfield" prefHeight="25.0" prefWidth="230.0" promptText="Enter new product name">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
-                  <Label text="New purchase date form" textFill="WHITE">
+                  <Button fx:id="addNewProductButton" mnemonicParsing="false" onAction="#addNewProduct" text="Add new product" />
+                  <Label text="New purchase date form">
                      <VBox.margin>
                         <Insets top="50.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="newProductCategoryList" prefHeight="25.0" prefWidth="230.0" promptText="Select a category for the product.">
+                  <ComboBox fx:id="productFormList" prefHeight="25.0" prefWidth="174.0" promptText="Choose product">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
@@ -59,26 +64,21 @@
                         <Insets top="5.0" />
                      </VBox.margin>
                   </Button>
-                  <Label text="New product form" textFill="WHITE">
+                  <Label text="New product form">
                      <VBox.margin>
                         <Insets top="40.0" />
                      </VBox.margin>
                   </Label>
-                  <ComboBox fx:id="productFormList" prefHeight="25.0" prefWidth="174.0" promptText="Choose product">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </ComboBox>
-                  <Button fx:id="addNewCategoryButton" mnemonicParsing="false" onAction="#addNewCategory" text="Add new category">
-                     <VBox.margin>
-                        <Insets top="5.0" />
-                     </VBox.margin>
-                  </Button>
                   <TextField fx:id="newCategoryTextfield" promptText="New category name">
                      <VBox.margin>
                         <Insets top="5.0" />
                      </VBox.margin>
                   </TextField>
+                  <Button fx:id="addNewCategoryButton" mnemonicParsing="false" onAction="#addNewCategory" text="Add new category">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
                </children>
             </VBox>
          </children>

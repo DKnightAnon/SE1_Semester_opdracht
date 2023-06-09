@@ -49,50 +49,6 @@ public abstract class GenericScreenController {
     TransactionDBHandler tdbh = new TransactionDBHandler();
 
 
-    public Boolean getDarkMode() {
-        return darkMode;
-    }
-
-    public void setDarkMode(Boolean darkMode) {
-        this.darkMode = darkMode;
-    }
-
-    public Boolean isDatePickerEmpty(DatePicker datePicker) {
-        if (datePicker.getValue() != null) {
-            return false;
-        } else {
-            return true;
-        }
-    }
-
-    public Boolean isTextFieldEmpty(TextField textfield) {
-        if (textfield.getText().isEmpty()) {
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-    public void OnReturnButtonClicked(ActionEvent actionEvent) {
-            try {
-                URL fxmlLocation = getClass().getResource("Controllers/StartMenu.fxml");
-
-                FXMLLoader loader = new FXMLLoader(fxmlLocation);
-                root = loader.load();
-                stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                scene.getStylesheets().addAll(getClass().getResource("CSS_Files/DarkMode.css").toExternalForm());
-                stage.setScene(scene);
-                stage.setMinHeight(650);
-                stage.setMinWidth(1000);
-                stage.show();
-            } catch (Exception e) {
-                e.printStackTrace();
-                error.unableToSwitchScene();
-            }
-    }
-
-
     @FXML
     void onSettingsButtonClick(ActionEvent event) {
 
@@ -162,18 +118,6 @@ public abstract class GenericScreenController {
         }
     }
 
-    public void setScreenTheme () {
-            Boolean mode = getDarkMode();
-            if (mode = false) {
-
-            } else if (mode = true) {
-
-
-
-        }
-    }
-
-
     public void onCloseImageClick(MouseEvent mouseEvent) {
         javafx.application.Platform.exit();
 
@@ -194,45 +138,5 @@ public abstract class GenericScreenController {
     }
 
 
-    double x = 0;
-    double y = 0;
-    public void TopBar_pressed(MouseEvent mouseEvent) {
-        x = mouseEvent.getSceneX();
-        y = mouseEvent.getSceneY();
 
-    }
-
-    public void TopBar_dragged(MouseEvent mouseEvent) {
-        Stage stage = (Stage) TopBar.getScene().getWindow();
-        stage.setY(mouseEvent.getScreenY()-y);
-        stage.setX(mouseEvent.getScreenX()-x);
-    }
-
-    public void onMenuClicked(MouseEvent mouseEvent) {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.4));
-        slide.setNode(ButtonSideBar);
-        slide.setToX(0);
-        slide.play();
-        ButtonSideBar.setTranslateX(-200);
-        slide.setOnFinished(event -> {
-            System.out.println("The sidebar should have opened now!");
-            MenuIcon.setVisible(false);
-            MenuIconClose.setVisible(true);
-        });
-    }
-
-    public void onMenuCloseClicked(MouseEvent mouseEvent) {
-        TranslateTransition slide = new TranslateTransition();
-        slide.setDuration(Duration.seconds(0.4));
-        slide.setNode(ButtonSideBar);
-        slide.setToX(-200);
-        slide.play();
-        ButtonSideBar.setTranslateX(0);
-        slide.setOnFinished(event -> {
-            System.out.println("The sidebar should have closed now!");
-            MenuIcon.setVisible(true);
-            MenuIconClose.setVisible(false);
-        });
-    }
 }

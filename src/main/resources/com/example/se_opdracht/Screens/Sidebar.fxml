@@ -10,32 +10,32 @@
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<AnchorPane fx:id="MainAnchor" minHeight="650.0" minWidth="1000.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.SidebarController">
+<AnchorPane fx:id="MainAnchor" minHeight="650.0" minWidth="1000.0" onKeyPressed="#fullScreen" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.SidebarController">
    <children>
-      <AnchorPane fx:id="TopBar" onMouseDragged="#TopBar_dragged" onMousePressed="#TopBar_pressed" prefHeight="50.0" prefWidth="1000.0" style="-fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="TopBar" onMouseDragged="#TopBar_dragged" onMousePressed="#TopBar_pressed" prefHeight="30.0" prefWidth="1000.0" style="-fx-border-color: #000000;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox prefHeight="50.0" prefWidth="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <FontIcon fx:id="MinimizeIcon" iconLiteral="fas-minus-circle" iconSize="20" onMouseClicked="#MinimizeClicked">
                      <HBox.margin>
-                        <Insets right="20.0" top="15.0" />
+                        <Insets right="20.0" top="5.0" />
                      </HBox.margin>
                   </FontIcon>
                   <FontIcon fx:id="SizeRestore" iconLiteral="fas-window-restore" iconSize="20" onMouseClicked="#SizeRestoreClicked">
                      <HBox.margin>
-                        <Insets right="20.0" top="15.0" />
+                        <Insets right="20.0" top="5.0" />
                      </HBox.margin>
                   </FontIcon>
                   <FontIcon fx:id="Crossmark" iconLiteral="fas-times-circle" iconSize="20" onMouseClicked="#onCloseImageClick">
                      <HBox.margin>
-                        <Insets right="20.0" top="15.0" />
+                        <Insets right="20.0" top="5.0" />
                      </HBox.margin>
                   </FontIcon>
                </children>
             </HBox>
             <HBox layoutX="-18.0" layoutY="-36.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/AppIcon.png" />
                      </image>
@@ -43,12 +43,12 @@
                         <Insets left="5.0" top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <FontIcon fx:id="MenuIconClose" iconLiteral="fas-bars" iconSize="35" onMouseClicked="#onMenuCloseClicked">
+                  <FontIcon fx:id="MenuIconClose" iconLiteral="fas-bars" iconSize="20" onMouseClicked="#onMenuCloseClicked">
                      <HBox.margin>
                         <Insets left="20.0" top="7.0" />
                      </HBox.margin>
                   </FontIcon>
-                  <FontIcon fx:id="MenuIcon" iconLiteral="fas-bars" iconSize="35" onMouseClicked="#onMenuClicked" translateX="-51.0">
+                  <FontIcon fx:id="MenuIcon" iconLiteral="fas-bars" iconSize="20" onMouseClicked="#onMenuClicked" translateX="-36.0">
                      <HBox.margin>
                         <Insets left="20.0" top="7.0" />
                      </HBox.margin>
@@ -57,8 +57,8 @@
             </HBox>
          </children>
       </AnchorPane>
-      <BorderPane fx:id="ScreenStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
-      <AnchorPane fx:id="ButtonSideBar" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="50.0">
+      <BorderPane fx:id="ScreenStage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="950.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0" />
+      <AnchorPane fx:id="ButtonSideBar" prefHeight="600.0" prefWidth="200.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="30.0">
          <children>
             <VBox prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
@@ -100,7 +100,7 @@
             </VBox>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="IconSideBar" prefHeight="600.0" prefWidth="50.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <AnchorPane fx:id="IconSideBar" prefHeight="600.0" prefWidth="50.0" style="-fx-border-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="30.0">
          <children>
             <VBox layoutX="-25.0" layoutY="65.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>

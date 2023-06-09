@@ -39,7 +39,7 @@
                                     <Insets bottom="10.0" left="10.0" top="10.0" />
                                  </HBox.margin>
                               </TableView>
-                              <VBox prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #8794C0;">
+                              <VBox fx:id="AddItemsBox" prefHeight="200.0" prefWidth="250.0" style="-fx-background-color: #8794C0;">
                                  <children>
                                     <DatePicker fx:id="expenseDate" prefWidth="230.0" promptText="yyyy-mm-dd">
                                        <VBox.margin>

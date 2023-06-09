@@ -24,6 +24,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+import static com.example.se_opdracht.InputCheckers.InputCheck.*;
+
 public class ProductsScreenController extends GenericScreenController implements Initializable {
     //Variables
 
@@ -73,16 +75,20 @@ public class ProductsScreenController extends GenericScreenController implements
 
     }
 
+    private void newProduct(IProduct product){
+
+    }
+
     public void addNewPurchase(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         Boolean emptyDate = isDatePickerEmpty(purchaseDatePicker);
         if (emptyDate || purchaseDatePicker.getEditor().getText().isEmpty() || purchasePriceTextfield.getText().isEmpty())
         {error.noCompletePurchaseInfo();}
         else {
-            String price = String.valueOf(purchasePriceTextfield.getText());
+            Double price = Double.valueOf(purchasePriceTextfield.getText());
             IProduct selectedProduct = (IProduct) productFormList.getSelectionModel().getSelectedItem();
             IPurchase purchase = AbstractFactory.Timeline.createPurchase(selectedProduct,
                     purchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                    BigDecimal.valueOf(Long.parseLong(price)));
+                    BigDecimal.valueOf(price));
             DB.addTransaction(purchase);
             refresh();
         }
@@ -116,9 +122,9 @@ public class ProductsScreenController extends GenericScreenController implements
     public void fillPurchaseTable(IProduct product) throws ClassNotFoundException {
         ObservableList<IPurchase> purchaseHistory = DB.getTransactions(product);
         //The string value here needs to equal the name of the variable in the class you're trying to retireve data from
-        PurchaseID.setCellValueFactory(new PropertyValueFactory<TimelinePurchase, Integer>("PurchaseID"));
-        DateColumn.setCellValueFactory(new PropertyValueFactory<TimelinePurchase,String>("PurchaseDate"));
-        PriceColumn.setCellValueFactory(new PropertyValueFactory<TimelinePurchase, BigDecimal>("PurchasePrice"));
+        PurchaseID.setCellValueFactory(new PropertyValueFactory<IPurchase, Integer>("PurchaseID"));
+        DateColumn.setCellValueFactory(new PropertyValueFactory<IPurchase,String>("Date"));
+        PriceColumn.setCellValueFactory(new PropertyValueFactory<IPurchase, BigDecimal>("Price"));
         PurchaseTable.setItems(purchaseHistory);
 
 
@@ -134,7 +140,7 @@ public class ProductsScreenController extends GenericScreenController implements
 
     public void FillTable(MouseEvent mouseEvent) throws ClassNotFoundException {
         try {
-            TimelineProduct selectedProduct = (TimelineProduct) productList.getSelectionModel().getSelectedItem();
+            IProduct selectedProduct = (IProduct) productList.getSelectionModel().getSelectedItem();
             fillPurchaseTable(selectedProduct);
 
 
