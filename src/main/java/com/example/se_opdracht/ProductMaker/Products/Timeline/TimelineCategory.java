@@ -36,4 +36,9 @@ public class TimelineCategory implements ICategory {
         this.CategoryName = name;
         this.CategoryID = id;
     }
+
+    @Override
+    public String toString(){
+        return this.CategoryName;
+    }
 }

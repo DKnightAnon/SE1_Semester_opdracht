@@ -7,10 +7,7 @@ import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -97,12 +94,26 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
 //            AbstractFactory.Timeline.createCategory().addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
 
 //            System.out.println(rs.next());
+//            ResultSetMetaData rsmd = rs.getMetaData();
+//            int columnsNumber = rsmd.getColumnCount();
+//            while (rs.next()) {
+//                for (int i = 1; i <= columnsNumber; i++) {
+//                    if (i > 1) System.out.print(",  ");
+//                    String columnValue = rs.getString(i);
+//                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+//                }
+//                System.out.println("");
+//            }
+
             while (rs.next()) {
+                //System.out.println();
+
                 ICategory tempCat =  AbstractFactory.Timeline.createCategory();
-                tempCat.addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
+                tempCat.addAll(rs.getString("CategoryName"), rs.getInt("Product_ID"));
                 IProduct tempProduct = AbstractFactory.Timeline.createProduct();
                 tempProduct.addAll(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), tempCat);
                 list.add(tempProduct);
+
 
             }
             con.close();
