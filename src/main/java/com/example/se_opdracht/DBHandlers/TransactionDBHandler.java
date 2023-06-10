@@ -1,7 +1,7 @@
 package com.example.se_opdracht.DBHandlers;
 
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
-import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
+import com.example.se_opdracht.ProductMaker.Products.IProduct;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,7 +11,7 @@ public class TransactionDBHandler extends DBhandler{
 
 
 
-    public ObservableList<TransactionProduct> getTransactions() {
+    public ObservableList<IProduct> getTransactions() {
         String databasequery1 =
                 "SELECT 'ID', 'Date', 'Item', 'Vendor', 'Description', 'Name' " +
                         "FROM 'purchase' JOIN 'expense_category'" +
@@ -25,7 +25,7 @@ public class TransactionDBHandler extends DBhandler{
                 "FROM PURCHASE JOIN EXPENSE_CATEGORY " +
                 "ON PURCHASE.Category = EXPENSE_CATEGORY.Category_ID;";
 
-        ObservableList<TransactionProduct> list;
+        ObservableList<IProduct> list;
         try {
             //Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
             //Above code made redundant. It can now be called with 'DBHandler.getConnection();'
@@ -52,7 +52,7 @@ public class TransactionDBHandler extends DBhandler{
 
         return list;
     }
-    public TransactionProduct getSingularProduct(int ID) throws SQLException, ClassNotFoundException {
+    public IProduct getSingularProduct(int ID) throws SQLException, ClassNotFoundException {
         String databasequery =
                 "SELECT Purchase_ID, Date, Item, Description, Name " +
                         "FROM PURCHASE JOIN EXPENSE_CATEGORY" +
@@ -62,7 +62,7 @@ public class TransactionDBHandler extends DBhandler{
         PreparedStatement ps = con.prepareStatement(databasequery);
         ps.setInt(1, ID);
         ResultSet rs = ps.executeQuery();
-        TransactionProduct SingularProduct = null;
+        IProduct SingularProduct = null;
 //        while (rs.next()) {
 //            SingularProduct = new TransactionProduct(
 //                    rs.getInt("Purchase_ID"),

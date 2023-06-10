@@ -2,10 +2,12 @@ package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.InputCheckers.DescriptionChecker;
+import com.example.se_opdracht.ProductMaker.AbstractFactory;
+import com.example.se_opdracht.ProductMaker.ProductFactory;
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
-import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
 
 
+import com.example.se_opdracht.ProductMaker.Products.IProduct;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,10 +45,12 @@ public class TransactionScreenController extends GenericScreenController impleme
     //Purchase(Transaction) form variables
 
     ObservableList<ICategory> categoryList;
-    ObservableList<TransactionProduct> transactions;
+    ObservableList<IProduct> transactions;
     DescriptionChecker DesCheck = new DescriptionChecker(250);//250 character limit for descriptions
 
     TransactionDBHandler db = new TransactionDBHandler();
+
+    AbstractFactory factory = new ProductFactory();
 
     @FXML
     private AnchorPane TransactionScreen;
@@ -102,11 +106,11 @@ public class TransactionScreenController extends GenericScreenController impleme
 
 
     public void TableLoad() {
-        IDColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, Integer>("ID"));//Purchase_ID in database
-        DateColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Date"));//Date in database
-        ItemColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Name"));//(product) name in database
-        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Description")); //(product) description in database
-        CategoryColumn.setCellValueFactory(new PropertyValueFactory<TransactionProduct, String>("Category"));//(Expense_Category) name in database
+        IDColumn.setCellValueFactory(new PropertyValueFactory<IProduct, Integer>("ID"));//Purchase_ID in database
+        DateColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Date"));//Date in database
+        ItemColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Name"));//(product) name in database
+        DescriptionColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Description")); //(product) description in database
+        CategoryColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Category"));//(Expense_Category) name in database
         transactions = db.getTransactions();
         TransactionTable.setItems(transactions);
 //        categoryList = db.getCategories();

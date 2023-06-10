@@ -81,6 +81,11 @@
                                           <Insets left="50.0" right="50.0" top="10.0" />
                                        </VBox.margin>
                                     </Button>
+                                    <Separator prefHeight="16.0" prefWidth="200.0" style="-fx-background-color: #676f9d;">
+                                       <VBox.margin>
+                                          <Insets top="5.0" />
+                                       </VBox.margin>
+                                    </Separator>
                                  </children>
                                  <HBox.margin>
                                     <Insets bottom="10.0" left="10.0" top="10.0" />

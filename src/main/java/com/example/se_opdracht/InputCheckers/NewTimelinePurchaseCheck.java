@@ -4,7 +4,6 @@ import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 import com.example.se_opdracht.ProductMaker.Products.IProduct;
 import com.example.se_opdracht.ProductMaker.Products.IPurchase;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
 
 
 import java.time.format.DateTimeFormatter;
@@ -55,7 +54,7 @@ public class NewTimelinePurchaseCheck {
 
     }
 
-    private boolean doesProductExist(TimelineProduct product){
+    private boolean doesProductExist(IProduct product){
         boolean exists = false;
         int contains = 0;
         for (int i = 0;i<AvailableProducts.size();i++){
@@ -69,7 +68,7 @@ public class NewTimelinePurchaseCheck {
         }
         return exists;
     }
-    private boolean doesProductExistInCategory(ICategory category,TimelineProduct product){
+    private boolean doesProductExistInCategory(ICategory category,IProduct product){
 
         if (category.getCategoryName().equals(product.getCategory())){
             return true;
@@ -79,7 +78,7 @@ public class NewTimelinePurchaseCheck {
 
     }
 
-    public int inputCheck(String Price,ICategory category, TimelineProduct product,String date){
+    public int inputCheck(String Price,ICategory category, IProduct product,String date){
         DateTimeFormatter formatter;
         int Code = 0;
         //Code 0 means every input is valid

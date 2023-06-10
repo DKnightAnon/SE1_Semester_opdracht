@@ -2,11 +2,10 @@ package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.ProductMaker.AbstractFactory;
+import com.example.se_opdracht.ProductMaker.ProductFactory;
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 import com.example.se_opdracht.ProductMaker.Products.IProduct;
 import com.example.se_opdracht.ProductMaker.Products.IPurchase;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelinePurchase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -49,6 +47,8 @@ public class ProductsScreenController extends GenericScreenController implements
     @FXML
     private AnchorPane TimelineScreen;
 
+    AbstractFactory factory = new ProductFactory();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -63,7 +63,7 @@ public class ProductsScreenController extends GenericScreenController implements
 
 
     public void addNewProduct(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        IProduct newProduct = AbstractFactory.Timeline.createProduct();
+        IProduct newProduct = factory.createProduct();
         ICategory tempCat = (ICategory) newProductCategoryList.getSelectionModel().getSelectedItem();
         newProduct.addAll(NewProductTextfield.getText(),"",0,tempCat);
         Boolean emptyTextField = isTextFieldEmpty(NewProductTextfield);
@@ -86,9 +86,7 @@ public class ProductsScreenController extends GenericScreenController implements
         else {
             Double price = Double.valueOf(purchasePriceTextfield.getText());
             IProduct selectedProduct = (IProduct) productFormList.getSelectionModel().getSelectedItem();
-            IPurchase purchase = AbstractFactory.Timeline.createPurchase(selectedProduct,
-                    purchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")),
-                    BigDecimal.valueOf(price));
+            IPurchase purchase = factory.createPurchase(selectedProduct, purchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), BigDecimal.valueOf(price), 0);
             DB.addTransaction(purchase);
             refresh();
         }
@@ -96,7 +94,7 @@ public class ProductsScreenController extends GenericScreenController implements
     }
 
     public void addNewCategory(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        ICategory newCategory = AbstractFactory.Timeline.createCategory();
+        ICategory newCategory = factory.createCategory();
         newCategory.setCategoryName(newCategoryTextfield.getText());
         DB.addNewCategory(newCategory);
         refresh();

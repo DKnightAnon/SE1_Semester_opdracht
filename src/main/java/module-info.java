@@ -21,10 +21,6 @@ module com.example.se_opdracht {
     opens com.example.se_opdracht.DBHandlers to javafx.fxml;
     exports com.example.se_opdracht.ProductMaker.Products;
     opens com.example.se_opdracht.ProductMaker.Products to javafx.fxml;
-    exports com.example.se_opdracht.ProductMaker.Products.Transaction;
-    opens com.example.se_opdracht.ProductMaker.Products.Transaction to javafx.fxml;
-    exports com.example.se_opdracht.ProductMaker.Products.Timeline;
-    opens com.example.se_opdracht.ProductMaker.Products.Timeline to javafx.fxml;
     exports com.example.se_opdracht.BudgetHandlers;
     exports com.example.se_opdracht.InputCheckers;
     opens com.example.se_opdracht.InputCheckers to javafx.fxml;

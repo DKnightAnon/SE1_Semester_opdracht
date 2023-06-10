@@ -1,12 +1,19 @@
-package com.example.se_opdracht.ProductMaker.Products.Transaction;
+package com.example.se_opdracht.ProductMaker.Products;
 
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 
-public class TransactionCategory implements ICategory {
+public class Category implements ICategory {
+
     private String CategoryName;
     private int CategoryID;
 
+    public Category() {
+    }
 
+    public Category(String categoryName, int categoryID) {
+        CategoryName = categoryName;
+        CategoryID = categoryID;
+    }
 
     @Override
     public String getCategoryName() {
@@ -34,5 +41,10 @@ public class TransactionCategory implements ICategory {
     public void addAll(String name, int id) {
         this.CategoryName = name;
         this.CategoryID = id;
+    }
+
+    @Override
+    public String toString(){
+        return this.CategoryName;
     }
 }

@@ -44,8 +44,7 @@ public class SettingsScreenController implements Initializable {
             path = String.valueOf(Main.class.getResource("CSS_Files/LightMode.css"));
         }else {
             UserProfile.getInstance().setDarkMode(false);
-            path = String.valueOf(Main.class.getResource("CSS_Files/DarkMode.css"));
-        }
+            path = String.valueOf(Main.class.getResource("CSS_Files/DarkMode.css"));        }
         Main.genericstage.getScene().getStylesheets().clear();
         Main.genericstage.getScene().getStylesheets().add(path);
     }

@@ -1,12 +1,4 @@
-import com.example.se_opdracht.DBHandlers.DBhandler;
-import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
 import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.sql.*;
-import java.util.ArrayList;
 
 public class DatabaseTest {
 

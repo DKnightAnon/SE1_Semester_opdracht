@@ -1,4 +1,4 @@
-package com.example.se_opdracht.ProductMaker.Products.Transaction;
+package com.example.se_opdracht.ProductMaker.Products;
 
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 import com.example.se_opdracht.ProductMaker.Products.IProduct;
@@ -6,12 +6,21 @@ import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 
 import java.math.BigDecimal;
 
-public class TransactionPurchase implements IPurchase {
+public class Purchase implements IPurchase {
 
     private ICategory category;
     private IProduct product;
     private String date;
     private BigDecimal price;
+    private int PurchaseID;
+
+    public Purchase(IProduct product, String date, BigDecimal price, int purchaseID) {
+        this.product = product;
+        this.category = product.getCategory();
+        this.date = date;
+        this.price = price;
+        PurchaseID = purchaseID;
+    }
 
     @Override
     public ICategory getCategory() {
@@ -56,16 +65,20 @@ public class TransactionPurchase implements IPurchase {
 
     @Override
     public int getPurchaseID() {
-        return 0;
+        return this.PurchaseID;
     }
 
     @Override
     public void setPurchaseID(int id) {
+        this.PurchaseID = id;
 
     }
 
-    @Override
-    public void addAll(IProduct product, ICategory category, String date, BigDecimal price, int purchaseID) {
-
+    public void addAll(IProduct product, ICategory category, String date, BigDecimal price, int purchaseID){
+        this.product = product;
+        this.category = category;
+        this.date = date;
+        this.price = price;
     }
+
 }

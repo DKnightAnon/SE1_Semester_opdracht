@@ -1,23 +1,13 @@
 package com.example.se_opdracht.Controllers;
 
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProduct;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-import java.math.BigDecimal;
 import java.net.URL;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class ProductPriceTrackingScreenController extends GenericScreenController implements Initializable {

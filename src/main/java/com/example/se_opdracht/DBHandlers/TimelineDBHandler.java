@@ -1,6 +1,7 @@
 package com.example.se_opdracht.DBHandlers;
 
 import com.example.se_opdracht.ProductMaker.AbstractFactory;
+import com.example.se_opdracht.ProductMaker.ProductFactory;
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 import com.example.se_opdracht.ProductMaker.Products.IProduct;
 import com.example.se_opdracht.ProductMaker.Products.IPurchase;
@@ -13,6 +14,8 @@ import java.util.List;
 
 public class TimelineDBHandler extends DBhandler implements DBInsertTransaction,DBRetrieveTransaction,IDBInsert,IDBRetrieve{
 
+    AbstractFactory factory = new ProductFactory();
+
     public ArrayList<IProduct> getProductsAsArrayList() throws ClassNotFoundException {
         ArrayList list = new ArrayList<>();
         Class.forName("org.h2.Driver");
@@ -23,11 +26,11 @@ public class TimelineDBHandler extends DBhandler implements DBInsertTransaction,
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            AbstractFactory.Timeline.createCategory().addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
+            factory.createCategory().addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
             while (rs.next()) {
-                ICategory tempCat =  AbstractFactory.Timeline.createCategory();
+                ICategory tempCat = factory.createCategory();
                 tempCat.addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
-                IProduct tempProduct = AbstractFactory.Timeline.createProduct();
+                IProduct tempProduct = factory.createProduct();
                 tempProduct.addAll(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), tempCat);
                 list.add(tempProduct);
 
@@ -83,7 +86,6 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
 
     public  ObservableList<IProduct> getProducts() {
         ObservableList<IProduct> list = FXCollections.observableArrayList();
-        //This was first initialized with the null value. Don't do this, it throws exceptions.
         String query = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName " +
                 "From TimelineProduct product join TimelineProductCategory category " +
                 "on product.category = category.Category_ID";
@@ -91,26 +93,14 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-//            AbstractFactory.Timeline.createCategory().addAll(rs.getString("CategoryName"), rs.getInt("Category_ID"));
 
-//            System.out.println(rs.next());
-//            ResultSetMetaData rsmd = rs.getMetaData();
-//            int columnsNumber = rsmd.getColumnCount();
-//            while (rs.next()) {
-//                for (int i = 1; i <= columnsNumber; i++) {
-//                    if (i > 1) System.out.print(",  ");
-//                    String columnValue = rs.getString(i);
-//                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
-//                }
-//                System.out.println("");
-//            }
 
             while (rs.next()) {
                 //System.out.println();
 
-                ICategory tempCat =  AbstractFactory.Timeline.createCategory();
+                ICategory tempCat =  factory.createCategory();
                 tempCat.addAll(rs.getString("CategoryName"), rs.getInt("Product_ID"));
-                IProduct tempProduct = AbstractFactory.Timeline.createProduct();
+                IProduct tempProduct = factory.createProduct();
                 tempProduct.addAll(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), tempCat);
                 list.add(tempProduct);
 
@@ -136,7 +126,7 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            ICategory temp = AbstractFactory.Timeline.createCategory();
+            ICategory temp = factory.createCategory();
             while (rs.next()) {
                 temp.addAll(rs.getString("CategoryName"),rs.getInt("Category_ID"));
                 list.add(temp);
@@ -159,7 +149,7 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            ICategory temp = AbstractFactory.Timeline.createCategory();
+            ICategory temp = factory.createCategory();
             while (rs.next()) {
                 temp.addAll(rs.getString("CategoryName"),rs.getInt("Category_ID"));
                 list.add(temp);
@@ -208,14 +198,10 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
             PreparedStatement ps = con.prepareStatement(query);
             ps.setInt(1,product.getProductID());
             ResultSet rs = ps.executeQuery();
-
-            IPurchase temp = AbstractFactory.Timeline.createPurchase();
-            IProduct tempProduct = AbstractFactory.Timeline.createProduct();
-            ICategory tempCategory = AbstractFactory.Timeline.createCategory();
-
             while (rs.next()){
-                temp.addAll(tempProduct,tempCategory, rs.getString("Date"),rs.getBigDecimal("PurchasePrice"), rs.getInt("PurchaseDate_ID"));
-                list.add(temp);
+                //temp.addAll(tempProduct,tempCategory, rs.getString("Date"),rs.getBigDecimal("PurchasePrice"), rs.getInt("PurchaseDate_ID"));
+                IPurchase retrieve = factory.createPurchase(factory.createProduct(), rs.getString("Date"),rs.getBigDecimal("PurchasePrice"),rs.getInt("PurchaseDate_ID"));
+                list.add(retrieve);
             }
             con.close();
 
@@ -267,4 +253,18 @@ public boolean checkConnection() throws SQLException, ClassNotFoundException {
         }
 
     }
+
+    //Beneath this is a method to print everything in the ResultSet rs to the command line. This is not currently used in the program, but could be useful in the future.
+
+    //            System.out.println(rs.next());
+//            ResultSetMetaData rsmd = rs.getMetaData();
+//            int columnsNumber = rsmd.getColumnCount();
+//            while (rs.next()) {
+//                for (int i = 1; i <= columnsNumber; i++) {
+//                    if (i > 1) System.out.print(",  ");
+//                    String columnValue = rs.getString(i);
+//                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+//                }
+//                System.out.println("");
+//            }
 }
