@@ -1,6 +1,6 @@
 package com.example.se_opdracht.Controllers;
 
-import com.example.se_opdracht.Controllers.GenericScreenController;
+import com.example.se_opdracht.ErrorMessages.ErrorWarnings;
 import com.example.se_opdracht.Main;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
@@ -28,7 +28,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class SidebarController extends GenericScreenController implements Initializable {
+import static com.example.se_opdracht.Controllers.ScreenLoader.getScreen;
+
+public class SidebarController implements Initializable {
     @FXML
     private AnchorPane ButtonSideBar,TopBar,MainAnchor;
     @FXML
@@ -108,33 +110,34 @@ public class SidebarController extends GenericScreenController implements Initia
         slideSidebarIn();
 
     }
-    @Override
     public void onProductsButtonClick(ActionEvent event) throws IOException {
-//        File currentDirFile = new File(".");
-//        String helper = currentDirFile.getAbsolutePath();
-//        String currentDir = helper.substring(0, helper.length() - currentDirFile.getCanonicalPath().length());//this line may need a try-catch block
-//        System.out.println(currentDir);
-        FXMLLoader loader = new FXMLLoader();
-        CurrentScreen = getScreen("Screens/TimelineProductsScreen.fxml");
-        ScreenStage.setCenter(CurrentScreen);
-        slideSidebarIn();
+        loadScreen(CurrentScreen = getScreen("Screens/TimelineProductsScreen.fxml"));
     }
 
     @FXML
     void onSettingsButtonClick(ActionEvent event) {
-        CurrentScreen = getScreen("Screens/SettingsScreen.fxml");
-        ScreenStage.setCenter(CurrentScreen);
-        slideSidebarIn();
-
-
+     loadScreen(CurrentScreen = getScreen("Screens/SettingsScreen.fxml"));
     }
 
-    @Override
     public void onTransactionsButtonClick(ActionEvent event) {
-        CurrentScreen = getScreen("Screens/TransactionScreen.fxml");
-        ScreenStage.setCenter(CurrentScreen);
-        slideSidebarIn();
+        loadScreen(CurrentScreen = getScreen("Screens/TransactionScreen.fxml"));
+    }
 
+    public void onCloseButtonClick(ActionEvent actionEvent) {
+        try {
+            ErrorWarnings.logoutConfirm();
+        } catch (Exception e) {
+            ErrorWarnings.unableToCloseApplication();
+        }
+    }
+
+    public void onCloseImageClick(MouseEvent mouseEvent) {
+        javafx.application.Platform.exit();
+    }
+
+    private void loadScreen(AnchorPane screen){
+        ScreenStage.setCenter(screen);
+        slideSidebarIn();
     }
 
 
@@ -142,12 +145,9 @@ public class SidebarController extends GenericScreenController implements Initia
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         CurrentScreen.setTranslateX(-100);
-
-
         ButtonSideBar.setTranslateX(-200);
         MenuIconClose.setVisible(false);
 
-        ScreenName = MainAnchor;
         System.out.println();
 
 

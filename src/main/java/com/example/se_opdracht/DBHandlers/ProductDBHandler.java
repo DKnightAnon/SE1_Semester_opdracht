@@ -16,7 +16,7 @@ public abstract class ProductDBHandler extends DBConnect{
 
     public abstract ObservableList<IPurchase> getTransactions();
     public abstract ObservableList<IPurchase> getTransactions(IProduct product);
-    public abstract ArrayList<IPurchase> getTransactionsAsArrayList(IProduct product);
+
     public abstract void addNewTransaction(IPurchase purchase) throws ClassNotFoundException, SQLException;
 
     public abstract ObservableList<ICategory> getCategories()throws SQLException, ClassNotFoundException;

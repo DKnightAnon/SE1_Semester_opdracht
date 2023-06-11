@@ -6,18 +6,11 @@ import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TransactionDBHandler extends ProductDBHandler{
 
     @Override
-    public ObservableList<IPurchase> getTransactions(IProduct product) {
-        return null;
-    }
-
-    @Override
-    public ArrayList<IPurchase> getTransactionsAsArrayList(IProduct product) {
-        return null;
-    }
     public ObservableList<IPurchase> getTransactions() {
         String getTransactionsQuery = "  SELECT *  FROM purchase JOIN expense_category ON purchase.Category = expense_category.Category_ID;";
         ObservableList<IPurchase> list = FXCollections.observableArrayList();
@@ -41,8 +34,50 @@ public class TransactionDBHandler extends ProductDBHandler{
 
         return list;
     }
+    @Override
+    public ObservableList<IPurchase> getTransactions(IProduct product) {
+        String getTransactionsQuery = "  SELECT *  FROM purchase JOIN expense_category ON purchase.Category = expense_category.Category_ID WHERE ITEM is ?;";
+        ObservableList<IPurchase> list = FXCollections.observableArrayList();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement(getTransactionsQuery);
+            ps.setString(1,product.getName());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new Purchase(
+                        new Product(rs.getString("Item"),rs.getString("Description"),0,
+                                new Category(rs.getString("Name"), rs.getInt("Category"))
+                        ),
+                        rs.getString("Date"),rs.getBigDecimal("PurchasePrice"),rs.getInt("Purchase_ID")));//category
+            }
+            connection.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
 
+        return list;
+    }
 
+    @Override
+    public void addNewTransaction(IPurchase purchase) {
+        try{
+            Connection con = getConnection();
+            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category,PurchasePrice) VALUES (?,?,?,?,?)");
+            psInsert.setString(1,purchase.getDate());
+            psInsert.setString(2,purchase.getProduct().getName());
+            psInsert.setString(3,purchase.getProduct().getDescription());
+            psInsert.setInt(4,purchase.getCategory().getCategoryID());
+            psInsert.setBigDecimal(5,purchase.getPrice());
+            psInsert.execute();
+            con.close();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public ObservableList<ICategory> getCategories() {
         ObservableList<ICategory>   list = FXCollections.observableArrayList();
@@ -80,27 +115,8 @@ public class TransactionDBHandler extends ProductDBHandler{
 
     @Override
     public void addNewProduct(IProduct product) {
-
     }
 
-    @Override
-    public void addNewTransaction(IPurchase purchase) {
-        try{
-           Connection con = getConnection();
-            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category,PurchasePrice) VALUES (?,?,?,?,?)");
-            psInsert.setString(1,purchase.getDate());
-            psInsert.setString(2,purchase.getProduct().getName());
-            psInsert.setString(3,purchase.getProduct().getDescription());
-            psInsert.setInt(4,purchase.getCategory().getCategoryID());
-            psInsert.setBigDecimal(5,purchase.getPrice());
-            psInsert.execute();
-            con.close();
-        }catch (SQLException e){
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
 
 
 

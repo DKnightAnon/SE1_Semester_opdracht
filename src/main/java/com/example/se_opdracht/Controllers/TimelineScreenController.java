@@ -1,5 +1,6 @@
 package com.example.se_opdracht.Controllers;
 
+import com.example.se_opdracht.ErrorMessages.*;
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.ProductMaker.AbstractFactory;
 import com.example.se_opdracht.ProductMaker.ProductFactory;
@@ -24,7 +25,7 @@ import java.util.ResourceBundle;
 
 import static com.example.se_opdracht.InputCheckers.InputCheck.*;
 
-public class ProductsScreenController extends GenericScreenController implements Initializable {
+public class TimelineScreenController implements Initializable {
     //Variables
 
     @FXML
@@ -77,9 +78,8 @@ public class ProductsScreenController extends GenericScreenController implements
     }
 
     public void addNewPurchase(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        Boolean emptyDate = isDatePickerEmpty(purchaseDatePicker);
-        if (emptyDate || purchaseDatePicker.getEditor().getText().isEmpty() || purchasePriceTextfield.getText().isEmpty())
-        {error.noCompletePurchaseInfo();}
+        if ( isDatePickerEmpty(purchaseDatePicker)|| purchaseDatePicker.getEditor().getText().isEmpty() || purchasePriceTextfield.getText().isEmpty())
+        {ErrorWarnings.noCompletePurchaseInfo();}
         else {
             Double price = Double.valueOf(purchasePriceTextfield.getText());
             DB.addNewTransaction(factory.createPurchase((IProduct) productFormList.getSelectionModel().getSelectedItem(), purchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), BigDecimal.valueOf(price), 0));
@@ -139,7 +139,7 @@ public class ProductsScreenController extends GenericScreenController implements
 
         }catch (Exception e) {
             e.printStackTrace();
-            error.noItemSelected();
+            ErrorWarnings.noItemSelected();
             throw new RuntimeException(e);
         }
         //System.out.println("TestClick!");

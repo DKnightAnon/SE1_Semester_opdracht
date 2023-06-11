@@ -4,7 +4,7 @@ import com.example.se_opdracht.ChartHandlers.ChartHandler;
 import com.example.se_opdracht.ChartHandlers.Transaction.TransactionChartHandler;
 import com.example.se_opdracht.DBHandlers.ProductDBHandler;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
-import com.example.se_opdracht.InputCheckers.DescriptionChecker;
+import com.example.se_opdracht.Data;
 import com.example.se_opdracht.InputCheckers.TransactionCheck;
 import com.example.se_opdracht.ProductMaker.AbstractFactory;
 import com.example.se_opdracht.ProductMaker.ProductFactory;
@@ -32,7 +32,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class TransactionScreenController extends GenericScreenController implements Initializable {
+public class TransactionScreenController implements Initializable {
 
 //Table variables
     @FXML
@@ -63,11 +63,6 @@ public class TransactionScreenController extends GenericScreenController impleme
     ChartHandler chartHandler = new TransactionChartHandler();
 
 
-
-
-    @FXML
-    private AnchorPane TransactionScreen;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
@@ -85,14 +80,14 @@ public class TransactionScreenController extends GenericScreenController impleme
 
     }
 
-    //use MM for months. mm is for minutes of hour
+
     public void AddNewPurchase(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         Double price = Double.valueOf(priceField.getText());
-        tdbh.addNewTransaction(TransactionCheck.PurchaseCheck(
+        db.addNewTransaction(TransactionCheck.PurchaseCheck(
                 factory.createPurchase(
                         factory.createProduct(expenseItem.getText(),purchaseDescription.getText(),0,
                                 (ICategory) selectCategory.getSelectionModel().getSelectedItem()),
-                        expenseDate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), BigDecimal.valueOf(price),0 )));
+                        expenseDate.getValue().format(DateTimeFormatter.ofPattern(Data.dateformat)), BigDecimal.valueOf(price),0 )));
             selectCategory.setValue("Choose a category");
             TableLoad();
     }

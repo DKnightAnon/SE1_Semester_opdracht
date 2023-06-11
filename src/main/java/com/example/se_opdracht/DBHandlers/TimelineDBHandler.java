@@ -39,15 +39,7 @@ public class TimelineDBHandler extends ProductDBHandler{
         }
         return list;
     }
-    public ArrayList<IProduct> getProductsAsArrayList() throws ClassNotFoundException {
-        List list = getProducts();
-        return (ArrayList<IProduct>) list;
-    }
 
-    public ArrayList<ICategory> getCategoriesAsArrayList() throws SQLException, ClassNotFoundException {
-        List list = getCategories();
-        return (ArrayList<ICategory>) list;
-    }
     public  ObservableList<ICategory> getCategories() throws SQLException, ClassNotFoundException {
         ObservableList<ICategory> list = FXCollections.observableArrayList();
         String query = "SELECT * FROM TIMELINEPRODUCTCATEGORY";
@@ -119,12 +111,6 @@ public class TimelineDBHandler extends ProductDBHandler{
     @Override
     public ObservableList<IPurchase> getTransactions() {
         return null;
-    }
-
-    @Override
-    public ArrayList<IPurchase> getTransactionsAsArrayList(IProduct product) {
-        List list = getTransactions(product);
-        return (ArrayList<IPurchase>) list;
     }
 
     @Override
