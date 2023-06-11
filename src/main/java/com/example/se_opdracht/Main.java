@@ -19,18 +19,16 @@ public class Main extends Application {
     double y = 0;
 
 
-    public Main() throws IOException {
-    }
-
     @Override
     public void start(Stage stage) throws IOException {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("Controllers/StartMenu.fxml"));
+            Parent root = FXMLLoader.load(Main.class.getResource("Screens/Sidebar.fxml"));
+            //Parent root = FXMLLoader.load(getClass().getResource("Controllers/StartMenu.fxml"));
             Scene scene = new Scene(root);
             stage.setTitle("Homepage");
             stage.initStyle(StageStyle.UNDECORATED);
-            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/Buttons.css").toExternalForm());
-            stage.getIcons().add(new Image(getClass().getResourceAsStream("images/AppIcon.png")));
+            scene.getStylesheets().addAll(getClass().getResource("CSS_Files/DarkMode.css").toExternalForm());
+            stage.getIcons().add(new Image(Main.class.getResourceAsStream("images/AppIcon.png")));
             stage.setMinHeight(650);
             stage.setMinWidth(1000);
             stage.setScene(scene);

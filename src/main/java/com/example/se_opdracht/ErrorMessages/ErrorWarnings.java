@@ -1,5 +1,6 @@
 package com.example.se_opdracht.ErrorMessages;
 
+import com.example.se_opdracht.Main;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -7,23 +8,13 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ErrorWarnings {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    private String connectionError = "Connection Error";
-    private String missingData = "Data missing";
-    private String missingDataHeader = "Not all data fields have been filled!";
+public final class ErrorWarnings {
 
-    public void databasenotconnected() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(connectionError);
-        alert.setHeaderText("Connection Failed");
-        alert.setContentText("Unable to connect to database." + "\n" + "Please check server connection and login info.");
-        alert.showAndWait();
-    }
+    private static final String missingData = "Data missing";
+    private static final String missingDataHeader = "Not all data fields have been filled!";
 
-    public void noCompletePurchaseInfo() {
+
+    public static void noCompletePurchaseInfo() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(missingData);
         alert.setHeaderText(missingDataHeader);
@@ -31,7 +22,7 @@ public class ErrorWarnings {
         alert.showAndWait();
 
     }
-    public void noCategoryEntered(){
+    public static void noCategoryEntered(){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(missingData);
         alert.setHeaderText(missingDataHeader);
@@ -40,7 +31,7 @@ public class ErrorWarnings {
 
     }
 
-    public void unableToSwitchScene() {
+    public static void unableToSwitchScene() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Screen Switch Error");
@@ -48,7 +39,7 @@ public class ErrorWarnings {
         alert.showAndWait();
     }
 
-    public void unableToCloseApplication() {
+    public static void unableToCloseApplication() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
         alert.setHeaderText("Screen Switch Error");
@@ -56,20 +47,20 @@ public class ErrorWarnings {
 
     }
 
-    public void logoutConfirm(AnchorPane screenName) {
+    public static void logoutConfirm() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Logout");
-        alert.setHeaderText("You're about to exit the application.");
+        alert.setHeaderText("Logout");
+        alert.setContentText("You're about to exit the application.");
+        alert.getDialogPane().getStylesheets().add(String.valueOf(Main.class.getResource("CSS_Files/DarkMode.css")));
 
         if (alert.showAndWait().get() == ButtonType.OK) {
-            stage = (Stage) screenName.getScene().getWindow();
+            javafx.application.Platform.exit();
             System.out.println("Appliction closed.");
-            stage.close();
         }
 
     }
 
-    public void noItemSelected() {
+    public static void noItemSelected() {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("No item selected");
         alert.setContentText("You havent selected an item to display yet!");

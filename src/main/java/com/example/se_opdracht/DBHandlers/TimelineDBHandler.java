@@ -1,42 +1,101 @@
 package com.example.se_opdracht.DBHandlers;
 
-import com.example.se_opdracht.Products.Timeline.TimelineProduct;
-import com.example.se_opdracht.Products.Timeline.TimelineProductCategory;
-import com.example.se_opdracht.Products.Timeline.TimelineProductPurchase;
-import com.example.se_opdracht.Products.Transaction.TransactionProductCategory;
-import javafx.beans.InvalidationListener;
+import com.example.se_opdracht.ProductMaker.Products.ICategory;
+import com.example.se_opdracht.ProductMaker.Products.IProduct;
+import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
-import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
-public class TimelineDBHandler implements DBhandler{
+public class TimelineDBHandler extends ProductDBHandler{
 
-    public static ObservableList<TimelineProductPurchase> getPurchases(int productID) throws ClassNotFoundException {
-        ObservableList<TimelineProductPurchase> list = FXCollections.observableArrayList();
-        Class.forName("org.h2.Driver");
-        String query = "SELECT * FROM PRODUCTPURCHASEDATE where Product_ID = ? ";
+    private final String getProductsQuery = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName, category.Category_ID " +
+            "From TimelineProduct product join TimelineProductCategory category " +
+            "on product.category = category.Category_ID";;
 
-        try{
-            Connection con = DBhandler.getConnection();
+
+    public  ObservableList<IProduct> getProducts() {
+        ObservableList<IProduct> list = FXCollections.observableArrayList();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(getProductsQuery);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(factory.createProduct(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), factory.createCategory(rs.getString("CategoryName"), rs.getInt("Product_ID"))));
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public  ObservableList<ICategory> getCategories() throws SQLException, ClassNotFoundException {
+        ObservableList<ICategory> list = FXCollections.observableArrayList();
+        String query = "SELECT * FROM TIMELINEPRODUCTCATEGORY";
+        try {
+            Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
-            ps.setInt(1,productID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(factory.createCategory(rs.getString("CategoryName"),rs.getInt("Category_ID")));
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException();
+        } catch (ClassNotFoundException e){
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+
+
+//    -------------------------------------------------------new------------------------------------------------------------------
+
+    @Override
+    public void addNewTransaction(IPurchase purchase) throws ClassNotFoundException, SQLException {
+        String insert = "Insert into ProductPurchaseDate (Product_ID, Date, PurchasePrice) Values (?,?,?)";
+        Class.forName("org.h2.Driver");
+        Connection connection = getConnection();
+        try {
+            PreparedStatement ps = connection.prepareStatement(insert);
+            ps.setInt(1, purchase.getProduct().getProductID());
+            ps.setString(2, purchase.getDate());
+            ps.setBigDecimal(3, purchase.getPrice());
+            ps.executeUpdate();
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    @Override
+    public ObservableList<IPurchase> getTransactions(IProduct product) {
+        ObservableList<IPurchase> list = FXCollections.observableArrayList();
+        String query = "SELECT * FROM PRODUCTPURCHASEDATE where Product_ID = ? ";
+        try{
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(query);
+            ps.setInt(1,product.getProductID());
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
-                list.add(new TimelineProductPurchase(
-                        rs.getInt("PurchaseDate_ID"),
-                        rs.getString("Date"),
-                        rs.getBigDecimal("PurchasePrice"),
-                        rs.getInt("Product_ID")));
+                IPurchase retrieve = factory.createPurchase(factory.createProduct(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), factory.createCategory(rs.getString("CategoryName"), rs.getInt("Product_ID"))), rs.getString("Date"),rs.getBigDecimal("PurchasePrice"),rs.getInt("PurchaseDate_ID"));
+                list.add(retrieve);
             }
             con.close();
 
@@ -48,107 +107,19 @@ public class TimelineDBHandler implements DBhandler{
         }
         return list;
     }
-    public static ObservableList<TimelineProduct> getProductsListview(int index) throws ClassNotFoundException {
-        ObservableList<TimelineProduct> list = FXCollections.observableArrayList();
-        Class.forName("org.h2.Driver");
-        String query = "Select Name, Product_ID from TimelineProduct where Category = ?";
-        try {
-            Connection connection = DBhandler.getConnection();
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1,index);
-            ResultSet rs = ps.executeQuery();
-            list.add(new TimelineProduct(
-                    "Items in category are:",
-                    "empty",
-                    "empty",
-                    0
-            ));
-            while (rs.next()) {
-                list.add(new TimelineProduct(
-                        rs.getString("Name"),
-                        "this should be empty",
-                        "Empty",
-                        rs.getInt("Product_ID")
 
-                ));
-            }
-        }catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return list;
+    @Override
+    public ObservableList<IPurchase> getTransactions() {
+        return null;
     }
-    public static ObservableList<TimelineProduct> getProducts() throws ClassNotFoundException, SQLException {
-        ObservableList<TimelineProduct> list;
-        list = FXCollections.observableArrayList();
-        //This was first initialized with the null value. Don't do this, it throws exceptions.
+
+    @Override
+    public void addNewCategory(ICategory category) throws SQLException, ClassNotFoundException {
         Class.forName("org.h2.Driver");
-        String query = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName " +
-                "From TimelineProduct product join TimelineProductCategory category " +
-                "on product.category = category.Category_ID";
-        try{
-            Connection con = DBhandler.getConnection();
-            PreparedStatement ps = con.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            list.add(new TimelineProduct("Select a product",
-                    "You shoudln't see this.",
-                    "You shouldn't see this.",
-                    0
-            ));
-            while (rs.next()){
-                list.add(new TimelineProduct(
-                        rs.getString("Name"),
-                        rs.getString("Description"),
-                        rs.getString("CategoryName"),
-                        rs.getInt("Product_ID")
-                ));
-
-            }
-            con.close();
-
-        }catch (SQLException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }catch (ClassNotFoundException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-        return list;
-    }
-    public static ObservableList<TimelineProductCategory> getCategories() throws SQLException, ClassNotFoundException {
-        ObservableList<TimelineProductCategory> list;
-        list = FXCollections.observableArrayList();
-        String query = "SELECT * FROM TIMELINEPRODUCTCATEGORY";
-        Class.forName("org.h2.Driver");
-        try {
-            Connection con = DBhandler.getConnection();
-            PreparedStatement ps = con.prepareStatement(query);
-            ResultSet rs = ps.executeQuery();
-            list.add(new TimelineProductCategory(0,"Select a category"));//Stopgap measure to have index start at 1 instead of 0. I've done something similar in TransactionDBHandler.java
-
-            while (rs.next()) {
-                list.add(new TimelineProductCategory(rs.getInt("Category_ID"), rs.getString("CategoryName")));
-            }
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException();
-        } catch (ClassNotFoundException e){
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-
-
-        return list;
-    }
-    public void addCategory(String name) throws SQLException, ClassNotFoundException {
-        Class.forName("org.h2.Driver");
-        Connection connection = DBhandler.getConnection();
+        Connection connection = getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO TimelineProductCategory (CategoryName) VALUES (?);"); //H2 specific statement
-            ps.setString(1, name);
+            ps.setString(1, category.getCategoryName());
             ps.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -156,15 +127,17 @@ public class TimelineDBHandler implements DBhandler{
             throw new RuntimeException(e);
         }
     }
-    public void addNewProduct(String name, String description, int categoryID) throws SQLException, ClassNotFoundException {
+
+    @Override
+    public void addNewProduct(IProduct product) throws ClassNotFoundException, SQLException {
         String insert = "Insert into TimelineProduct (Name, Description, Category) Values (?,?,?)";
         Class.forName("org.h2.Driver");
-        Connection connection = DBhandler.getConnection();
+        Connection connection = getConnection();
         try{
             PreparedStatement ps = connection.prepareStatement(insert);
-            ps.setString(1,name);
-            ps.setString(2,description);
-            ps.setInt(3,categoryID);
+            ps.setString(1,product.getName());
+            ps.setString(2,product.getDescription());
+            ps.setInt(3,product.getCategory().getCategoryID());
             ps.executeUpdate();
             connection.close();
         } catch (SQLException e) {
@@ -173,23 +146,18 @@ public class TimelineDBHandler implements DBhandler{
         }
 
     }
-    public void addNewPurchase(int productIndex, String date, String purchasePrice) throws SQLException, ClassNotFoundException {
-        String insert = "Insert into ProductPurchaseDate (Product_ID, Date, PurchasePrice) Values (?,?,?)";
-        Class.forName("org.h2.Driver");
-        Connection connection = DBhandler.getConnection();
-        try {
-            PreparedStatement ps = connection.prepareStatement(insert);
-            ps.setInt(1, productIndex);
-            ps.setString(2, date);
-            BigDecimal price = new BigDecimal(purchasePrice);
-            ps.setBigDecimal(3, price);
-            ps.executeUpdate();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new RuntimeException(e);
-        }
-    }
 
+    //Beneath this is a method to print everything in the ResultSet rs to the command line. This is not currently used in the program, but could be useful in the future.
 
-    }
+    //            System.out.println(rs.next());
+//            ResultSetMetaData rsmd = rs.getMetaData();
+//            int columnsNumber = rsmd.getColumnCount();
+//            while (rs.next()) {
+//                for (int i = 1; i <= columnsNumber; i++) {
+//                    if (i > 1) System.out.print(",  ");
+//                    String columnValue = rs.getString(i);
+//                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
+//                }
+//                System.out.println("");
+//            }
+}

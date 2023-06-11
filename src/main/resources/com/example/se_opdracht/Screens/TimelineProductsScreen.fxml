@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.se_opdracht.Controllers.TimelineScreenController">
+   <children>
+      <Pane layoutY="80.0" prefHeight="650.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ListView fx:id="productList" layoutX="14.0" layoutY="85.0" onMouseClicked="#FillTable" prefHeight="200.0" prefWidth="200.0" />
+            <ComboBox fx:id="productCategoryList" layoutX="14.0" layoutY="60.0" onAction="#ProductCategoryListItemSelected" prefHeight="25.0" prefWidth="200.0" promptText="Select category" />
+            <TableView fx:id="PurchaseTable" layoutX="257.0" layoutY="24.0" prefHeight="520.0" prefWidth="374.0">
+              <columns>
+                  <TableColumn fx:id="PurchaseID" prefWidth="100.0" text="Purchase No." />
+                <TableColumn fx:id="DateColumn" prefWidth="134.0" text="Date" />
+                <TableColumn fx:id="PriceColumn" prefWidth="139.0" text="Price" />
+              </columns>
+            </TableView>
+            <VBox alignment="BASELINE_CENTER" layoutX="645.0" layoutY="24.0" prefHeight="520.0">
+               <children>
+                  <ComboBox fx:id="newProductCategoryList" prefHeight="25.0" prefWidth="230.0" promptText="Select a category for the product.">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <TextField fx:id="NewProductTextfield" prefHeight="25.0" prefWidth="230.0" promptText="Enter new product name">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="addNewProductButton" mnemonicParsing="false" onAction="#addNewProduct" text="Add new product" />
+                  <Label text="New purchase date form">
+                     <VBox.margin>
+                        <Insets top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ComboBox fx:id="productFormList" prefHeight="25.0" prefWidth="174.0" promptText="Choose product">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </ComboBox>
+                  <DatePicker fx:id="purchaseDatePicker" prefHeight="25.0" prefWidth="174.0" promptText="Purchase date">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </DatePicker>
+                  <TextField fx:id="purchasePriceTextfield" prefHeight="25.0" prefWidth="174.0" promptText="Purchase price">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="addNewPurchaseButton" mnemonicParsing="false" onAction="#addNewPurchase" text="Add new purchase">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+                  <Label text="New product form">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="newCategoryTextfield" promptText="New category name">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="addNewCategoryButton" mnemonicParsing="false" onAction="#addNewCategory" text="Add new category">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

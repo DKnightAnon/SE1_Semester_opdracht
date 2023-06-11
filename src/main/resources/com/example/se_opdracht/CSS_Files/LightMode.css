@@ -1,0 +1,88 @@
+
+#TopBar{
+ -fx-background-color :  #578cef;
+}
+
+#IconSideBar{
+ -fx-background-color : #424769;
+ }
+
+#ButtonSideBar{
+ -fx-background-color :  #676f9d;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+.button {
+-fx-text-fill : #000000;
+-fx-background-color :   #e28740;
+}
+
+.button:hover{
+ -fx-text-fill : #000000;
+ -fx-background-color : #f9b17a;
+ -fx-cursor : hand;
+}
+
+#DarkmodeToggle:hover{
+ -fx-cursor : hand;
+}
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+#Crossmark{
+ -fx-icon-color: #f44343;
+}
+
+#Crossmark:hover{
+ -fx-icon-color: f59494;
+ -fx-cursor : hand;
+}
+
+.ikonli-font-icon{
+ -fx-icon-color: #000000;
+}
+
+#MenuIcon:hover{
+ -fx-icon-color: #7a7a7a;
+ -fx-cursor : hand;
+}
+
+#MenuIconClose:hover{
+ -fx-icon-color: #7a7a7a;
+ -fx-cursor : hand;
+}
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+ .dialog-pane{
+  /*-fx-border-color:black;
+  -fx-border-width:2.0px;*/
+ }
+
+.dialog-pane:header .header-panel{
+ -fx-background-color :  #676f9d;
+
+}
+
+.dialog-pane:header .header-panel .label{
+   -fx-background-radius:10px;
+  -fx-background-color: #e28740;
+  -fx-text-fill:black;
+  -fx-font-size:15.0px;
+}
+
+.dialog-pane > .content.label {
+   -fx-padding: 0.5em 0.5em 0.5em 0.5em;
+   -fx-background-color: #676f9d;
+   -fx-text-fill:black;
+   -fx-font-size:15.0px;
+}
+
+/**Costumization of The Bar where the buttons are located**/
+.dialog-pane > .button-bar > .container {
+  -fx-background-color:black;
+}
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/

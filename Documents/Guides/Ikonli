@@ -1,0 +1,12 @@
+[Documentatie]
+https://kordamp.org/ikonli/
+
+[Handige links]
+https://www.javacodegeeks.com/2020/03/javafx-tip-32-need-icons-use-ikonli.html
+https://dlemmermann.wordpress.com/category/tips-tricks/
+
+
+Gebruik niet FontAwesome(Legacy), maar andere IconPacks zoals FontAwesome5.
+Als je een .setIconCode wilt gebruiken moet je in de cheat sheet van de IconPack kijken en daar de naam uit de kolom 'ENUM' pakken.
+
+
