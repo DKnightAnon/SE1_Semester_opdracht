@@ -8,7 +8,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class ErrorWarnings {
+public final class ErrorWarnings {
     private Stage stage;
     private Scene scene;
     private Parent root;

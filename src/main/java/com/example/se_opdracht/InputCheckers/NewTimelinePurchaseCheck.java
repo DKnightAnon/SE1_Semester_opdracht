@@ -6,6 +6,7 @@ import com.example.se_opdracht.ProductMaker.Products.IProduct;
 import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 
 
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ public class NewTimelinePurchaseCheck {
 
     TimelineDBHandler db = new TimelineDBHandler();
 
-    public NewTimelinePurchaseCheck() throws ClassNotFoundException {
+    public NewTimelinePurchaseCheck() throws ClassNotFoundException, SQLException {
         AvailableProducts = db.getProductsAsArrayList();
         AvailableCategories = db.getCategoriesAsArrayList();
 //        AvailablePurchases = db.getPurchasesAsArrayList();

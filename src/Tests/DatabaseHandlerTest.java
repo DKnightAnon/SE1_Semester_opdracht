@@ -1,6 +1,5 @@
 import com.example.se_opdracht.DBHandlers.TimelineDBHandler;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
-import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
 import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

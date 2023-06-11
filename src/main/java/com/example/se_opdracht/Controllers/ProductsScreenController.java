@@ -63,12 +63,9 @@ public class ProductsScreenController extends GenericScreenController implements
 
 
     public void addNewProduct(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        IProduct newProduct = factory.createProduct();
-        ICategory tempCat = (ICategory) newProductCategoryList.getSelectionModel().getSelectedItem();
-        newProduct.addAll(NewProductTextfield.getText(),"",0,tempCat);
-        Boolean emptyTextField = isTextFieldEmpty(NewProductTextfield);
-        if (!emptyTextField) {
-            DB.addNewProduct(newProduct);
+
+        if (!isTextFieldEmpty(NewProductTextfield)) {
+            DB.addNewProduct(factory.createProduct(NewProductTextfield.getText(),"",0, (ICategory) newProductCategoryList.getSelectionModel().getSelectedItem()));
             dataLoad();
             NewProductTextfield.clear();
         }
@@ -85,18 +82,14 @@ public class ProductsScreenController extends GenericScreenController implements
         {error.noCompletePurchaseInfo();}
         else {
             Double price = Double.valueOf(purchasePriceTextfield.getText());
-            IProduct selectedProduct = (IProduct) productFormList.getSelectionModel().getSelectedItem();
-            IPurchase purchase = factory.createPurchase(selectedProduct, purchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), BigDecimal.valueOf(price), 0);
-            DB.addTransaction(purchase);
+            DB.addNewTransaction(factory.createPurchase((IProduct) productFormList.getSelectionModel().getSelectedItem(), purchaseDatePicker.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), BigDecimal.valueOf(price), 0));
             refresh();
         }
 
     }
 
     public void addNewCategory(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        ICategory newCategory = factory.createCategory();
-        newCategory.setCategoryName(newCategoryTextfield.getText());
-        DB.addNewCategory(newCategory);
+        DB.addNewCategory(factory.createCategory(newCategoryTextfield.getText(),0));
         refresh();
     }
 
@@ -108,11 +101,9 @@ public class ProductsScreenController extends GenericScreenController implements
         productCategoryList.setItems(categoryList);
         newProductCategoryList.setItems(categoryList);
         productFormList.setItems(DBProductList);
-        //productList.setItems(listViewProductList);
     }
 
     public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException {
-        int productID = productCategoryList.getSelectionModel().getSelectedIndex();
         ObservableList<IProduct> productlist = DB.getProducts();
         productList.setItems(productlist);
     }
@@ -132,14 +123,17 @@ public class ProductsScreenController extends GenericScreenController implements
         purchaseDatePicker.getEditor().clear();
         newCategoryTextfield.clear();
         purchasePriceTextfield.clear();
+        fillPurchaseTable((IProduct) productList.getSelectionModel().getSelectedItem());
         dataLoad();
     }
 
 
     public void FillTable(MouseEvent mouseEvent) throws ClassNotFoundException {
         try {
-            IProduct selectedProduct = (IProduct) productList.getSelectionModel().getSelectedItem();
-            fillPurchaseTable(selectedProduct);
+            if (!productList.getSelectionModel().isEmpty()) {
+                IProduct selectedProduct = (IProduct) productList.getSelectionModel().getSelectedItem();
+                fillPurchaseTable(selectedProduct);
+            }
 
 
 

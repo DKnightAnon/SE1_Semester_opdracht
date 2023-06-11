@@ -56,20 +56,32 @@
     Date varchar(20) NOT NULL,
     Item varchar(600),
     Description varchar(255),
+    PurchasePrice NUMERIC(20,2) NOT NULL,
     Category integer NOT NULL,
     PRIMARY KEY (Purchase_ID),
     FOREIGN KEY (Category) REFERENCES Expense_Category(Category_ID)
     );
 
+    DROP TABLE IF EXISTS Users;
+    CREATE TABLE Users(
+    UserID int not null auto_increment,
+    UserName varchar(50) NOT NULL,
+    FirstName varchar(50),
+    LastName varchar(50),
+    Email varchar(100) NOT NULL,
+    Darkmode BOOLEAN,
+    PRIMARY KEY (UserID)
+    );
+
 [Queries]
 
   [Insert new entry into purchases table]
-   INSERT INTO purchase (Date, Item, Description, Category) VALUES ('26-03-2022', 'testitem', 'testdescription' ,1); //Adding testentry. 1 is the id of 'testcategory'
+   INSERT INTO purchase (Date, Item, Description, Category, PurchasePrice) VALUES ('26-03-2022', 'testitem', 'testdescription' ,1, 45.67); //Adding testentry. 1 is the id of 'testcategory'
    INSERT INTO purchase (Date, Item , Description , Category) VALUES ( 'today' , 'test18:29' , 'testing insertion' ,2)//test entry for javafx, does not work currently.//This does work now. The error was because there are quotation marks around the table names. only put qoutations around string values that are inserted.
    INSERT INTO 'Purchase'('Date', 'Item', 'Description', 'Category') VALUES (?,?,?,?);
 
   [Get entries from the purchases table]
-   SELECT Purchase_ID, Date, Item, Description, Name
+   SELECT Purchase_ID, Date, Item, Description, Name, PurchasePrice
    FROM purchase JOIN expense_category
    ON purchase.Category = expense_category.Category_ID;
 
@@ -89,3 +101,8 @@
 
   [Insert new entry into ProductPurchaseDate]
   Insert into ProductPurchaseDate (Date, PurchasePrice, Product_ID) Values ('today' , 12.34, 1) //H2 specific testentry
+
+  [Get info from USERS]
+  SELECT * FROM USERS
+
+  [Insert into USERS]

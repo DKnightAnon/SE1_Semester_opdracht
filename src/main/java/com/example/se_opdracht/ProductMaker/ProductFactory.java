@@ -7,13 +7,13 @@ import java.math.BigDecimal;
 
 public class ProductFactory extends AbstractFactory{
     @Override
-    public ICategory createCategory() {
-        return new Category();
+    public ICategory createCategory(String categoryName, int CategoryID) {
+        return new Category(categoryName, CategoryID);
     }
 
     @Override
-    public IProduct createProduct() {
-        return new Product();
+    public IProduct createProduct(String name, String description, int productID, ICategory category) {
+        return new Product(name, description, productID, category);
     }
 
     @Override

@@ -1,11 +1,15 @@
 import com.example.se_opdracht.BudgetHandlers.MonthlyBudget;
 import com.example.se_opdracht.InputCheckers.DescriptionChecker;
 import com.example.se_opdracht.InputCheckers.NewTimelinePurchaseCheck;
-import com.example.se_opdracht.ProductMaker.Products.TimelineProduct;
-import com.example.se_opdracht.ProductMaker.Products.Timeline.TimelineProductCategory;
+import com.example.se_opdracht.ProductMaker.Products.Category;
+import com.example.se_opdracht.ProductMaker.Products.ICategory;
+import com.example.se_opdracht.ProductMaker.Products.IProduct;
+import com.example.se_opdracht.ProductMaker.Products.Product;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+
+import java.sql.SQLException;
 
 public class OPT3_Tests {
 
@@ -175,23 +179,22 @@ public class OPT3_Tests {
     @Nested
     class NewTimelinePurchaseCheckTest {
 
-        TimelineProduct testProduct = new TimelineProduct("TestTimelineProduct","Empty","TestTimelineCategory",1);
-        TimelineProduct faultyTestProduct = new TimelineProduct("Testing","TestDescription","Test",1);
-        TimelineProductCategory testCategory = new TimelineProductCategory(1,"TestTimelineCategory");
-        TimelineProductCategory faultyTestCategory = new TimelineProductCategory(1,"Test");
-
+        IProduct testProduct = new Product("TestTimelineProduct","Empty",1,new Category("TestProduct",1));
+        ICategory testCategory = new Category("TestTimelineCategory",1);
+        ICategory faultyTestCategory = new Category("Test",1);
+        IProduct faultyTestProduct = new Product("Testing","TestDescription",2,faultyTestCategory);
 
         //----------<Pair 1>----------------
 
         @Test
-        public void inputCheckIfPriceIsPostitiveAndAllValid() throws ClassNotFoundException {
+        public void inputCheckIfPriceIsPostitiveAndAllValid() throws ClassNotFoundException, SQLException {
             NewTimelinePurchaseCheck check = new NewTimelinePurchaseCheck();
             int actual = check.inputCheck("80.50",testCategory,testProduct,"10-05-2023");
             Assertions.assertEquals(0,actual);
         }
 
         @Test
-        public void inputCheckIfPriceIsPositiveAndNoneAreValid() throws ClassNotFoundException {
+        public void inputCheckIfPriceIsPositiveAndNoneAreValid() throws ClassNotFoundException, SQLException {
             NewTimelinePurchaseCheck check = new NewTimelinePurchaseCheck();
             int actual = check.inputCheck("80.50",faultyTestCategory,testProduct,"12-30-2023");
             Assertions.assertEquals(4,actual);
@@ -199,14 +202,14 @@ public class OPT3_Tests {
 
         //----------<Pair 2>----------------
         @Test
-        public void inputCheckIfPriceIsZeroAndAllAreValid() throws ClassNotFoundException {
+        public void inputCheckIfPriceIsZeroAndAllAreValid() throws ClassNotFoundException, SQLException {
             NewTimelinePurchaseCheck check = new NewTimelinePurchaseCheck();
             int actual = check.inputCheck("0.0",faultyTestCategory,testProduct,"10-05-2023");
             Assertions.assertEquals(3,actual);
         }
 
         @Test
-        public void inputCheckIfPriceIsZeroAndNoneAreValid() throws ClassNotFoundException {
+        public void inputCheckIfPriceIsZeroAndNoneAreValid() throws ClassNotFoundException, SQLException {
             NewTimelinePurchaseCheck check = new NewTimelinePurchaseCheck();
             int actual = check.inputCheck("0.0",testCategory,faultyTestProduct,"12-30-2023");
             Assertions.assertEquals(4,actual);
@@ -215,14 +218,14 @@ public class OPT3_Tests {
         //----------<Pair 2>----------------
 
         @Test
-        public void inputCheckIfPriceIsNegativeAndAllAreValid() throws ClassNotFoundException {
+        public void inputCheckIfPriceIsNegativeAndAllAreValid() throws ClassNotFoundException, SQLException {
             NewTimelinePurchaseCheck check = new NewTimelinePurchaseCheck();
             int actual = check.inputCheck("-80.50",faultyTestCategory,testProduct,"12-30-2023");
             Assertions.assertEquals(4,actual);
         }
 
         @Test
-        public void inputCheckIfPriceIsNegativeAndNoneAreValidExceptCategory() throws ClassNotFoundException {
+        public void inputCheckIfPriceIsNegativeAndNoneAreValidExceptCategory() throws ClassNotFoundException, SQLException {
             NewTimelinePurchaseCheck check = new NewTimelinePurchaseCheck();
             int actual = check.inputCheck("-80.50",testCategory,faultyTestProduct,"18-05-2023");
             Assertions.assertEquals(3,actual);

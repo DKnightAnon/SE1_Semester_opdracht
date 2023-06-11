@@ -1,22 +1,32 @@
 package com.example.se_opdracht.Controllers;
 
+import com.example.se_opdracht.ChartHandlers.ChartHandler;
+import com.example.se_opdracht.ChartHandlers.Transaction.TransactionChartHandler;
+import com.example.se_opdracht.DBHandlers.ProductDBHandler;
 import com.example.se_opdracht.DBHandlers.TransactionDBHandler;
 import com.example.se_opdracht.InputCheckers.DescriptionChecker;
+import com.example.se_opdracht.InputCheckers.TransactionCheck;
 import com.example.se_opdracht.ProductMaker.AbstractFactory;
 import com.example.se_opdracht.ProductMaker.ProductFactory;
 import com.example.se_opdracht.ProductMaker.Products.ICategory;
 
 
 import com.example.se_opdracht.ProductMaker.Products.IProduct;
+import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.Chart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
+import java.math.BigDecimal;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import java.time.format.DateTimeFormatter;
@@ -28,14 +38,14 @@ public class TransactionScreenController extends GenericScreenController impleme
     @FXML
         private TableView TransactionTable;
      @FXML
-     private TableColumn IDColumn,DateColumn,ItemColumn,DescriptionColumn,CategoryColumn;
+     private TableColumn IDColumn,DateColumn,ItemColumn,DescriptionColumn,CategoryColumn,PriceColumn;
 //Table variables
 
     //Purchase(Transaction) form variables
     @FXML
     private DatePicker expenseDate;
     @FXML
-    private TextField expenseItem,NewCategoryTextField;
+    private TextField expenseItem,NewCategoryTextField,priceField;
     @FXML
     private TextArea purchaseDescription;
     @FXML
@@ -43,98 +53,86 @@ public class TransactionScreenController extends GenericScreenController impleme
     @FXML
     private Button addPurchaseButton;
     //Purchase(Transaction) form variables
-
+    private Chart CategoryChart;
+    @FXML
+    private VBox chartContainer;
     ObservableList<ICategory> categoryList;
-    ObservableList<IProduct> transactions;
-    DescriptionChecker DesCheck = new DescriptionChecker(250);//250 character limit for descriptions
-
-    TransactionDBHandler db = new TransactionDBHandler();
-
+    ObservableList<IPurchase> transactions;
+    ProductDBHandler db = new TransactionDBHandler();
     AbstractFactory factory = new ProductFactory();
+    ChartHandler chartHandler = new TransactionChartHandler();
+
+
+
 
     @FXML
     private AnchorPane TransactionScreen;
 
-    public void AddNewPurchase(ActionEvent actionEvent) {
-        Boolean emptyDate;
-        if (expenseDate.getValue() != null) {
-            emptyDate = false;
-        } else {
-            emptyDate = true;
-        }
-        LocalDate productdate = expenseDate.getValue();
-        String dateFormat = productdate.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));//use MM for months. mm is for minutes of hour
-
-            if (
-                      emptyDate
-                    || expenseItem.getText().equals("")
-                    || DesCheck.checkDescription(Integer.valueOf(purchaseDescription.getText().length())) == 1
-                    || selectCategory.getSelectionModel().getSelectedItem().equals(""))
-            {
-                error.noCompletePurchaseInfo();
-            } else {
-                try {
-
-
-                    tdbh.addNewProduct(
-                            dateFormat,
-                            expenseItem.getText(),
-                            purchaseDescription.getText(),
-                            selectCategory.getSelectionModel().getSelectedIndex()
-                    );
-                    TableLoad();
-                }catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            selectCategory.setValue("Choose a category");
-
-
-
-    }
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-      //  while (true) {
-        TableLoad();
+        try {
+            CategoryChart = chartHandler.initialize();
+            chartContainer.getChildren().add(CategoryChart);
+            TableLoad();
 
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
 
-    public void onTableLoadClick(ActionEvent actionEvent) {
+    }
+
+    //use MM for months. mm is for minutes of hour
+    public void AddNewPurchase(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
+        Double price = Double.valueOf(priceField.getText());
+        tdbh.addNewTransaction(TransactionCheck.PurchaseCheck(
+                factory.createPurchase(
+                        factory.createProduct(expenseItem.getText(),purchaseDescription.getText(),0,
+                                (ICategory) selectCategory.getSelectionModel().getSelectedItem()),
+                        expenseDate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")), BigDecimal.valueOf(price),0 )));
+            selectCategory.setValue("Choose a category");
+            TableLoad();
+    }
+
+
+
+    public void onTableLoadClick(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         TableLoad();
     }
 
 
-    public void TableLoad() {
-        IDColumn.setCellValueFactory(new PropertyValueFactory<IProduct, Integer>("ID"));//Purchase_ID in database
-        DateColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Date"));//Date in database
-        ItemColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Name"));//(product) name in database
+    public void TableLoad() throws SQLException, ClassNotFoundException {
+        IDColumn.setCellValueFactory(new PropertyValueFactory<IPurchase, Integer>("PurchaseID"));//Purchase_ID in database
+        DateColumn.setCellValueFactory(new PropertyValueFactory<IPurchase, String>("Date"));//Date in database
+        ItemColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Product"));//(product) name in database
         DescriptionColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Description")); //(product) description in database
         CategoryColumn.setCellValueFactory(new PropertyValueFactory<IProduct, String>("Category"));//(Expense_Category) name in database
+        PriceColumn.setCellValueFactory(new PropertyValueFactory<IPurchase, BigDecimal>("Price"));
+
         transactions = db.getTransactions();
         TransactionTable.setItems(transactions);
-//        categoryList = db.getCategories();
+        categoryList = db.getCategories();
         selectCategory.setItems(categoryList);
-
+        CategoryChart = chartHandler.initialize();
+        updateChart();
 
     }
 
+    private void updateChart() throws SQLException, ClassNotFoundException {
+        chartContainer.getChildren().remove(chartContainer.getChildren().size()-1);
+        CategoryChart = chartHandler.update();
+        chartContainer.getChildren().add(CategoryChart);
+    }
 
-    public void OnAddNewCategoryClick(ActionEvent event) {
-        if (NewCategoryTextField.getText().equals(null) || NewCategoryTextField.getText().equals("")){
-            error.noCategoryEntered();
-        }else {
-            db.addCategory(NewCategoryTextField.getText());
+    public void OnAddNewCategoryClick(ActionEvent event) throws SQLException, ClassNotFoundException {
+            db.addNewCategory(factory.createCategory(NewCategoryTextField.getText(),0));
             NewCategoryTextField.clear();
             TableLoad();
-        }
+
     }
 
-    public void onCloseButtonClick(ActionEvent actionEvent) {
-        try {
-            error.logoutConfirm(TransactionScreen);
-        } catch (Exception e) {
-            error.unableToCloseApplication();
-        }
-    }
+
 }

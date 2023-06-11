@@ -1,4 +1,3 @@
-import com.example.se_opdracht.ProductMaker.Products.Transaction.TransactionProduct;
 
 public class DatabaseTest {
 

@@ -1,48 +1,37 @@
 package com.example.se_opdracht.DBHandlers;
 
-import com.example.se_opdracht.ProductMaker.Products.ICategory;
-import com.example.se_opdracht.ProductMaker.Products.IProduct;
+import com.example.se_opdracht.ProductMaker.Products.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
 
-public class TransactionDBHandler extends DBhandler{
+public class TransactionDBHandler extends ProductDBHandler{
 
+    @Override
+    public ObservableList<IPurchase> getTransactions(IProduct product) {
+        return null;
+    }
 
-
-    public ObservableList<IProduct> getTransactions() {
-        String databasequery1 =
-                "SELECT 'ID', 'Date', 'Item', 'Vendor', 'Description', 'Name' " +
-                        "FROM 'purchase' JOIN 'expense_category'" +
-                        "ON purchase.Category = expense_category.Category_ID";
-        String databasequery2 =
-                "SELECT Purchase_ID, Date, Item, Description, Name " +
-                        "FROM purchase JOIN expense_category " +
-                        "ON purchase.Category = expense_category.Category_ID;";
-        String databasequery3 =
-                "SELECT Purchase_ID, Date, Item, Description, Name " +
-                "FROM PURCHASE JOIN EXPENSE_CATEGORY " +
-                "ON PURCHASE.Category = EXPENSE_CATEGORY.Category_ID;";
-
-        ObservableList<IProduct> list;
+    @Override
+    public ArrayList<IPurchase> getTransactionsAsArrayList(IProduct product) {
+        return null;
+    }
+    public ObservableList<IPurchase> getTransactions() {
+        String getTransactionsQuery = "  SELECT *  FROM purchase JOIN expense_category ON purchase.Category = expense_category.Category_ID;";
+        ObservableList<IPurchase> list = FXCollections.observableArrayList();
         try {
-            //Connection connection = DriverManager.getConnection(DBhandler.getJdcbURL(), DBhandler.getUser(),DBhandler.getPassword() );
-            //Above code made redundant. It can now be called with 'DBHandler.getConnection();'
             Connection connection = getConnection();
-            list = FXCollections.observableArrayList();
-            PreparedStatement ps = connection.prepareStatement(databasequery3);
+            PreparedStatement ps = connection.prepareStatement(getTransactionsQuery);
             ResultSet rs = ps.executeQuery();
-
-//            while (rs.next()) {
-//
-//                list.add(new TransactionProduct(
-//                        rs.getInt("Purchase_ID"),
-//                        rs.getString("Date"),
-//                        rs.getString("Item"),
-//                        rs.getString("Description"),
-//                        rs.getString("Name")));//category
-//            }
+            while (rs.next()) {
+                list.add(new Purchase(
+                        new Product(rs.getString("Item"),rs.getString("Description"),0,
+                                new Category(rs.getString("Name"), rs.getInt("Category"))
+                        ),
+                        rs.getString("Date"),rs.getBigDecimal("PurchasePrice"),rs.getInt("Purchase_ID")));//category
+            }
             connection.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -52,61 +41,35 @@ public class TransactionDBHandler extends DBhandler{
 
         return list;
     }
-    public IProduct getSingularProduct(int ID) throws SQLException, ClassNotFoundException {
-        String databasequery =
-                "SELECT Purchase_ID, Date, Item, Description, Name " +
-                        "FROM PURCHASE JOIN EXPENSE_CATEGORY" +
-                        " ON PURCHASE.Category = EXPENSE_CATEGORY.Category_ID " +
-                        "where purchase_id = ?; ";
-        Connection con = getConnection();
-        PreparedStatement ps = con.prepareStatement(databasequery);
-        ps.setInt(1, ID);
-        ResultSet rs = ps.executeQuery();
-        IProduct SingularProduct = null;
-//        while (rs.next()) {
-//            SingularProduct = new TransactionProduct(
-//                    rs.getInt("Purchase_ID"),
-//                    rs.getString("Date"),
-//                    rs.getString("Item"),
-//                    rs.getString("Description"),
-//                    rs.getString("Name"));
-//
-//        }
-        return SingularProduct;
+
+
+
+    public ObservableList<ICategory> getCategories() {
+        ObservableList<ICategory>   list = FXCollections.observableArrayList();
+        try {
+            Connection connection = getConnection();
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(factory.createCategory(rs.getString("Name"), rs.getInt("Category_ID")));
+            }
+            connection.close();
+        }catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
-//    public ObservableList<TransactionProductCategory> getCategories() {
-//        ObservableList<TransactionProductCategory>   list = FXCollections.observableArrayList();
-//        try {
-//            Connection connection = DBhandler.getConnection();
-//
-//            PreparedStatement ps = connection.prepareStatement("SELECT * FROM expense_category");
-//            ResultSet rs = ps.executeQuery();
-//            list.add(new TransactionProductCategory("Select a category",0)); // This is a dummy category. I'm not quite sure yet how to retrieve data apart from string values from items in the combobox, so this is a stopgap measure.
-//
-//            while (rs.next()) {
-//                //list.add(rs.getString("Name"));
-//
-//                list.add(new ICategory(rs.getString("Name"), rs.getInt("Category_ID")));
-//            }
-//            connection.close();
-//        }catch (SQLException e) {
-//            throw new RuntimeException(e);
-//
-//        } catch (ClassNotFoundException e) {
-//            throw new RuntimeException(e);
-//        }
-//        return list;
-//    }
-    public void addCategory(String categoryName) {
+
+    public void addNewCategory(ICategory category) {
         try{
             Class.forName("org.h2.Driver");
             Connection connection = getConnection();
             PreparedStatement ps = connection.prepareStatement("INSERT INTO EXPENSE_CATEGORY (Name) VALUES (?);"); //H2 specific statement
-            ps.setString(1,categoryName);
+            ps.setString(1,category.getCategoryName());
             ps.executeUpdate();
             connection.close();
-
-
         }catch (SQLException e){
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -114,27 +77,29 @@ public class TransactionDBHandler extends DBhandler{
         }
 
     }
-    public void addNewProduct(String date, String item, String description, int id) {
-        PreparedStatement psInsert = null;
+
+    @Override
+    public void addNewProduct(IProduct product) {
+
+    }
+
+    @Override
+    public void addNewTransaction(IPurchase purchase) {
         try{
            Connection con = getConnection();
-
-            psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category) VALUES (?,?,?," + id + ")");
-            psInsert.setString(1,date);
-            psInsert.setString(2,item);
-            psInsert.setString(3,description);
+            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Purchase (Date, Item,Description, Category,PurchasePrice) VALUES (?,?,?,?,?)");
+            psInsert.setString(1,purchase.getDate());
+            psInsert.setString(2,purchase.getProduct().getName());
+            psInsert.setString(3,purchase.getProduct().getDescription());
+            psInsert.setInt(4,purchase.getCategory().getCategoryID());
+            psInsert.setBigDecimal(5,purchase.getPrice());
             psInsert.execute();
-            //System.out.printf("%s, %s, %s, %s, categoryID : %d",date,item,description,category,id);
-            //Testing done
             con.close();
-
         }catch (SQLException e){
             throw new RuntimeException(e);
-
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 

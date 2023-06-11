@@ -13,7 +13,7 @@ public interface IDBRetrieve {
 
     public ObservableList<IProduct> getProducts();
 
-    public ArrayList<ICategory> getCategoriesAsArrayList();
+    public ArrayList<ICategory> getCategoriesAsArrayList() throws SQLException, ClassNotFoundException;
 
     public ObservableList<ICategory> getCategories()throws SQLException, ClassNotFoundException;
 }

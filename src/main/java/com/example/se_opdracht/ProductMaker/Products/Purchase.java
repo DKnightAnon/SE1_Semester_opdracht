@@ -13,6 +13,7 @@ public class Purchase implements IPurchase {
     private String date;
     private BigDecimal price;
     private int PurchaseID;
+    private String description;
 
     public Purchase(IProduct product, String date, BigDecimal price, int purchaseID) {
         this.product = product;
@@ -20,6 +21,7 @@ public class Purchase implements IPurchase {
         this.date = date;
         this.price = price;
         PurchaseID = purchaseID;
+        this.description= product.getDescription();
     }
 
     @Override
@@ -72,6 +74,10 @@ public class Purchase implements IPurchase {
     public void setPurchaseID(int id) {
         this.PurchaseID = id;
 
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public void addAll(IProduct product, ICategory category, String date, BigDecimal price, int purchaseID){
