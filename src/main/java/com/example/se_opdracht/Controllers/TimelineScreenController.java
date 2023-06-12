@@ -93,7 +93,7 @@ public class TimelineScreenController implements Initializable {
         refresh();
     }
 
-    public void dataLoad() throws SQLException, ClassNotFoundException {
+    private void dataLoad() throws SQLException, ClassNotFoundException {
         ObservableList<ICategory> categoryList = DB.getCategories();
         ObservableList<IProduct> DBProductList = DB.getProducts();
         ObservableList<IProduct> listViewProductList = FXCollections.observableArrayList();
@@ -103,9 +103,11 @@ public class TimelineScreenController implements Initializable {
         productFormList.setItems(DBProductList);
     }
 
-    public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException {
-        ObservableList<IProduct> productlist = DB.getProducts();
+    public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
+
+        ObservableList<IProduct> productlist = DB.getProducts((ICategory) productCategoryList.getSelectionModel().getSelectedItem());
         productList.setItems(productlist);
+        //dataLoad();
     }
 
     public void fillPurchaseTable(IProduct product) throws ClassNotFoundException {
