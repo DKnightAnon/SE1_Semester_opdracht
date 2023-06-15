@@ -1,5 +1,4 @@
 module com.example.se_opdracht {
-    requires com.h2database;
     requires javafx.base;
     requires javafx.graphics;
     requires javafx.controls;
@@ -12,6 +11,7 @@ module com.example.se_opdracht {
     requires java.sql;
     requires org.controlsfx.controls;
 
+    requires com.h2database;
 
     opens com.example.se_opdracht to javafx.fxml;
     exports com.example.se_opdracht;
@@ -21,7 +21,6 @@ module com.example.se_opdracht {
     opens com.example.se_opdracht.DBHandlers to javafx.fxml;
     exports com.example.se_opdracht.ProductMaker.Products;
     opens com.example.se_opdracht.ProductMaker.Products to javafx.fxml;
-    exports com.example.se_opdracht.BudgetHandlers;
     exports com.example.se_opdracht.InputCheckers;
     opens com.example.se_opdracht.InputCheckers to javafx.fxml;
 

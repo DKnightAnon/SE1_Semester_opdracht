@@ -44,10 +44,6 @@ public class TimelineScreenController implements Initializable {
     private DatePicker purchaseDatePicker;
 
     TimelineDBHandler DB = new TimelineDBHandler();
-
-    @FXML
-    private AnchorPane TimelineScreen;
-
     AbstractFactory factory = new ProductFactory();
 
     @Override
@@ -73,9 +69,7 @@ public class TimelineScreenController implements Initializable {
 
     }
 
-    private void newProduct(IProduct product){
 
-    }
 
     public void addNewPurchase(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
         if ( isDatePickerEmpty(purchaseDatePicker)|| purchaseDatePicker.getEditor().getText().isEmpty() || purchasePriceTextfield.getText().isEmpty())
@@ -93,7 +87,7 @@ public class TimelineScreenController implements Initializable {
         refresh();
     }
 
-    public void dataLoad() throws SQLException, ClassNotFoundException {
+    private void dataLoad() throws SQLException, ClassNotFoundException {
         ObservableList<ICategory> categoryList = DB.getCategories();
         ObservableList<IProduct> DBProductList = DB.getProducts();
         ObservableList<IProduct> listViewProductList = FXCollections.observableArrayList();
@@ -103,12 +97,15 @@ public class TimelineScreenController implements Initializable {
         productFormList.setItems(DBProductList);
     }
 
-    public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException {
-        ObservableList<IProduct> productlist = DB.getProducts();
+    @FXML
+    public void ProductCategoryListItemSelected(ActionEvent actionEvent) throws ClassNotFoundException, SQLException {
+
+        ObservableList<IProduct> productlist = DB.getProducts((ICategory) productCategoryList.getSelectionModel().getSelectedItem());
         productList.setItems(productlist);
+        //dataLoad();
     }
 
-    public void fillPurchaseTable(IProduct product) throws ClassNotFoundException {
+    private void fillPurchaseTable(IProduct product) throws ClassNotFoundException {
         ObservableList<IPurchase> purchaseHistory = DB.getTransactions(product);
         //The string value here needs to equal the name of the variable in the class you're trying to retireve data from
         PurchaseID.setCellValueFactory(new PropertyValueFactory<IPurchase, Integer>("PurchaseID"));
@@ -135,14 +132,12 @@ public class TimelineScreenController implements Initializable {
                 fillPurchaseTable(selectedProduct);
             }
 
-
-
         }catch (Exception e) {
             e.printStackTrace();
             ErrorWarnings.noItemSelected();
             throw new RuntimeException(e);
         }
-        //System.out.println("TestClick!");
+
     }
 
 

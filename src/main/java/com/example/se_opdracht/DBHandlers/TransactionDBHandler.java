@@ -117,8 +117,10 @@ public class TransactionDBHandler extends ProductDBHandler{
     public void addNewProduct(IProduct product) {
     }
 
-
-
+    @Override
+    public ObservableList<IProduct> getProducts(ICategory category) {
+        return null;
+    }
 
 
 }

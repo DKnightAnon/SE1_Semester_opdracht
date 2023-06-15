@@ -6,10 +6,7 @@ import com.example.se_opdracht.ProductMaker.Products.IPurchase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,14 +14,39 @@ public class TimelineDBHandler extends ProductDBHandler{
 
     private final String getProductsQuery = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName, category.Category_ID " +
             "From TimelineProduct product join TimelineProductCategory category " +
-            "on product.category = category.Category_ID";;
+            "on product.category = category.Category_ID";
+    private final String getProductsFromCategory = "SELECT product.Product_ID, product.Name, product.Description,category.CategoryName, category.Category_ID " +
+            "From TimelineProduct product join TimelineProductCategory category " +
+            "on product.category = category.Category_ID where product.category = ? ";
 
+    private final String transactionsQuery = "SELECT purchase.purchasedate_ID, purchase.date, purchase.purchaseprice, product.product_ID, product.name, product.description, category.category_ID, category.categoryname FROM PRODUCTPURCHASEDATE purchase join timelineproduct product  on purchase.product_id = product.product_id join timelineproductcategory category on product.category = category.category_id where product.product_ID = ?";
 
     public  ObservableList<IProduct> getProducts() {
         ObservableList<IProduct> list = FXCollections.observableArrayList();
         try {
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(getProductsQuery);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(factory.createProduct(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), factory.createCategory(rs.getString("CategoryName"), rs.getInt("Product_ID"))));
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public ObservableList<IProduct>  getProducts(ICategory category){
+        ObservableList<IProduct> list = FXCollections.observableArrayList();
+        try {
+            Connection con = getConnection();
+            PreparedStatement ps = con.prepareStatement(getProductsFromCategory);
+            ps.setInt(1,category.getCategoryID());
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 list.add(factory.createProduct(rs.getString("Name"), rs.getString("Description"), rs.getInt("Product_ID"), factory.createCategory(rs.getString("CategoryName"), rs.getInt("Product_ID"))));
@@ -47,16 +69,18 @@ public class TimelineDBHandler extends ProductDBHandler{
             Connection con = getConnection();
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
+            //printResultSet(rs);
             while (rs.next()) {
                 list.add(factory.createCategory(rs.getString("CategoryName"),rs.getInt("Category_ID")));
+
             }
             con.close();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new RuntimeException();
+            //throw new RuntimeException();
         } catch (ClassNotFoundException e){
             e.printStackTrace();
-            throw new RuntimeException(e);
+           // throw new RuntimeException(e);
         }
         return list;
     }
@@ -87,10 +111,10 @@ public class TimelineDBHandler extends ProductDBHandler{
     @Override
     public ObservableList<IPurchase> getTransactions(IProduct product) {
         ObservableList<IPurchase> list = FXCollections.observableArrayList();
-        String query = "SELECT * FROM PRODUCTPURCHASEDATE where Product_ID = ? ";
+
         try{
             Connection con = getConnection();
-            PreparedStatement ps = con.prepareStatement(query);
+            PreparedStatement ps = con.prepareStatement(transactionsQuery);
             ps.setInt(1,product.getProductID());
             ResultSet rs = ps.executeQuery();
             while (rs.next()){
@@ -149,15 +173,17 @@ public class TimelineDBHandler extends ProductDBHandler{
 
     //Beneath this is a method to print everything in the ResultSet rs to the command line. This is not currently used in the program, but could be useful in the future.
 
-    //            System.out.println(rs.next());
-//            ResultSetMetaData rsmd = rs.getMetaData();
-//            int columnsNumber = rsmd.getColumnCount();
-//            while (rs.next()) {
-//                for (int i = 1; i <= columnsNumber; i++) {
-//                    if (i > 1) System.out.print(",  ");
-//                    String columnValue = rs.getString(i);
-//                    System.out.print(columnValue + " " + rsmd.getColumnName(i));
-//                }
-//                System.out.println("");
-//            }
+    private void printResultSet(ResultSet rs) throws SQLException {
+        System.out.println(rs.next());
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int columnsNumber = rsmd.getColumnCount();
+        while (rs.next()) {
+            for (int i = 1; i <= columnsNumber; i++) {
+                if (i > 1) System.out.print(",  ");
+                String columnValue = rs.getString(i);
+                System.out.print(columnValue + " " + rsmd.getColumnName(i));
+            }
+            System.out.println("");
+        }
+    }
 }

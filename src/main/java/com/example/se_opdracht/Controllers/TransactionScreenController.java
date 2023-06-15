@@ -92,13 +92,6 @@ public class TransactionScreenController implements Initializable {
             TableLoad();
     }
 
-
-
-    public void onTableLoadClick(ActionEvent actionEvent) throws SQLException, ClassNotFoundException {
-        TableLoad();
-    }
-
-
     public void TableLoad() throws SQLException, ClassNotFoundException {
         IDColumn.setCellValueFactory(new PropertyValueFactory<IPurchase, Integer>("PurchaseID"));//Purchase_ID in database
         DateColumn.setCellValueFactory(new PropertyValueFactory<IPurchase, String>("Date"));//Date in database

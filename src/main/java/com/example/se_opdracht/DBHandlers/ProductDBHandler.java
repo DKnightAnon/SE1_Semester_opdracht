@@ -23,6 +23,7 @@ public abstract class ProductDBHandler extends DBConnect{
     public abstract void addNewCategory(ICategory category)throws SQLException, ClassNotFoundException;
 
     public abstract void addNewProduct(IProduct product) throws ClassNotFoundException, SQLException;
+    public abstract ObservableList<IProduct>  getProducts(ICategory category);
 
 
 
